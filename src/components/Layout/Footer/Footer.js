@@ -1,6 +1,6 @@
 import React from "react";
 import "./Footer.css";
-import logo from "./agrologo.png";
+import logo from "../agrologo.png";
 
 // import SearchBar from "material-ui-search-bar";
 // import InstagramIcon from "@mui/icons-material/Instagram";
