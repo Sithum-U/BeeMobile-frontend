@@ -1,13 +1,17 @@
 import React from "react";
-import Footer from "./components/Layout/Footer/Footer";
-import Header from "./components/Layout/Header/Header";
+import { Route, Routes, BrowserRouter } from "react-router-dom";
 
 function App() {
   return (
-    <div>
-      <Header />
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        {/* <Route
+          path="/updateDocMarks/:id"
+          exact
+          element={<DocEvaluationUpdate />}
+        /> */}
+      </Routes>
+    </BrowserRouter>
   );
 }
 
