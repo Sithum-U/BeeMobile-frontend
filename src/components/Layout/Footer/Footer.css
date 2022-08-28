@@ -92,8 +92,14 @@ ul {
 }
 
 .image {
-  height: 100px;
-  width: 100px;
+  position: relative;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  font-size: 2em;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: 0.6s;
 }
 
 /*responsive*/
