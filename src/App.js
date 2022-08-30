@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
-import checkout from "./components/checkout";
+import checkout from "./components/PurchaseOrder/checkout";
 
 function App() {
   return (
