@@ -32,7 +32,7 @@ export default function Header() {
           </li>
         </ul>
       </header>
-      <section className="banner"></section>
+      {/* <section className="banner"></section> */}
     </div>
   );
 }
