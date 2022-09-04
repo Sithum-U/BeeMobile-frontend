@@ -10,7 +10,7 @@
 
 .signup_form_container {
   width: 900px;
-  height: 500px;
+  height: 550px;
   display: flex;
   border-radius: 10px;
   box-shadow: 0px 3px 3px -2px rgb(0 0 0 / 20%),
@@ -18,14 +18,16 @@
 }
 
 .left {
-  flex: 1;
+  flex: 2.5;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #4282a3;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+  /* background-color: #4282a3; */
+  background-image: url("./paymentImg.png");
+  /* border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px; */
+  border-width: 100%;
   font-family: "Times New Roman";
 }
 
@@ -82,7 +84,7 @@
 }
 
 .white_btn,
-.green_btn {
+.blue_btn {
   border: none;
   outline: none;
   padding: 12px 0;
@@ -94,17 +96,17 @@
   cursor: pointer;
 }
 
-.green_btn {
-  background-color: #3bb19b;
+.blue_btn {
+  background-color: #414bb2;
   color: white;
   margin: 10px;
 }
 
-.green_btn:hover {
-  background-color: #3e8e41;
+.blue_btn:hover {
+  background-color: #00b894;
 }
 
-.green_btn:active {
+.blue_btn:active {
   background-color: #3e8e41;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
