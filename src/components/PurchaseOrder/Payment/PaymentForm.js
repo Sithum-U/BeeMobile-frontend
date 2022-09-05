@@ -1,7 +1,9 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
+import TextField from "@mui/material/TextField";
+import Grid from "@mui/material/Grid";
 
 const Signup = () => {
   const [data, setData] = useState({
@@ -51,42 +53,73 @@ const Signup = () => {
         </div>
         <div className={styles.right}>
           <form className={styles.form_container} onSubmit={handleSubmit}>
-            <input
-              type="text"
-              placeholder="First Name"
-              name="firstName"
-              onChange={handleChange}
-              value={data.firstName}
-              required
-              className={styles.input}
-            />
-            <input
-              type="text"
-              placeholder="Last Name"
-              name="lastName"
-              onChange={handleChange}
-              value={data.lastName}
-              required
-              className={styles.input}
-            />
-            <input
-              type="email"
-              placeholder="Email"
-              name="email"
-              onChange={handleChange}
-              value={data.email}
-              required
-              className={styles.input}
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              name="password"
-              onChange={handleChange}
-              value={data.password}
-              required
-              className={styles.input}
-            />
+            <Grid container spacing={2}>
+              <Grid item xs={5}>
+                <TextField
+                  required
+                  id="outlined-required"
+                  label="Email"
+                  defaultValue="Email"
+                />
+              </Grid>
+              <Grid item xs={5}>
+                <TextField
+                  required
+                  id="outlined-required"
+                  label="Card Information"
+                  defaultValue="Card Information"
+                />
+              </Grid>
+              <Grid>
+                <Grid item xs={5}>
+                  <TextField
+                    id="date"
+                    label="ExpieryDate"
+                    type="date"
+                    defaultValue="2017-05-24"
+                    sx={{ width: 220 }}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                  />
+                </Grid>
+                <Grid item xs={5}>
+                  <TextField
+                    id="outlined-number"
+                    label="CVC"
+                    type="number"
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                  />
+                </Grid>
+              </Grid>
+              <Grid item xs={5}>
+                <TextField
+                  required
+                  id="outlined-required"
+                  label="Name on Card"
+                  defaultValue="Name on Card"
+                />
+              </Grid>
+              <Grid item xs={5}>
+                <TextField
+                  required
+                  id="outlined-required"
+                  label="Region"
+                  defaultValue="Region"
+                />
+              </Grid>
+              <Grid item xs={5}>
+                <TextField
+                  required
+                  id="outlined-required"
+                  label="ZIP"
+                  defaultValue="ZIP"
+                />
+              </Grid>
+            </Grid>
+
             {error && <div className={styles.error_msg}>{error}</div>}
             <button type="submit" className={styles.blue_btn}>
               Review Order
