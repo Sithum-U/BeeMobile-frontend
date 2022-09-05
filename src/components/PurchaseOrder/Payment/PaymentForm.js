@@ -39,17 +39,18 @@ const Signup = () => {
     <div className={styles.signup_container}>
       <div className={styles.signup_form_container}>
         <div className={styles.left}>
-          <h4>Already have an account ? </h4>
+          <h2>Agro Pro</h2>
+          {/* <h4>Already have an account ? </h4>
           <hr />
           <Link to="/login">
             <button type="button" className={styles.white_btn}>
               Sign In
             </button>
-          </Link>
+          </Link> */}
+          <h1>Secure Payments</h1>
         </div>
         <div className={styles.right}>
           <form className={styles.form_container} onSubmit={handleSubmit}>
-            <h1>REGISTER</h1>
             <input
               type="text"
               placeholder="First Name"
@@ -88,7 +89,7 @@ const Signup = () => {
             />
             {error && <div className={styles.error_msg}>{error}</div>}
             <button type="submit" className={styles.blue_btn}>
-              Sign Up
+              Review Order
             </button>
           </form>
         </div>
