@@ -3,10 +3,10 @@ import logo from "../backgroundlogo.png";
 import "./Header.css";
 
 export default function Header() {
-  // window.addEventListener("scroll", function () {
-  //   var header = document.querySelector("header");
-  //   header.classList.toggle("sticky", window.scrollY > 0);
-  // });
+  window.addEventListener("scroll", function () {
+    var header = document.querySelector("header");
+    header.classList.toggle("sticky", window.scrollY > 0);
+  });
   return (
     <header>
       <img src={logo} alter="Agro Pro Image" />
