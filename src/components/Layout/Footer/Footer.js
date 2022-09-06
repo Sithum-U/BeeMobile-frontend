@@ -1,9 +1,8 @@
 import React from "react";
-// import "./Footer.css";
-// import logo from "../backgroundlogo.png";
-import "./style.css";
-import playStore from "./playStore.png";
-import appStore from "./appStore.png";
+import "../style.css";
+import playStore from "../Images/playStore.png";
+import appStore from "../Images/appStore.png";
+import backgroundlogo from "../Images/backgroundlogo.png";
 
 // import SearchBar from "material-ui-search-bar";
 // import InstagramIcon from "@mui/icons-material/Instagram";
@@ -13,20 +12,9 @@ function Footer() {
     <div class="footer">
       <div class="container">
         <div class="row">
-          <div class="footer-col-1">
-            <h3>Download Our App</h3>
-            <p>Download App for Android and ios mobile phone.</p>
-            <div className="app-logo">
-              <img src={playStore} />
-              <img src={appStore} />
-            </div>
-          </div>
           <div class="footer-col-2">
-            {/* <img src="image/logo-white.png"> */}
-            <p>
-              Our Purpose is to sustainably make the pleasure and benifits of
-              sports accessible to the many.
-            </p>
+            <img src={backgroundlogo} />
+            <h3>Agro Pro</h3>
           </div>
           <div class="footer-col-3">
             <h3>UseFul Links</h3>
@@ -45,6 +33,14 @@ function Footer() {
               <li>Instagram</li>
               <li>Youtube</li>
             </ul>
+          </div>
+          <div class="footer-col-1">
+            <h3>Download Our App</h3>
+            <p>Download App for Android and ios mobile phone.</p>
+            <div className="app-logo">
+              <img src={playStore} />
+              <img src={appStore} />
+            </div>
           </div>
         </div>
       </div>

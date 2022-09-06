@@ -3,6 +3,7 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 import checkout from "./components/PurchaseOrder/checkout";
 import PaymentForm from "./components/PurchaseOrder/Payment/PaymentForm";
 import Cart from "./components/PurchaseOrder/Cart/Cart";
+import Checkout from "./components/PurchaseOrder/checkout";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         {/* <Route exact path="/checkout" component={checkout} /> */}
         <Route path="/PaymentForm" exact element={<PaymentForm />} />
         <Route path="/Cart" exact element={<Cart />} />
+        <Route path="/Checkout" exact element={<Checkout />} />
       </Routes>
     </BrowserRouter>
   );
