@@ -14,7 +14,7 @@ function Footer() {
         <div class="row">
           <div class="footer-col-2">
             <img src={backgroundlogo} />
-            <h3>Agro Pro</h3>
+            {/* <h3>Agro Pro</h3> */}
           </div>
           <div class="footer-col-3">
             <h3>UseFul Links</h3>
