@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
+import { red } from "@mui/material/colors";
 
 const Signup = () => {
   const [data, setData] = useState({
@@ -49,21 +50,23 @@ const Signup = () => {
               Sign In
             </button>
           </Link> */}
-          <h1>Secure Payments</h1>
+          <h1 styles={{ fontFamily: "Times New Roman", color: "red" }}>
+            Secure Payments
+          </h1>
         </div>
         <div className={styles.right}>
           <form className={styles.form_container} onSubmit={handleSubmit}>
             {/* <Grid container spacing={2}> */}
             <div
               sx={{
-                "& > :not(style)": { m: 5, width: "50ch" },
+                "& > :not(style)": { m: 1, width: "50ch" },
               }}
             >
               <Grid
                 item
                 xs={6}
                 sx={{
-                  "& > :not(style)": { m: 5, width: "50ch" },
+                  "& > :not(style)": { m: 1, width: "50ch" },
                 }}
               >
                 <TextField
@@ -74,7 +77,13 @@ const Signup = () => {
                 />
                 <br />
               </Grid>
-              <Grid item xs={5}>
+              <Grid
+                item
+                xs={5}
+                sx={{
+                  "& > :not(style)": { m: 1, width: "50ch" },
+                }}
+              >
                 <TextField
                   required
                   id="outlined-required"
@@ -82,8 +91,20 @@ const Signup = () => {
                   defaultValue="Card Information"
                 />
               </Grid>
-              <Grid container spacing={5}>
-                <Grid item xs={5}>
+              <Grid
+                container
+                spacing={5}
+                sx={{
+                  "& > :not(style)": { m: 1, width: "20ch" },
+                }}
+              >
+                <Grid
+                  item
+                  xs={4}
+                  sx={{
+                    "& > :not(style)": { m: 1, width: "20ch" },
+                  }}
+                >
                   <TextField
                     id="date"
                     label="ExpieryDate"
@@ -95,7 +116,13 @@ const Signup = () => {
                     }}
                   />
                 </Grid>
-                <Grid item xs={5}>
+                <Grid
+                  item
+                  xs={5}
+                  sx={{
+                    "& > :not(style)": { m: 1, width: "50ch" },
+                  }}
+                >
                   <TextField
                     id="outlined-number"
                     label="CVC"
@@ -106,7 +133,13 @@ const Signup = () => {
                   />
                 </Grid>
               </Grid>
-              <Grid item xs={5}>
+              <Grid
+                item
+                xs={5}
+                sx={{
+                  "& > :not(style)": { m: 1, width: "50ch" },
+                }}
+              >
                 <TextField
                   required
                   id="outlined-required"
@@ -114,7 +147,13 @@ const Signup = () => {
                   defaultValue="Name on Card"
                 />
               </Grid>
-              <Grid item xs={5}>
+              <Grid
+                item
+                xs={5}
+                sx={{
+                  "& > :not(style)": { m: 1, width: "50ch" },
+                }}
+              >
                 <TextField
                   required
                   id="outlined-required"
@@ -122,7 +161,13 @@ const Signup = () => {
                   defaultValue="Region"
                 />
               </Grid>
-              <Grid item xs={5}>
+              <Grid
+                item
+                xs={5}
+                sx={{
+                  "& > :not(style)": { m: 1, width: "50ch" },
+                }}
+              >
                 <TextField
                   required
                   id="outlined-required"
