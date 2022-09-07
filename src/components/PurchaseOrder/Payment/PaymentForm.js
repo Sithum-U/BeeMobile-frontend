@@ -53,14 +53,26 @@ const Signup = () => {
         </div>
         <div className={styles.right}>
           <form className={styles.form_container} onSubmit={handleSubmit}>
-            <Grid container spacing={2}>
-              <Grid item xs={5}>
+            {/* <Grid container spacing={2}> */}
+            <div
+              sx={{
+                "& > :not(style)": { m: 5, width: "50ch" },
+              }}
+            >
+              <Grid
+                item
+                xs={6}
+                sx={{
+                  "& > :not(style)": { m: 5, width: "50ch" },
+                }}
+              >
                 <TextField
                   required
                   id="outlined-required"
                   label="Email"
                   defaultValue="Email"
                 />
+                <br />
               </Grid>
               <Grid item xs={5}>
                 <TextField
@@ -70,7 +82,7 @@ const Signup = () => {
                   defaultValue="Card Information"
                 />
               </Grid>
-              <Grid>
+              <Grid container spacing={5}>
                 <Grid item xs={5}>
                   <TextField
                     id="date"
@@ -118,8 +130,7 @@ const Signup = () => {
                   defaultValue="ZIP"
                 />
               </Grid>
-            </Grid>
-
+            </div>
             {error && <div className={styles.error_msg}>{error}</div>}
             <button type="submit" className={styles.blue_btn}>
               Review Order
