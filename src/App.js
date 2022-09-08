@@ -4,6 +4,8 @@ import checkout from "./components/PurchaseOrder/checkout";
 import PaymentForm from "./components/PurchaseOrder/Payment/PaymentForm";
 import Cart from "./components/PurchaseOrder/Cart/Cart";
 import Checkout from "./components/PurchaseOrder/checkout";
+import Sidebar from "./components/Layout/sidebar/sidebar";
+import Product from "./components/product/product";
 
 function App() {
   return (
@@ -13,6 +15,9 @@ function App() {
         <Route path="/PaymentForm" exact element={<PaymentForm />} />
         <Route path="/Cart" exact element={<Cart />} />
         <Route path="/Checkout" exact element={<Checkout />} />
+        <Route path="/product" exact element={<Product />} />
+        {/* <Route path="/product1" exact element={<Sidebar />} pageWrapId={'page-wrap'} outerContainerId={'outer-container'} /> */}
+
       </Routes>
     </BrowserRouter>
   );
