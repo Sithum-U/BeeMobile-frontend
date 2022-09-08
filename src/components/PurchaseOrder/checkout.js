@@ -8,12 +8,12 @@ import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
-import Link from "@material-ui/core/Link";
+// import Link from "@material-ui/core/Link";
 import Typography from "@material-ui/core/Typography";
 import PaymentForm from "./Payment/PaymentForm";
 import OrderConfirmationForm from "./OrderConfirmationForm";
 import ReviewOrderForm from "./ReviewOrderForm";
-
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
 
 const steps = ["Payment Details", "Review Your Order", "Order Confirmation"];
@@ -78,14 +78,15 @@ export default function PO() {
                     </Button>
                   )}
                   {activeStep === 0 ? (
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={handleNext}
-                      className={styles.button}
-                    >
-                      Shopping Cart
-                    </Button>
+                    <Link to="/Cart">
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        className={styles.button}
+                      >
+                        Shopping Cart
+                      </Button>
+                    </Link>
                   ) : null}
                   <Button
                     variant="contained"
