@@ -24,7 +24,7 @@ ul {
 .footer {
   background-color: #084818;
   padding: 0px;
-  position: fixed;
+  position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;

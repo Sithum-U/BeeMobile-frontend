@@ -6,6 +6,7 @@ import Cart from "./components/PurchaseOrder/Cart/Cart";
 import Checkout from "./components/PurchaseOrder/checkout";
 import Sidebar from "./components/Layout/sidebar/sidebar";
 import Product from "./components/product/product";
+import ProductTable from "./components/product/productTable";
 
 function App() {
   return (
@@ -16,8 +17,7 @@ function App() {
         <Route path="/Cart" exact element={<Cart />} />
         <Route path="/Checkout" exact element={<Checkout />} />
         <Route path="/product" exact element={<Product />} />
-        {/* <Route path="/product1" exact element={<Sidebar />} pageWrapId={'page-wrap'} outerContainerId={'outer-container'} /> */}
-
+        <Route path="/productTable" exact element={<ProductTable />} />
       </Routes>
     </BrowserRouter>
   );
