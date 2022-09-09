@@ -42,17 +42,8 @@ const Signup = () => {
     <div className={styles.signup_container}>
       <div className={styles.signup_form_container}>
         <div className={styles.left}>
-          <h2>Agro Pro</h2>
-          {/* <h4>Already have an account ? </h4>
-          <hr />
-          <Link to="/login">
-            <button type="button" className={styles.white_btn}>
-              Sign In
-            </button>
-          </Link> */}
-          <h1 styles={{ fontFamily: "Times New Roman", color: "red" }}>
-            Secure Payments
-          </h1>
+          <h2 className={styles.paymentHeadingStyle}>Agro Pro </h2>
+          <h1 className={styles.paymentStyles}>Secure Payments</h1>
         </div>
         <div className={styles.right}>
           <form className={styles.form_container} onSubmit={handleSubmit}>
@@ -127,6 +118,9 @@ const Signup = () => {
                     id="outlined-number"
                     label="CVC"
                     type="number"
+                    sx={{
+                      "& > :not(style)": { width: "29ch" },
+                    }}
                     InputLabelProps={{
                       shrink: true,
                     }}

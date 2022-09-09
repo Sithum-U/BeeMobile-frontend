@@ -6,6 +6,7 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Grid from "@material-ui/core/Grid";
 import { MDBCol } from "mdbreact";
+import { Link, useNavigate } from "react-router-dom";
 
 import Box from "@mui/material/Box";
 export default function Cart() {
@@ -44,7 +45,7 @@ export default function Cart() {
                 : null}
             </Select>
           </Grid>
-          <MDBCol md="6">
+          {/* <MDBCol md="6">
             <input
               class="form-control"
               id="myInput"
@@ -54,7 +55,10 @@ export default function Cart() {
                 setSearchTerm(e.target.value);
               }}
             />
-          </MDBCol>
+          </MDBCol> */}
+          <div className="search">
+            <input type="text" name="search" placeholder="Search.." />
+          </div>
         </div>
         <div className="card">
           <div className="FormContainer">
@@ -130,6 +134,14 @@ export default function Cart() {
                 </table>
               </div>
             </div>
+          </div>
+          <div className="cartButtons">
+            <Link to="">
+              <button type="submit">Continue Shopping</button>
+            </Link>
+            <Link to="/checkout">
+              <button type="submit">Proceed To Checkout</button>
+            </Link>
           </div>
         </div>
       </div>

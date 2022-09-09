@@ -129,13 +129,14 @@
   transform: translateY(4px);
 }
 
-h1 {
+.paymentStyles {
   font-family: "Times New Roman", cursive;
   padding-top: 200px;
   font-size: 50px;
   color: #303681ef;
 }
-h2 {
+
+.paymentHeadingStyle {
   font-family: "Lucida Handwriting", cursive;
   padding-top: 150px;
   font-size: 80px;

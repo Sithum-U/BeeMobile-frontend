@@ -79,13 +79,14 @@ export default function PO() {
                   )}
                   {activeStep === 0 ? (
                     <Link to="/Cart">
-                      <Button
+                      <button
                         variant="contained"
                         color="primary"
-                        className={styles.button}
+                        className={styles.btn}
+                        // className={styles.button}
                       >
                         Shopping Cart
-                      </Button>
+                      </button>
                     </Link>
                   ) : null}
                   <Button
