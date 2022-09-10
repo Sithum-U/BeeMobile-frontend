@@ -4,9 +4,9 @@ import checkout from "./components/PurchaseOrder/checkout";
 import PaymentForm from "./components/PurchaseOrder/Payment/PaymentForm";
 import Cart from "./components/PurchaseOrder/Cart/Cart";
 import Checkout from "./components/PurchaseOrder/checkout";
-import ProductDetails from "./components/product/productDetails";
-import ProductAgri from "./components/product/productAgri";
-import ProductInnovation from "./components/product/productInnovation";
+// import ProductDetails from "./components/product/productDetails";
+// import ProductAgri from "./components/product/productAgri";
+// import ProductInnovation from "./components/product/productInnovation";
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
         {/* <Route path="/PaymentForm" exact element={<PaymentForm />} /> */}
         <Route path="/Cart" exact element={<Cart />} />
         <Route path="/Checkout" exact element={<Checkout />} />
-        <Route
+        {/* <Route
           path="/productDetails/fertilizer"
           exact
           element={<ProductDetails />}
@@ -26,7 +26,7 @@ function App() {
           path="/productDetails/innovation"
           exact
           element={<ProductInnovation />}
-        />
+        /> */}
       </Routes>
     </BrowserRouter>
   );

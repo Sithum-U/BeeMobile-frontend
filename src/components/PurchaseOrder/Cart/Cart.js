@@ -16,9 +16,9 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import "./cartstyle.css";
 import { Link, useNavigate } from "react-router-dom";
 
-import agri from "../../product/agri.jpg";
-import fertilizer from "../../product/fertilizer.jpg";
-import innovation from "../../product/innovation.jpg";
+// import agri from "../../product/agri.jpg";
+// import fertilizer from "../../product/fertilizer.jpg";
+// import innovation from "../../product/innovation.jpg";
 
 export default function QuantityEdit() {
   return (
@@ -51,7 +51,7 @@ export default function QuantityEdit() {
                       <MDBRow className="mb-4 d-flex justify-content-between align-items-center">
                         <MDBCol md="2" lg="2" xl="2">
                           <MDBCardImage
-                            src={agri}
+                            // src={agri}
                             fluid
                             className="rounded-3"
                             alt="Cotton T-shirt"
@@ -103,7 +103,7 @@ export default function QuantityEdit() {
                       <MDBRow className="mb-4 d-flex justify-content-between align-items-center">
                         <MDBCol md="2" lg="2" xl="2">
                           <MDBCardImage
-                            src={fertilizer}
+                            // src={fertilizer}
                             fluid
                             className="rounded-3"
                             alt="Cotton T-shirt"
@@ -155,7 +155,7 @@ export default function QuantityEdit() {
                       <MDBRow className="mb-4 d-flex justify-content-between align-items-center">
                         <MDBCol md="2" lg="2" xl="2">
                           <MDBCardImage
-                            src={innovation}
+                            // src={innovation}
                             fluid
                             className="rounded-3"
                             alt="Cotton T-shirt"
