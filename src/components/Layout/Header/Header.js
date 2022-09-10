@@ -37,7 +37,7 @@ export default function Header() {
         </ul>
       </nav>
 
-      <Badge className="zoomBadge" badgeContent={4} color="success">
+      <Badge className="zoomBadge" badgeContent={3} color="success">
         <li>
           <a href="/Cart">
             <img
