@@ -129,7 +129,11 @@
   transform: translateY(4px);
 }
 
+<<<<<<< HEAD
+/* h1 {
+=======
 .paymentStyles {
+>>>>>>> f79cde43990e65b0c8951e39b949da506ab68140
   font-family: "Times New Roman", cursive;
   padding-top: 200px;
   font-size: 50px;
@@ -141,4 +145,4 @@
   padding-top: 150px;
   font-size: 80px;
   color: #3e8e41;
-}
+} */
