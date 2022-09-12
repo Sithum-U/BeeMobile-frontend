@@ -16,7 +16,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         {/* <Route exact path="/checkout" component={checkout} /> */}
-        <Route path="/PaymentForm" exact element={<PaymentForm />} />
+        {/* <Route path="/PaymentForm" exact element={<PaymentForm />} /> */}
         <Route path="/Cart" exact element={<Cart />} />
         <Route path="/Checkout" exact element={<Checkout />} />
         <Route path="/product" exact element={<Product />} />

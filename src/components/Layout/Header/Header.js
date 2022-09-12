@@ -36,7 +36,7 @@ export default function Header() {
         </ul>
       </nav>
       <Badge badgeContent={4} color="success">
-        <img src={cart} width="30px" height="30px" />
+        <img src={cart} width="50px" height="50px" color="#fff" />
       </Badge>
       <img src="image/menu.png" class="menu-icon" onclick="menutoggle()" />
     </header>
