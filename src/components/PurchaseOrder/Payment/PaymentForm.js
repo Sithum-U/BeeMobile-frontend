@@ -8,10 +8,13 @@ import { red } from "@mui/material/colors";
 
 const Signup = () => {
   const [data, setData] = useState({
-    firstName: "",
-    lastName: "",
     email: "",
-    password: "",
+    cardInformation: "",
+    expDate: "",
+    cvc: "",
+    nameOnCard: "",
+    region: "",
+    zip: "",
   });
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -23,7 +26,7 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = "http://localhost:9000/api/users";
+      const url = "http://localhost:5000/payment";
       const { data: res } = await axios.post(url, data);
       navigate("/login");
       console.log(res.message);
@@ -61,12 +64,16 @@ const Signup = () => {
                 }}
               >
                 <TextField
+                  autoComplete="email"
+                  name="email"
+                  variant="outlined"
                   required
-                  id="outlined-required"
+                  fullWidth
+                  id="email"
                   label="Email"
-                  defaultValue="Email"
+                  autoFocus
+                  onChange={(e) => setData({ ...data, email: e.target.value })}
                 />
-                <br />
               </Grid>
               <Grid
                 item
@@ -76,10 +83,17 @@ const Signup = () => {
                 }}
               >
                 <TextField
+                  autoComplete="cardInformation"
+                  name="cardInformation"
+                  variant="outlined"
                   required
-                  id="outlined-required"
-                  label="Card Information"
-                  defaultValue="Card Information"
+                  fullWidth
+                  id="cardInformation"
+                  label="CardInformation"
+                  autoFocus
+                  onChange={(e) =>
+                    setData({ ...data, cardInformation: e.target.value })
+                  }
                 />
               </Grid>
               <Grid
@@ -97,14 +111,19 @@ const Signup = () => {
                   }}
                 >
                   <TextField
-                    id="date"
-                    label="ExpieryDate"
+                    name="expDate"
+                    variant="outlined"
+                    id="expDate"
+                    label="ExpDate"
                     type="date"
-                    defaultValue="2017-05-24"
                     sx={{ width: 220 }}
                     InputLabelProps={{
                       shrink: true,
                     }}
+                    autoFocus
+                    onChange={(e) =>
+                      setData({ ...data, expDate: e.target.value })
+                    }
                   />
                 </Grid>
                 <Grid
@@ -115,15 +134,19 @@ const Signup = () => {
                   }}
                 >
                   <TextField
-                    id="outlined-number"
-                    label="CVC"
+                    autoComplete="cvc"
+                    name="cvc"
                     type="number"
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="cvc"
+                    label="cvc"
                     sx={{
                       "& > :not(style)": { width: "29ch" },
                     }}
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
+                    autoFocus
+                    onChange={(e) => setData({ ...data, cvc: e.target.value })}
                   />
                 </Grid>
               </Grid>
@@ -135,10 +158,17 @@ const Signup = () => {
                 }}
               >
                 <TextField
+                  autoComplete="nameOnCard"
+                  name="nameOnCard"
+                  variant="outlined"
                   required
-                  id="outlined-required"
-                  label="Name on Card"
-                  defaultValue="Name on Card"
+                  fullWidth
+                  id="nameOnCard"
+                  label="NameOnCard"
+                  autoFocus
+                  onChange={(e) =>
+                    setData({ ...data, nameOnCard: e.target.value })
+                  }
                 />
               </Grid>
               <Grid
@@ -149,10 +179,15 @@ const Signup = () => {
                 }}
               >
                 <TextField
+                  autoComplete="region"
+                  name="region"
+                  variant="outlined"
                   required
-                  id="outlined-required"
+                  fullWidth
+                  id="region"
                   label="Region"
-                  defaultValue="Region"
+                  autoFocus
+                  onChange={(e) => setData({ ...data, region: e.target.value })}
                 />
               </Grid>
               <Grid
@@ -163,10 +198,15 @@ const Signup = () => {
                 }}
               >
                 <TextField
+                  autoComplete="zip"
+                  name="zip"
+                  variant="outlined"
                   required
-                  id="outlined-required"
+                  fullWidth
+                  id="zip"
                   label="ZIP"
-                  defaultValue="ZIP"
+                  autoFocus
+                  onChange={(e) => setData({ ...data, zip: e.target.value })}
                 />
               </Grid>
             </div>
