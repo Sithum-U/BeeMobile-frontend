@@ -7,6 +7,9 @@ import Checkout from "./components/PurchaseOrder/checkout";
 import Sidebar from "./components/Layout/sidebar/sidebar";
 import Product from "./components/product/product";
 import ProductTable from "./components/product/productTable";
+import ProductDetails from "./components/product/productDetails";
+import ProductAgri from "./components/product/productAgri";
+import ProductInnovation from "./components/product/productInnovation";
 
 function App() {
   return (
@@ -18,6 +21,9 @@ function App() {
         <Route path="/Checkout" exact element={<Checkout />} />
         <Route path="/product" exact element={<Product />} />
         <Route path="/productTable" exact element={<ProductTable />} />
+        <Route path="/productDetails/fertilizer" exact element={<ProductDetails />} />
+        <Route path="/productDetails/agri" exact element={<ProductAgri />} />
+        <Route path="/productDetails/innovation" exact element={<ProductInnovation />} />
       </Routes>
     </BrowserRouter>
   );
