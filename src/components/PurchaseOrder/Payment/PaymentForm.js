@@ -16,29 +16,19 @@ const Signup = () => {
     region: "",
     zip: "",
   });
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
 
-  const handleChange = ({ currentTarget: input }) => {
-    setData({ ...data, [input.name]: input.value });
-  };
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      const url = "http://localhost:5000/payment";
-      const { data: res } = await axios.post(url, data);
-      navigate("/login");
-      console.log(res.message);
-    } catch (error) {
-      if (
-        error.response &&
-        error.response.status >= 400 &&
-        error.response.status <= 500
-      ) {
-        setError(error.response.data.message);
-      }
-    }
+    console.log(data);
+    axios
+      .post("http://localhost:8000/payment/add", data)
+      .then((res) => {
+        alert("Payment Details Successfully added!");
+      })
+      .catch((error) => {
+        console.log(error.message);
+        alert(error.message);
+      });
   };
 
   return (
@@ -49,7 +39,13 @@ const Signup = () => {
           <h1 className={styles.paymentStyles}>Secure Payments</h1>
         </div>
         <div className={styles.right}>
-          <form className={styles.form_container} onSubmit={handleSubmit}>
+          <form
+            className={styles.form_container}
+            noValidate
+            onSubmit={(e) => {
+              handleSubmit(e);
+            }}
+          >
             {/* <Grid container spacing={2}> */}
             <div
               sx={{
@@ -210,9 +206,8 @@ const Signup = () => {
                 />
               </Grid>
             </div>
-            {error && <div className={styles.error_msg}>{error}</div>}
             <button type="submit" className={styles.blue_btn}>
-              Review Order
+              Add Payment Details
             </button>
           </form>
         </div>
