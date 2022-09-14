@@ -10,6 +10,7 @@ import ProductTable from "./components/product/productTable";
 import ProductDetails from "./components/product/productDetails";
 import ProductAgri from "./components/product/productAgri";
 import ProductInnovation from "./components/product/productInnovation";
+import ProductEdit from "./components/product/Edit";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/Cart" exact element={<Cart />} />
         <Route path="/Checkout" exact element={<Checkout />} />
         <Route path="/product" exact element={<Product />} />
+        <Route path="/product/edit/:id" exact element={<ProductEdit />} />
         <Route path="/productTable" exact element={<ProductTable />} />
         <Route path="/productDetails/fertilizer" exact element={<ProductDetails />} />
         <Route path="/productDetails/agri" exact element={<ProductAgri />} />
