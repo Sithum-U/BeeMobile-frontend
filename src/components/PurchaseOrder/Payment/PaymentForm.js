@@ -7,35 +7,46 @@ import Grid from "@mui/material/Grid";
 import { red } from "@mui/material/colors";
 
 const Signup = () => {
-  const [data, setData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-  });
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [cardInformation, setCardInformation] = useState("");
+  const [expDate, setExpDate] = useState("");
+  const [cvc, setcvc] = useState("");
+  const [nameOnCard, setNameOnCard] = useState("");
+  const [region, setRegion] = useState("");
+  const [zip, setzip] = useState("");
+  const [payments, setPayments] = useState("");
 
-  const handleChange = ({ currentTarget: input }) => {
-    setData({ ...data, [input.name]: input.value });
-  };
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      const url = "http://localhost:9000/api/users";
-      const { data: res } = await axios.post(url, data);
-      navigate("/login");
-      console.log(res.message);
-    } catch (error) {
-      if (
-        error.response &&
-        error.response.status >= 400 &&
-        error.response.status <= 500
-      ) {
-        setError(error.response.data.message);
-      }
-    }
+    const paymentObj = {
+      email,
+      cardInformation,
+      expDate,
+      cvc,
+      nameOnCard,
+      region,
+      zip,
+    };
+
+    axios
+      .post("http://localhost:8000/payment/add", paymentObj)
+      .then((res) => {
+        alert("Payment Details Successfully added!");
+        axios.get("http://localhost:8000/payment/").then((res) => {
+          setPayments(res.data);
+        });
+        setEmail("");
+        cardInformation("");
+        expDate("");
+        cvc("");
+        nameOnCard("");
+        region("");
+        zip("");
+      })
+      .catch((error) => {
+        console.log(error.message);
+        alert(error.message);
+      });
   };
 
   return (
@@ -46,7 +57,13 @@ const Signup = () => {
           <h1 className={styles.paymentStyles}>Secure Payments</h1>
         </div>
         <div className={styles.right}>
-          <form className={styles.form_container} onSubmit={handleSubmit}>
+          <form
+            className={styles.form_container}
+            noValidate
+            onSubmit={(e) => {
+              handleSubmit(e);
+            }}
+          >
             {/* <Grid container spacing={2}> */}
             <div
               sx={{
@@ -61,12 +78,16 @@ const Signup = () => {
                 }}
               >
                 <TextField
+                  autoComplete="email"
+                  name="email"
+                  variant="outlined"
                   required
-                  id="outlined-required"
+                  fullWidth
+                  id="email"
                   label="Email"
-                  defaultValue="Email"
+                  autoFocus
+                  onChange={(e) => setEmail(e.target.value)}
                 />
-                <br />
               </Grid>
               <Grid
                 item
@@ -76,10 +97,15 @@ const Signup = () => {
                 }}
               >
                 <TextField
+                  autoComplete="cardInformation"
+                  name="cardInformation"
+                  variant="outlined"
                   required
-                  id="outlined-required"
-                  label="Card Information"
-                  defaultValue="Card Information"
+                  fullWidth
+                  id="cardInformation"
+                  label="CardInformation"
+                  autoFocus
+                  onChange={(e) => setCardInformation(e.target.value)}
                 />
               </Grid>
               <Grid
@@ -97,14 +123,17 @@ const Signup = () => {
                   }}
                 >
                   <TextField
-                    id="date"
-                    label="ExpieryDate"
+                    name="expDate"
+                    variant="outlined"
+                    id="expDate"
+                    label="ExpDate"
                     type="date"
-                    defaultValue="2017-05-24"
                     sx={{ width: 220 }}
                     InputLabelProps={{
                       shrink: true,
                     }}
+                    autoFocus
+                    onChange={(e) => setExpDate(e.target.value)}
                   />
                 </Grid>
                 <Grid
@@ -115,15 +144,19 @@ const Signup = () => {
                   }}
                 >
                   <TextField
-                    id="outlined-number"
-                    label="CVC"
+                    autoComplete="cvc"
+                    name="cvc"
                     type="number"
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="cvc"
+                    label="cvc"
                     sx={{
                       "& > :not(style)": { width: "29ch" },
                     }}
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
+                    autoFocus
+                    onChange={(e) => setcvc(e.target.value)}
                   />
                 </Grid>
               </Grid>
@@ -135,10 +168,15 @@ const Signup = () => {
                 }}
               >
                 <TextField
+                  autoComplete="nameOnCard"
+                  name="nameOnCard"
+                  variant="outlined"
                   required
-                  id="outlined-required"
-                  label="Name on Card"
-                  defaultValue="Name on Card"
+                  fullWidth
+                  id="nameOnCard"
+                  label="NameOnCard"
+                  autoFocus
+                  onChange={(e) => setNameOnCard(e.target.value)}
                 />
               </Grid>
               <Grid
@@ -149,10 +187,15 @@ const Signup = () => {
                 }}
               >
                 <TextField
+                  autoComplete="region"
+                  name="region"
+                  variant="outlined"
                   required
-                  id="outlined-required"
+                  fullWidth
+                  id="region"
                   label="Region"
-                  defaultValue="Region"
+                  autoFocus
+                  onChange={(e) => setRegion(e.target.value)}
                 />
               </Grid>
               <Grid
@@ -163,16 +206,20 @@ const Signup = () => {
                 }}
               >
                 <TextField
+                  autoComplete="zip"
+                  name="zip"
+                  variant="outlined"
                   required
-                  id="outlined-required"
+                  fullWidth
+                  id="zip"
                   label="ZIP"
-                  defaultValue="ZIP"
+                  autoFocus
+                  onChange={(e) => setzip(e.target.value)}
                 />
               </Grid>
             </div>
-            {error && <div className={styles.error_msg}>{error}</div>}
             <button type="submit" className={styles.blue_btn}>
-              Review Order
+              Add Payment Details
             </button>
           </form>
         </div>

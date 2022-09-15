@@ -1,5 +1,5 @@
 import React from "react";
-import "../style.css";
+import "./Footer.css";
 import playStore from "../Images/playStore.png";
 import appStore from "../Images/appStore.png";
 import backgroundlogo from "../Images/backgroundlogo.png";

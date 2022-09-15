@@ -11,7 +11,7 @@ import Button from "@material-ui/core/Button";
 // import Link from "@material-ui/core/Link";
 import Typography from "@material-ui/core/Typography";
 import PaymentForm from "./Payment/PaymentForm";
-import OrderConfirmationForm from "./OrderConfirmationForm";
+import OrderConfirmationForm from "./OrderConfirmationForm/OrderConfirmationForm";
 import ReviewOrderForm from "./ReviewOrderForm";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
@@ -23,9 +23,9 @@ function getStepContent(step) {
     case 0:
       return <PaymentForm />;
     case 1:
-      return <OrderConfirmationForm />;
-    case 2:
       return <ReviewOrderForm />;
+    case 2:
+      return <OrderConfirmationForm />;
     default:
       throw new Error("Unknown step");
   }

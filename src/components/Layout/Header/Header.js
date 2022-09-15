@@ -4,6 +4,7 @@ import logo from "../Images/backgroundlogo.png";
 import cart from "../Images/cart.png";
 // import "../style.css";
 import "./Header.css";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Header() {
   window.addEventListener("scroll", function () {
@@ -35,35 +36,20 @@ export default function Header() {
           </li>
         </ul>
       </nav>
-      <Badge badgeContent={4} color="success">
-        <img src={cart} width="50px" height="50px" color="#fff" />
+
+      <Badge className="zoomBadge" badgeContent={3} color="success">
+        <li>
+          <a href="/Cart">
+            <img
+              className="zoomCart"
+              src={cart}
+              width="50px"
+              height="50px"
+              color="#fff"
+            />
+          </a>
+        </li>
       </Badge>
-      <img src="image/menu.png" class="menu-icon" onclick="menutoggle()" />
     </header>
-    // </div>
-    // <header>
-    //   <img src={logo} alter="Agro Pro Image" />
-    //   <ul>
-    //     <li>
-    //       <a href="#">Home</a>
-    //     </li>
-    //     <li>
-    //       <a href="#">About</a>
-    //     </li>
-    //     <li>
-    //       <a href="#">Services</a>
-    //     </li>
-    //     <li>
-    //       <a href="#">Portfolio</a>
-    //     </li>
-    //     <li>
-    //       <a href="#">Team</a>
-    //     </li>
-    //     <li>
-    //       <a href="#">Contact</a>
-    //     </li>
-    //   </ul>
-    // </header>
-    //  <section className="banner"></section>
   );
 }
