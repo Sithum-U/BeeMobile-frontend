@@ -51,30 +51,5 @@ export default function Header() {
         </li>
       </Badge>
     </header>
-    // </div>
-    // <header>
-    //   <img src={logo} alter="Agro Pro Image" />
-    //   <ul>
-    //     <li>
-    //       <a href="#">Home</a>
-    //     </li>
-    //     <li>
-    //       <a href="#">About</a>
-    //     </li>
-    //     <li>
-    //       <a href="#">Services</a>
-    //     </li>
-    //     <li>
-    //       <a href="#">Portfolio</a>
-    //     </li>
-    //     <li>
-    //       <a href="#">Team</a>
-    //     </li>
-    //     <li>
-    //       <a href="#">Contact</a>
-    //     </li>
-    //   </ul>
-    // </header>
-    //  <section className="banner"></section>
   );
 }

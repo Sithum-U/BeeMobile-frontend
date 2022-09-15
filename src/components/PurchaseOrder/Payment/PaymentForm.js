@@ -7,23 +7,41 @@ import Grid from "@mui/material/Grid";
 import { red } from "@mui/material/colors";
 
 const Signup = () => {
-  const [data, setData] = useState({
-    email: "",
-    cardInformation: "",
-    expDate: "",
-    cvc: "",
-    nameOnCard: "",
-    region: "",
-    zip: "",
-  });
+  const [email, setEmail] = useState("");
+  const [cardInformation, setCardInformation] = useState("");
+  const [expDate, setExpDate] = useState("");
+  const [cvc, setcvc] = useState("");
+  const [nameOnCard, setNameOnCard] = useState("");
+  const [region, setRegion] = useState("");
+  const [zip, setzip] = useState("");
+  const [payments, setPayments] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(data);
+    const paymentObj = {
+      email,
+      cardInformation,
+      expDate,
+      cvc,
+      nameOnCard,
+      region,
+      zip,
+    };
+
     axios
-      .post("http://localhost:8000/payment/add", data)
+      .post("http://localhost:8000/payment/add", paymentObj)
       .then((res) => {
         alert("Payment Details Successfully added!");
+        axios.get("http://localhost:8000/payment/").then((res) => {
+          setPayments(res.data);
+        });
+        setEmail("");
+        cardInformation("");
+        expDate("");
+        cvc("");
+        nameOnCard("");
+        region("");
+        zip("");
       })
       .catch((error) => {
         console.log(error.message);
@@ -68,7 +86,7 @@ const Signup = () => {
                   id="email"
                   label="Email"
                   autoFocus
-                  onChange={(e) => setData({ ...data, email: e.target.value })}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </Grid>
               <Grid
@@ -87,9 +105,7 @@ const Signup = () => {
                   id="cardInformation"
                   label="CardInformation"
                   autoFocus
-                  onChange={(e) =>
-                    setData({ ...data, cardInformation: e.target.value })
-                  }
+                  onChange={(e) => setCardInformation(e.target.value)}
                 />
               </Grid>
               <Grid
@@ -117,9 +133,7 @@ const Signup = () => {
                       shrink: true,
                     }}
                     autoFocus
-                    onChange={(e) =>
-                      setData({ ...data, expDate: e.target.value })
-                    }
+                    onChange={(e) => setExpDate(e.target.value)}
                   />
                 </Grid>
                 <Grid
@@ -142,7 +156,7 @@ const Signup = () => {
                       "& > :not(style)": { width: "29ch" },
                     }}
                     autoFocus
-                    onChange={(e) => setData({ ...data, cvc: e.target.value })}
+                    onChange={(e) => setcvc(e.target.value)}
                   />
                 </Grid>
               </Grid>
@@ -162,9 +176,7 @@ const Signup = () => {
                   id="nameOnCard"
                   label="NameOnCard"
                   autoFocus
-                  onChange={(e) =>
-                    setData({ ...data, nameOnCard: e.target.value })
-                  }
+                  onChange={(e) => setNameOnCard(e.target.value)}
                 />
               </Grid>
               <Grid
@@ -183,7 +195,7 @@ const Signup = () => {
                   id="region"
                   label="Region"
                   autoFocus
-                  onChange={(e) => setData({ ...data, region: e.target.value })}
+                  onChange={(e) => setRegion(e.target.value)}
                 />
               </Grid>
               <Grid
@@ -202,7 +214,7 @@ const Signup = () => {
                   id="zip"
                   label="ZIP"
                   autoFocus
-                  onChange={(e) => setData({ ...data, zip: e.target.value })}
+                  onChange={(e) => setzip(e.target.value)}
                 />
               </Grid>
             </div>
