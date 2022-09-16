@@ -6,7 +6,7 @@ import cart from "../Images/cart.png";
 import "./Header.css";
 import { Link, useNavigate } from "react-router-dom";
 
-export default function Header() {
+export default function Header({ countCartItems }) {
   window.addEventListener("scroll", function () {
     var header = document.querySelector("header");
     header.classList.toggle("sticky", window.scrollY > 0);
@@ -37,7 +37,21 @@ export default function Header() {
         </ul>
       </nav>
 
-      <Badge className="zoomBadge" badgeContent={3} color="success">
+      {countCartItems ? (
+        <Badge className="zoomBadge" badgeContent={4} color="success">
+          <li>
+            <a href="/Cart">
+              <img
+                className="zoomCart"
+                src={cart}
+                width="50px"
+                height="50px"
+                color="#fff"
+              />
+            </a>
+          </li>
+        </Badge>
+      ) : (
         <li>
           <a href="/Cart">
             <img
@@ -49,7 +63,7 @@ export default function Header() {
             />
           </a>
         </li>
-      </Badge>
+      )}
     </header>
   );
 }
