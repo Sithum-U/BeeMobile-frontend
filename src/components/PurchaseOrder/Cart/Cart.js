@@ -5,7 +5,7 @@ import "./cart.css";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Grid from "@material-ui/core/Grid";
-import { MDBCol } from "mdbreact";
+// import { MDBCol } from "mdbreact";
 import { Link, useNavigate } from "react-router-dom";
 
 import Box from "@mui/material/Box";
