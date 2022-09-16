@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./product.css";
 import axios from 'axios';
+import SideBar from "../sidebar/sidebar";
 
 const Product = () => {
     const [product, setProduct] = useState([]);
@@ -33,9 +34,11 @@ const Product = () => {
             })
     }
     return (
-        <div class="registration-form" style={{justifyContent:"center", display:"flex", alignItems:"center"}}>
-         <div style={{backgroundColor:"white", width:"70%"}}> 
-        <form style={{width:"50%"}}>
+        <div class="registration-form" style={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
+            <SideBar/>
+            <div style={{ width: "82%", justifyContent: "center", display: "flex", alignItems: "center" }}>
+            <div style={{ backgroundColor: "white", width: "60%", justifyContent: "center", display: "flex", alignItems: "center" }}>
+            <form style={{width:"50%"}}>
         <h1>Create Article</h1>
             <div class="form-group">
                 <input type="text" class="form-control item" onChange={(e) => setProductCode(e.target.value)} id="productCode" placeholder="Product code"/>
@@ -59,11 +62,12 @@ const Product = () => {
                 <button type="button" onClick={handleSubmit} class="btn btn-block create-account">Create Article</button>
             </div>
         </form>
-        </div>  
-    </div>
+            </div>
+            </div>
+        </div>
 
 
-);
+    );
 
 };
 

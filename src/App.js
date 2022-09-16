@@ -1,10 +1,10 @@
-import React from "react";
+import React, { Component } from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import checkout from "./components/PurchaseOrder/checkout/checkout";
 import PaymentForm from "./components/PurchaseOrder/Payment/PaymentForm";
 import Cart from "./components/PurchaseOrder/Cart/Cart";
+import Checkout from "./components/PurchaseOrder/checkout";
 import Checkout from "./components/PurchaseOrder/checkout/checkout";
-import Sidebar from "./components/Layout/sidebar/sidebar";
 import Product from "./components/product/product";
 import ProductTable from "./components/product/productTable";
 import ProductDetails from "./components/product/productDetails";
@@ -29,11 +29,8 @@ function App() {
           element={<ProductDetails />}
         />
         <Route path="/productDetails/agri" exact element={<ProductAgri />} />
-        <Route
-          path="/productDetails/innovation"
-          exact
-          element={<ProductInnovation />}
-        />
+        <Route path="/productDetails/innovation" exact element={<ProductInnovation />} />
+        
       </Routes>
     </BrowserRouter>
   );

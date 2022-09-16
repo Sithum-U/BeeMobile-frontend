@@ -8,25 +8,25 @@ const ProductEdit = () => {
         <form style={{width:"50%"}}>
         <h1>Create Article</h1>
             <div class="form-group">
-                <input type="text" class="form-control item" onChange={(e) => setProductCode(e.target.value)} id="productCode" placeholder="Product code"/>
+                <input type="text" class="form-control item"  id="productCode" placeholder="Product code"/>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control item" onChange={(e) => setProductName(e.target.value)} id="productName" placeholder="Product Name"/>
+                <input type="text" class="form-control item"  id="productName" placeholder="Product Name"/>
             </div>
             <div class="form-group">
-                <input type="textarea" class="form-control item" onChange={(e) => setDescription(e.target.value)} id="description" placeholder="Description"/>
+                <input type="textarea" class="form-control item"  id="description" placeholder="Description"/>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control item" onChange={(e) => setCategory(e.target.value)} id="category" placeholder="Category"/>
+                <input type="text" class="form-control item"  id="category" placeholder="Category"/>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control item" onChange={(e) => setPrice(e.target.value)} id="price" placeholder="price"/>
+                <input type="text" class="form-control item"  id="price" placeholder="price"/>
             </div>
             <div class="form-group">
-                <input type="file" class="form-control item" onChange={(e) => setImage(e.target.value)} id="img" accept="image/*"/>
+                <input type="file" class="form-control item"  id="img" accept="image/*"/>
             </div>
             <div class="form-group">
-                <button type="button" onClick={handleSubmit} class="btn btn-block create-account">Create Article</button>
+                <button type="button"  class="btn btn-block create-account">Create Article</button>
             </div>
         </form>
         </div>  
