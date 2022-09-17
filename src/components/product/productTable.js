@@ -3,6 +3,7 @@ import "./product.css";
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
 import { Link } from "react-router-dom";
+import SideBar from "../Layout/sidebar/sidebar";
 
 const ProductTable = () => {
     const [product, setproduct] = useState([]);
@@ -15,7 +16,9 @@ const ProductTable = () => {
             });
     }, []);
     return(
-        <div style={{ backgroundColor: 'white' }}>
+        <div class="registration-form" style={{ justifyContent: "center", display: "flex" }}>
+            <SideBar/>
+        <div style={{ backgroundColor: '#dfe3e9', width: "82%" }}>
                     <div className="container"><br />
                         <h3 className="bg-dark text-white p-3">Product Table</h3><br />
                         <div shadow='0' border='info' background='white' >
@@ -62,6 +65,7 @@ const ProductTable = () => {
                             </div>
                         </div>
                     </div>
+        </div>
         </div>
     );
 };
