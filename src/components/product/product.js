@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./product.css";
 import axios from 'axios';
-import SideBar from "../sidebar/sidebar";
+import SideBar from "../Layout/sidebar/sidebar";
 
 const Product = () => {
     const [product, setProduct] = useState([]);

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./product.css";
 import axios from 'axios';
 import { Button } from 'react-bootstrap';
+import { Link } from "react-router-dom";
 
 const ProductTable = () => {
     const [product, setproduct] = useState([]);
