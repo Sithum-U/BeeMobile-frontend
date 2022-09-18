@@ -38,7 +38,11 @@ export default function Header({ countCartItems }) {
       </nav>
 
       {countCartItems ? (
-        <Badge className="zoomBadge" badgeContent={4} color="success">
+        <Badge
+          className="zoomBadge"
+          badgeContent={countCartItems}
+          color="success"
+        >
           <li>
             <a href="/Cart">
               <img

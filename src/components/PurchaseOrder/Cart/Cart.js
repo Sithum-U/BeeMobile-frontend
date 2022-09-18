@@ -20,7 +20,12 @@ import { Link, useNavigate } from "react-router-dom";
 // import fertilizer from "../../product/fertilizer.jpg";
 // import innovation from "../../product/innovation.jpg";
 
-export default function QuantityEdit() {
+export default function Cart(props) {
+  const { cartItems, onAdd, onRemove } = props;
+  const itemsPrice = 0;
+  const taxPrice = itemsPrice * 0.14;
+  const shippingPrice = itemsPrice > 2000 ? 0 : 20;
+  const totalPrice = itemsPrice + taxPrice + shippingPrice;
   return (
     <section className="h-100 h-custom" style={{ backgroundColor: "#eee" }}>
       <MDBContainer className="py-5 h-100">
@@ -47,160 +52,59 @@ export default function QuantityEdit() {
                       </div>
 
                       <hr className="my-4" />
+                      {/* {cartItems.length === 0 && <div>Cart is empty</div>} */}
+                      {cartItems.map((item) => (
+                        <MDBRow className="mb-4 d-flex justify-content-between align-items-center">
+                          <MDBCol md="2" lg="2" xl="2">
+                            <MDBCardImage
+                              // src={agri}
 
-                      <MDBRow className="mb-4 d-flex justify-content-between align-items-center">
-                        <MDBCol md="2" lg="2" xl="2">
-                          <MDBCardImage
-                            // src={agri}
-                            fluid
-                            className="rounded-3"
-                            alt="Cotton T-shirt"
-                          />
-                        </MDBCol>
-                        <MDBCol md="3" lg="3" xl="3">
-                          <MDBTypography tag="h6" className="text-muted">
-                            Fertilizers
-                          </MDBTypography>
-                          <MDBTypography tag="h6" className="text-black mb-0">
-                            Fertilizers for the Agriculture
-                          </MDBTypography>
-                        </MDBCol>
-                        <MDBCol
-                          md="3"
-                          lg="3"
-                          xl="3"
-                          className="d-flex align-items-center"
-                        >
-                          <MDBBtn color="link" className="px-2">
-                            <MDBIcon icon="minus" />
-                          </MDBBtn>
+                              fluid
+                              className="rounded-3"
+                              alt="Cotton T-shirt"
+                            />
+                          </MDBCol>
+                          <MDBCol md="3" lg="3" xl="3">
+                            <MDBTypography tag="h6" className="text-muted">
+                              Fertilizers
+                            </MDBTypography>
+                            <MDBTypography tag="h6" className="text-black mb-0">
+                              Fertilizers for the Agriculture
+                            </MDBTypography>
+                          </MDBCol>
+                          <MDBCol
+                            md="3"
+                            lg="3"
+                            xl="3"
+                            className="d-flex align-items-center"
+                          >
+                            <MDBBtn color="link" className="px-2">
+                              <MDBIcon icon="minus" />
+                            </MDBBtn>
 
-                          <MDBInput
-                            type="number"
-                            min="0"
-                            defaultValue={1}
-                            size="sm"
-                          />
+                            <MDBInput
+                              type="number"
+                              min="0"
+                              defaultValue={1}
+                              size="sm"
+                            />
 
-                          <MDBBtn color="link" className="px-2">
-                            <MDBIcon icon="plus" />
-                          </MDBBtn>
-                        </MDBCol>
-                        <MDBCol md="3" lg="2" xl="2" className="text-end">
-                          <MDBTypography tag="h6" className="mb-0">
-                            Rs : 1200/=
-                          </MDBTypography>
-                        </MDBCol>
-                        <MDBCol md="1" lg="1" xl="1" className="text-end">
-                          <a href="#!" className="text-muted">
-                            <MDBIcon icon="times" />
-                          </a>
-                        </MDBCol>
-                      </MDBRow>
-
-                      <hr className="my-4" />
-
-                      <MDBRow className="mb-4 d-flex justify-content-between align-items-center">
-                        <MDBCol md="2" lg="2" xl="2">
-                          <MDBCardImage
-                            // src={fertilizer}
-                            fluid
-                            className="rounded-3"
-                            alt="Cotton T-shirt"
-                          />
-                        </MDBCol>
-                        <MDBCol md="3" lg="3" xl="3">
-                          <MDBTypography tag="h6" className="text-muted">
-                            Food Systems
-                          </MDBTypography>
-                          <MDBTypography tag="h6" className="text-black mb-0">
-                            Vegetable value chains
-                          </MDBTypography>
-                        </MDBCol>
-                        <MDBCol
-                          md="3"
-                          lg="3"
-                          xl="3"
-                          className="d-flex align-items-center"
-                        >
-                          <MDBBtn color="link" className="px-2">
-                            <MDBIcon icon="minus" />
-                          </MDBBtn>
-
-                          <MDBInput
-                            type="number"
-                            min="0"
-                            defaultValue={1}
-                            size="sm"
-                          />
-
-                          <MDBBtn color="link" className="px-2">
-                            <MDBIcon icon="plus" />
-                          </MDBBtn>
-                        </MDBCol>
-                        <MDBCol md="3" lg="2" xl="2" className="text-end">
-                          <MDBTypography tag="h6" className="mb-0">
-                            Rs : 2000/=
-                          </MDBTypography>
-                        </MDBCol>
-                        <MDBCol md="1" lg="1" xl="1" className="text-end">
-                          <a href="#!" className="text-muted">
-                            <MDBIcon icon="times" />
-                          </a>
-                        </MDBCol>
-                      </MDBRow>
-
-                      <hr className="my-4" />
-
-                      <MDBRow className="mb-4 d-flex justify-content-between align-items-center">
-                        <MDBCol md="2" lg="2" xl="2">
-                          <MDBCardImage
-                            // src={innovation}
-                            fluid
-                            className="rounded-3"
-                            alt="Cotton T-shirt"
-                          />
-                        </MDBCol>
-                        <MDBCol md="3" lg="3" xl="3">
-                          <MDBTypography tag="h6" className="text-muted">
-                            Food Systems
-                          </MDBTypography>
-                          <MDBTypography tag="h6" className="text-black mb-0">
-                            Vegetable value chains
-                          </MDBTypography>
-                        </MDBCol>
-                        <MDBCol
-                          md="3"
-                          lg="3"
-                          xl="3"
-                          className="d-flex align-items-center"
-                        >
-                          <MDBBtn color="link" className="px-2">
-                            <MDBIcon icon="minus" />
-                          </MDBBtn>
-
-                          <MDBInput
-                            type="number"
-                            min="0"
-                            defaultValue={1}
-                            size="sm"
-                          />
-
-                          <MDBBtn color="link" className="px-2">
-                            <MDBIcon icon="plus" />
-                          </MDBBtn>
-                        </MDBCol>
-                        <MDBCol md="3" lg="2" xl="2" className="text-end">
-                          <MDBTypography tag="h6" className="mb-0">
-                            Rs : 1500/=
-                          </MDBTypography>
-                        </MDBCol>
-                        <MDBCol md="1" lg="1" xl="1" className="text-end">
-                          <a href="#!" className="text-muted">
-                            <MDBIcon icon="times" />
-                          </a>
-                        </MDBCol>
-                      </MDBRow>
+                            <MDBBtn color="link" className="px-2">
+                              <MDBIcon icon="plus" />
+                            </MDBBtn>
+                          </MDBCol>
+                          <MDBCol md="3" lg="2" xl="2" className="text-end">
+                            <MDBTypography tag="h6" className="mb-0">
+                              Rs : 1200/=
+                            </MDBTypography>
+                          </MDBCol>
+                          <MDBCol md="1" lg="1" xl="1" className="text-end">
+                            <a href="#!" className="text-muted">
+                              <MDBIcon icon="times" />
+                            </a>
+                          </MDBCol>
+                        </MDBRow>
+                      ))}
 
                       <hr className="my-4" />
 
@@ -265,7 +169,9 @@ export default function QuantityEdit() {
                         <MDBTypography tag="h5" className="text-uppercase">
                           Total price
                         </MDBTypography>
-                        <MDBTypography tag="h5">Rs 4700/=</MDBTypography>
+                        <MDBTypography tag="h5">
+                          ${totalPrice.toFixed(2)}
+                        </MDBTypography>
                       </div>
                       <Link to="/checkout" style={{ textDecoration: "none" }}>
                         <MDBBtn color="dark" block size="lg">
