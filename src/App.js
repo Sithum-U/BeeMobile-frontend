@@ -20,6 +20,7 @@ function App() {
         {/* <Route path="/PaymentForm" exact element={<PaymentForm />} /> */}
         <Route path="/Cart" exact element={<Cart />} />
         <Route path="/Checkout" exact element={<Checkout />} />
+        <Route path="/main" exact element={<Main />} />
         <Route path="/product" exact element={<Product />} />
         <Route path="/productTable" exact element={<ProductTable />} />
         <Route
