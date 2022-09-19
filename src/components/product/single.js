@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import agri from '../../product/home.png';
-import { MDBCard, MDBCardImage, MDBCardBody, MDBCardTitle, MDBCardText, MDBRow, MDBCol } from 'mdb-react-ui-kit';
 import { Button } from 'react-bootstrap';
 import { Link } from "react-router-dom";
+import fertilizer from './fertilizer.jpg';
 
-const Home = () => {
+const Single = () => {
     const [product, setproduct] = useState([]);
+    const [id, setId] = useState("");
     useEffect(() => {
         fetch("http://localhost:8000/product/")
             .then((res) => res.json())
@@ -16,10 +16,12 @@ const Home = () => {
     }, []);
 
     return (
-        <div></div>
+        <div>
+            
+        </div>
 
     );
 
 };
 
-export default Home;
+export default Single;

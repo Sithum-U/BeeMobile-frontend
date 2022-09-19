@@ -37,7 +37,7 @@ const Home = () => {
                                         <MDBCardBody>
                                             <p>{item.description}</p>
                                             <MDBCardText>
-                                                <Link to="/mail">
+                                                <Link to={"/product/single/"+ item._id}>
                                                     <Button variant="success" style={{width:"300px"}}>Read More ></Button>
                                                 </Link>
                                             </MDBCardText>
