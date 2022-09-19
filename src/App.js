@@ -11,6 +11,7 @@ import ProductDetails from "./components/product/productDetails";
 import ProductAgri from "./components/product/productAgri";
 import ProductInnovation from "./components/product/productInnovation";
 import ProductEdit from "./components/product/Edit";
+import Home from "./components/Layout/Home/Home";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Routes>
         {/* <Route exact path="/checkout" component={checkout} /> */}
         {/* <Route path="/PaymentForm" exact element={<PaymentForm />} /> */}
+        <Route path="/home" exact element={<Home />} />
         <Route path="/Cart" exact element={<Cart />} />
         <Route path="/Checkout" exact element={<Checkout />} />
         <Route path="/product" exact element={<Product />} />
