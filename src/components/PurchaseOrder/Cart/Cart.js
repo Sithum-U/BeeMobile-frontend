@@ -52,13 +52,15 @@ export default function Cart(props) {
                       </div>
 
                       <hr className="my-4" />
-                      {/* {cartItems.length === 0 && <div>Cart is empty</div>} */}
+                      {cartItems.length === 0 && <div>Cart is empty</div>}
                       {cartItems.map((item) => (
-                        <MDBRow className="mb-4 d-flex justify-content-between align-items-center">
+                        <MDBRow
+                          key={item.id}
+                          className="mb-4 d-flex justify-content-between align-items-center"
+                        >
                           <MDBCol md="2" lg="2" xl="2">
                             <MDBCardImage
-                              // src={agri}
-
+                              src={item.image}
                               fluid
                               className="rounded-3"
                               alt="Cotton T-shirt"
@@ -66,10 +68,10 @@ export default function Cart(props) {
                           </MDBCol>
                           <MDBCol md="3" lg="3" xl="3">
                             <MDBTypography tag="h6" className="text-muted">
-                              Fertilizers
+                              {item.name}
                             </MDBTypography>
                             <MDBTypography tag="h6" className="text-black mb-0">
-                              Fertilizers for the Agriculture
+                              {item.name}
                             </MDBTypography>
                           </MDBCol>
                           <MDBCol
@@ -78,24 +80,33 @@ export default function Cart(props) {
                             xl="3"
                             className="d-flex align-items-center"
                           >
-                            <MDBBtn color="link" className="px-2">
+                            <MDBBtn
+                              onClick={() => onRemove(item)}
+                              color="link"
+                              className="px-2"
+                            >
                               <MDBIcon icon="minus" />
                             </MDBBtn>
 
                             <MDBInput
                               type="number"
                               min="0"
+                              max="10"
                               defaultValue={1}
                               size="sm"
                             />
 
-                            <MDBBtn color="link" className="px-2">
+                            <MDBBtn
+                              onClick={() => onAdd(item)}
+                              color="link"
+                              className="px-2"
+                            >
                               <MDBIcon icon="plus" />
                             </MDBBtn>
                           </MDBCol>
                           <MDBCol md="3" lg="2" xl="2" className="text-end">
                             <MDBTypography tag="h6" className="mb-0">
-                              Rs : 1200/=
+                              {item.qty} x ${item.price.toFixed(2)}
                             </MDBTypography>
                           </MDBCol>
                           <MDBCol md="1" lg="1" xl="1" className="text-end">
