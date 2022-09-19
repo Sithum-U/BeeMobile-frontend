@@ -20,15 +20,14 @@ const Home = () => {
             <div style={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
                 <img src={agri} width="1500" height="400" />
             </div>
-
-            <div className="container"><br /><br /><br />
+            {product.data ?
+                    product.data.map((item) => {
+                        return (
+            <div className="container" key={item._id}><br />
                 
                             <MDBRow className='row-cols-1 row-cols-md-3 g-4'>
                                 <MDBCol>
-                                {product.data ?
-                    product.data.map((item) => {
-                        return (
-                                    <MDBCard style={{width:"400px"}} key={item._id}>
+                                    <MDBCard style={{width:"400px"}}>
                                         <MDBCardTitle>{item.productName}</MDBCardTitle>
                                         <MDBCardImage
                                             src='https://smedigest.com.ng/wp-content/uploads/2017/10/from-business-name-to-company-registration.jpg'
@@ -44,15 +43,16 @@ const Home = () => {
                                             </MDBCardText>
                                         </MDBCardBody>
                                     </MDBCard>
-                                    );
-                                })
-                                : <div></div>}
+                                    
                                 </MDBCol>
                             </MDBRow>
                         
 
 
             </div>
+            );
+                                })
+                                : <div></div>}
         </div>
 
     );
