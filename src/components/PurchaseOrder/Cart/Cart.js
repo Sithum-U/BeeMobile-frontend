@@ -175,7 +175,9 @@ export default function Cart(props) {
                           <MDBTypography tag="h5" className="text-uppercase">
                             {item.length}
                           </MDBTypography>
-                          <MDBTypography tag="h5">Rs 4700/=</MDBTypography>
+                          <MDBTypography tag="h5">
+                            Rs: {itemsPrice.toFixed(2)} /=
+                          </MDBTypography>
                         </div>
 
                         <MDBTypography tag="h5" className="text-uppercase mb-3">
@@ -188,10 +190,10 @@ export default function Cart(props) {
                             style={{ width: "100%" }}
                           >
                             <option value="1">
-                              Standard-Delivery- Rs250.00
+                              Standard-Delivery- Rs200.00
                             </option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <option value="2">Quick-Delivery- Rs500.00</option>
+                            <option value="3">Smart-Delivery- Rs300.00</option>
                             <option value="4">Four</option>
                           </select>
                         </div>
