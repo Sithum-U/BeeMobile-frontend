@@ -15,6 +15,7 @@ import React from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import "./cartstyle.css";
 import { Link, useNavigate } from "react-router-dom";
+import cartEmpty from "../Images/Emptycart.png";
 
 export default function Cart(props) {
   const { cartItems, onAdd, onRemove, onDelete } = props;
@@ -52,7 +53,7 @@ export default function Cart(props) {
                       <hr className="my-4" />
 
                       <MDBRow>
-                        {cartItems.length === 0 && <div>Cart is empty</div>}
+                        {cartItems.length === 0 && <img src={cartEmpty} />}
                         {cartItems.map((item) => (
                           <div
                             key={item.id}
@@ -142,63 +143,68 @@ export default function Cart(props) {
                   </MDBCol>
                   {/* ----------------------------- Side pane summary---------------------------------------------------------- */}
                   <MDBCol lg="4" className="bg-grey">
-                    <div className="p-5">
-                      <MDBTypography
-                        tag="h3"
-                        className="fw-bold mb-5 mt-2 pt-1"
-                      >
-                        Summary
-                      </MDBTypography>
-
-                      <hr className="my-4" />
-
-                      <div className="d-flex justify-content-between mb-4">
-                        <MDBTypography tag="h5" className="text-uppercase">
-                          {/* {item.length} */}
-                        </MDBTypography>
-                        <MDBTypography tag="h5">Rs 4700/=</MDBTypography>
-                      </div>
-
-                      <MDBTypography tag="h5" className="text-uppercase mb-3">
-                        Shipping
-                      </MDBTypography>
-
-                      <div className="mb-4 pb-2">
-                        <select
-                          className="select p-2 rounded bg-grey"
-                          style={{ width: "100%" }}
+                    {cartItems.length === 0 && <div>Cart is empty</div>}
+                    {cartItems.map((item) => (
+                      <div className="p-5">
+                        <MDBTypography
+                          tag="h3"
+                          className="fw-bold mb-5 mt-2 pt-1"
                         >
-                          <option value="1">Standard-Delivery- Rs250.00</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
-                          <option value="4">Four</option>
-                        </select>
-                      </div>
-
-                      <MDBTypography tag="h5" className="text-uppercase mb-3">
-                        Voucher Code
-                      </MDBTypography>
-
-                      <div className="mb-5">
-                        <MDBInput size="lg" label="Enter your code" />
-                      </div>
-
-                      <hr className="my-4" />
-
-                      <div className="d-flex justify-content-between mb-5">
-                        <MDBTypography tag="h5" className="text-uppercase">
-                          Total price
+                          Summary
                         </MDBTypography>
-                        <MDBTypography tag="h5">
-                          ${totalPrice.toFixed(2)}
+
+                        <hr className="my-4" />
+
+                        <div className="d-flex justify-content-between mb-4">
+                          <MDBTypography tag="h5" className="text-uppercase">
+                            {item.length}
+                          </MDBTypography>
+                          <MDBTypography tag="h5">Rs 4700/=</MDBTypography>
+                        </div>
+
+                        <MDBTypography tag="h5" className="text-uppercase mb-3">
+                          Shipping
                         </MDBTypography>
+
+                        <div className="mb-4 pb-2">
+                          <select
+                            className="select p-2 rounded bg-grey"
+                            style={{ width: "100%" }}
+                          >
+                            <option value="1">
+                              Standard-Delivery- Rs250.00
+                            </option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                            <option value="4">Four</option>
+                          </select>
+                        </div>
+
+                        <MDBTypography tag="h5" className="text-uppercase mb-3">
+                          Voucher Code
+                        </MDBTypography>
+
+                        <div className="mb-5">
+                          <MDBInput size="lg" label="Enter your code" />
+                        </div>
+
+                        <hr className="my-4" />
+
+                        <div className="d-flex justify-content-between mb-5">
+                          <MDBTypography tag="h5" className="text-uppercase">
+                            Total price
+                          </MDBTypography>
+                          <MDBTypography tag="h5">
+                            ${totalPrice.toFixed(2)}
+                          </MDBTypography>
+                        </div>
+                        <Link to="/checkout" style={{ textDecoration: "none" }}>
+                          <MDBBtn color="dark" block size="lg">
+                            Proceed To Checkout
+                          </MDBBtn>
+                        </Link>
                       </div>
-                      <Link to="/checkout" style={{ textDecoration: "none" }}>
-                        <MDBBtn color="dark" block size="lg">
-                          Proceed To Checkout
-                        </MDBBtn>
-                      </Link>
-                    </div>
+                    ))}
                   </MDBCol>
                 </MDBRow>
               </MDBCardBody>
