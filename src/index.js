@@ -9,6 +9,6 @@ root.render(
   <div>
     <Header />
     <App />
-    <Footer />
+    {/* <Footer /> */}
   </div>
 );

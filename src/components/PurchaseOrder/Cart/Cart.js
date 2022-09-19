@@ -15,7 +15,7 @@ import React from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import "./cartstyle.css";
 import { Link, useNavigate } from "react-router-dom";
-import cartEmpty from "../Images/Emptycart.png";
+import myGif from "../Images/Emptypreview.gif";
 
 export default function Cart(props) {
   const { cartItems, onAdd, onRemove, onDelete } = props;
@@ -53,7 +53,18 @@ export default function Cart(props) {
                       <hr className="my-4" />
 
                       <MDBRow>
-                        {cartItems.length === 0 && <img src={cartEmpty} />}
+                        {cartItems.length === 0 && (
+                          <div className="center">
+                            <img src={myGif} />
+                            <h3 className="emptyCartMain">
+                              Your Cart is Empty
+                            </h3>
+                            <h4 className="emptyCartSecond">
+                              Looks like you haven't added anything to your cart
+                              yet
+                            </h4>
+                          </div>
+                        )}
                         {cartItems.map((item) => (
                           <div
                             key={item.id}
@@ -63,7 +74,7 @@ export default function Cart(props) {
                               <MDBCardImage
                                 src={item.image}
                                 fluid
-                                className="rounded-3"
+                                className="cartImage"
                                 alt="Cotton T-shirt"
                               />
                             </MDBCol>
@@ -89,7 +100,7 @@ export default function Cart(props) {
                                 color="link"
                                 className="px-2"
                               >
-                                <MDBIcon icon="minus" />
+                                <i class="bi bi-dash-circle-fill"></i>
                               </MDBBtn>
 
                               <MDBInput
@@ -105,7 +116,7 @@ export default function Cart(props) {
                                 color="link"
                                 className="px-2"
                               >
-                                <MDBIcon icon="plus" />
+                                <i class="bi bi-plus-circle-fill"></i>
                               </MDBBtn>
                             </MDBCol>
                             <MDBCol md="3" lg="2" xl="2" className="text-end">
@@ -135,7 +146,8 @@ export default function Cart(props) {
                             href="/productDetails/innovation"
                             className="text-body"
                           >
-                            <MDBIcon icon="chevron-left" /> Back to shop
+                            <i className="bi bi-skip-backward-fill"></i> Back to
+                            shop
                           </MDBCardText>
                         </MDBTypography>
                       </div>
@@ -143,7 +155,9 @@ export default function Cart(props) {
                   </MDBCol>
                   {/* ----------------------------- Side pane summary---------------------------------------------------------- */}
                   <MDBCol lg="4" className="bg-grey">
-                    {cartItems.length === 0 && <div>Cart is empty</div>}
+                    {cartItems.length === 0 && (
+                      <div className="center">Cart is empty</div>
+                    )}
                     {cartItems.map((item) => (
                       <div className="p-5">
                         <MDBTypography
