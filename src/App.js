@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
-import checkout from "./components/PurchaseOrder/checkout/checkout";
 import PaymentForm from "./components/PurchaseOrder/Payment/PaymentForm";
 import Cart from "./components/PurchaseOrder/Cart/Cart";
 // import Checkout from "./components/PurchaseOrder/checkout";
+import Cart from "./components/PurchaseOrder/Cart/cartFunctions";
+import Products from "./components/PurchaseOrder/Cart/Products";
 import Checkout from "./components/PurchaseOrder/checkout/checkout";
 import Product from "./components/product/product";
 import ProductTable from "./components/product/productTable";
@@ -21,7 +22,8 @@ function App() {
         {/* <Route path="/PaymentForm" exact element={<PaymentForm />} /> */}
         <Route path="/" exact element={<Home />} />
         <Route path="/Cart" exact element={<Cart />} />
-        <Route path="/Checkout" exact element={<Checkout />} />
+        <Route path="/checkout" exact element={<Checkout />} />
+        <Route path="/products" exact element={<Products />} />
         <Route path="/product" exact element={<Product />} />
         <Route path="/product/edit/:id" exact element={<ProductEdit />} />
         <Route path="/productTable" exact element={<ProductTable />} />
