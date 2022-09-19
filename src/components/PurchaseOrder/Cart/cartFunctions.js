@@ -57,7 +57,7 @@ export default function CartFunctions() {
   return (
     <div>
       <Header countCartItems={cartItems.length}></Header>
-      <Main products={products} onAdd={onAdd}></Main>
+      {/* <Main products={products} onAdd={onAdd}></Main> */}
       <Cart
         cartItems={cartItems}
         onAdd={onAdd}
