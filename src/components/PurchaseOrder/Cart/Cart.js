@@ -16,10 +16,6 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import "./cartstyle.css";
 import { Link, useNavigate } from "react-router-dom";
 
-// import agri from "../../product/agri.jpg";
-// import fertilizer from "../../product/fertilizer.jpg";
-// import innovation from "../../product/innovation.jpg";
-
 export default function Cart(props) {
   const { cartItems, onAdd, onRemove, onDelete } = props;
   const itemsPrice = 0;
