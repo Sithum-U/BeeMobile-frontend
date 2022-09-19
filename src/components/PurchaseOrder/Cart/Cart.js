@@ -19,7 +19,8 @@ import myGif from "../Images/Emptypreview.gif";
 
 export default function Cart(props) {
   const { cartItems, onAdd, onRemove, onDelete } = props;
-  const itemsPrice = 0;
+  const itemsPrice = cartItems.reduce((a, c) => a + c.qty * c.price, 0);
+
   const taxPrice = itemsPrice * 0.14;
   const shippingPrice = itemsPrice > 2000 ? 0 : 20;
   const totalPrice = itemsPrice + taxPrice + shippingPrice;
@@ -95,33 +96,34 @@ export default function Cart(props) {
                               xl="3"
                               className="d-flex align-items-center"
                             >
-                              <MDBBtn
+                              <div
                                 onClick={() => onRemove(item)}
                                 color="link"
                                 className="px-2"
                               >
                                 <i class="bi bi-dash-circle-fill"></i>
-                              </MDBBtn>
+                              </div>
 
                               <MDBInput
                                 type="number"
                                 min="0"
                                 max="10"
                                 defaultValue={1}
+                                onChange={cartItems.length}
                                 size="sm"
                               />
 
-                              <MDBBtn
+                              <div
                                 onClick={() => onAdd(item)}
                                 color="link"
                                 className="px-2"
                               >
                                 <i class="bi bi-plus-circle-fill"></i>
-                              </MDBBtn>
+                              </div>
                             </MDBCol>
                             <MDBCol md="3" lg="2" xl="2" className="text-end">
                               <MDBTypography tag="h6" className="mb-0">
-                                {item.qty} x ${item.price.toFixed(2)}
+                                Rs: {item.qty * item.price.toFixed(2)} /=
                               </MDBTypography>
                             </MDBCol>
                             <MDBCol md="1" lg="1" xl="1" className="text-end">
