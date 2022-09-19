@@ -1,16 +1,17 @@
-import React from "react";
+import React, { Component } from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import checkout from "./components/PurchaseOrder/checkout/checkout";
 import PaymentForm from "./components/PurchaseOrder/Payment/PaymentForm";
 import Cart from "./components/PurchaseOrder/Cart/cartFunctions";
 import Main from "./components/PurchaseOrder/Cart/Main";
+import Checkout from "./components/PurchaseOrder/checkout";
 import Checkout from "./components/PurchaseOrder/checkout/checkout";
-import Sidebar from "./components/Layout/sidebar/sidebar";
 import Product from "./components/product/product";
 import ProductTable from "./components/product/productTable";
 import ProductDetails from "./components/product/productDetails";
 import ProductAgri from "./components/product/productAgri";
 import ProductInnovation from "./components/product/productInnovation";
+import ProductEdit from "./components/product/Edit";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/Checkout" exact element={<Checkout />} />
         <Route path="/main" exact element={<Main />} />
         <Route path="/product" exact element={<Product />} />
+        <Route path="/product/edit/:id" exact element={<ProductEdit />} />
         <Route path="/productTable" exact element={<ProductTable />} />
         <Route
           path="/productDetails/fertilizer"
@@ -29,11 +31,8 @@ function App() {
           element={<ProductDetails />}
         />
         <Route path="/productDetails/agri" exact element={<ProductAgri />} />
-        <Route
-          path="/productDetails/innovation"
-          exact
-          element={<ProductInnovation />}
-        />
+        <Route path="/productDetails/innovation" exact element={<ProductInnovation />} />
+        
       </Routes>
     </BrowserRouter>
   );
