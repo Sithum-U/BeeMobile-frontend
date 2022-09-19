@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import PaymentForm from "./components/PurchaseOrder/Payment/PaymentForm";
-import Cart from "./components/PurchaseOrder/Cart/Cart";
+// import Cart from "./components/PurchaseOrder/Cart/Cart";
 // import Checkout from "./components/PurchaseOrder/checkout";
 import Cart from "./components/PurchaseOrder/Cart/cartFunctions";
 import Products from "./components/PurchaseOrder/Cart/Products";
