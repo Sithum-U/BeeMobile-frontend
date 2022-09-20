@@ -7,7 +7,7 @@ import Header from "./components/Layout/Header/Header";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <div>
-    <Header />
+    {/* <Header /> */}
     <App />
     {/* <Footer /> */}
   </div>
