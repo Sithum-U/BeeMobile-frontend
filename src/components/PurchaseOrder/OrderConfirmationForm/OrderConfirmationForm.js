@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
+import jspdf from "jspdf";
+import "jspdf-autotable";
+import Logo from "../../Layout/Images/backgroundlogo.png";
+import Signature from "../../PurchaseOrder/Images/AgroPro signature.jpg";
+
 const rows = [
   {
     id: "itemName",
@@ -44,6 +47,56 @@ function App() {
         setPaymentDetails(data);
       });
   }, []);
+
+  //genarate pdf
+
+  const generatePDF = (tickets) => {
+    const doc = new jspdf();
+    const tableColumn = [
+      "order ID",
+      "Item Name",
+      "Item Price",
+      "Item Quantity",
+      "Item Price",
+    ];
+    const tableRows = [];
+    const date = Date().split(" ");
+    const dateStr = date[1] + "-" + date[2] + "-" + date[3];
+
+    tickets.map((ticket) => {
+      const ticketData = [
+        ticket._id,
+        ticket.itemName,
+        ticket.itemPrice,
+        ticket.itemQuantity,
+        ticket.itemPrice * ticket.itemQuantity,
+      ];
+      tableRows.push(ticketData);
+    });
+    tickets.map((payment) => {
+      const ticketData = [
+        payment.email,
+        payment.cardInformation,
+        payment.expDate,
+        payment.cvc,
+        payment.nameOnCard,
+        payment.region,
+        payment.zip,
+      ];
+      tableRows.push(ticketData);
+    });
+    doc.text("AgroPro Solution Provider", 70, 8).setFontSize(13);
+    doc.text("Order Confirmation Report", 14, 16).setFontSize(13);
+    doc.text(`Report Genarated Date - ${dateStr}`, 14, 23);
+    //right down width height
+    doc.addImage(Logo, "JPEG", 170, 8, 25, 25);
+    doc.autoTable(tableColumn, tableRows, {
+      styles: { fontSize: 8 },
+      startY: 35,
+    });
+    doc.addImage(Signature, "JPEG", 120, 80, 70, 40);
+    doc.save("Contract Details Report.pdf");
+  };
   return (
     <div className="App">
       <section class="section-pagetop bg">
@@ -225,11 +278,19 @@ function App() {
                   </tbody>
                 </table>
 
+                {/* ---------------------------------Generate report---------------------------------  */}
                 <div class="card-body border-top">
-                  <a href="#" class="btn btn-primary float-md-right">
+                  {/* <a href="#" class="btn btn-primary float-md-right">
                     {" "}
                     Make Purchase <i class="fa fa-chevron-right"></i>{" "}
-                  </a>
+                  </a> */}
+                  <button
+                    type="button"
+                    class="btn btn-primary float-md-right"
+                    onClick={() => generatePDF(paymentDetails)}
+                  >
+                    GenerateReport <i class="bi bi-download"></i>
+                  </button>{" "}
                   <a href="#" class="btn btn-light">
                     {" "}
                     <i class="fa fa-chevron-left"></i> Continue shopping{" "}
