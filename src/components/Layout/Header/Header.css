@@ -27,6 +27,8 @@ header {
 header.sticky {
   padding: 5px 100px;
   background: #b2bec3;
+  /* background: url("../../Layout/Images/agriculturebg.jpg") no-repeat center
+    center fixed; */
 }
 header logo {
   position: relative;
