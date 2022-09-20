@@ -14,6 +14,7 @@ const Single = () => {
                 //console.log(data);
             });
     }, []);
+    console.log(product);
 
     return (
         <div>
@@ -22,11 +23,15 @@ const Single = () => {
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="post-heading">
-                            <h1>{product.productName}</h1>
-                            <h2 class="subheading">Creating Fertilizers for the Agriculture</h2> - <h3></h3>
+                        {product.data ?
+                            <h1>{product.data.productName}</h1>
+                        : <div></div>}
+                            
+                            
                             <span class="meta">
-                                Created by Advisor
-                                <a href="#!"> J.S.K Karunarathna</a>
+                                Category : 
+                                <h3>{product.data.category}</h3>
+                                <a href="#!"> {product.data.productCode} </a>
                                 on August 24, 2022
                             </span>
                         </div>
