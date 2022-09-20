@@ -99,9 +99,18 @@ function App() {
   };
   return (
     <div className="App">
-      <section class="section-pagetop bg">
+      {/* <section class="section-pagetop bg"> */}
+      <section>
         <div class="container">
-          <h2 class="title-page">Shopping cart</h2>
+          <h3
+            class="title-page"
+            style={{
+              color: "#3e8e41",
+              fontFamily: "Lucida Handwriting",
+            }}
+          >
+            Review Your Order
+          </h3>
         </div>
       </section>
 
@@ -170,106 +179,11 @@ function App() {
                           {" "}
                           <i class="fa fa-heart"></i>
                         </a>
-                        <a href="" class="btn btn-light">
-                          {" "}
-                          Remove
-                        </a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <figure class="itemside">
-                          <div class="aside">
-                            <img
-                              src="assets/images/items/2.jpg"
-                              class="img-sm"
-                            />
-                          </div>
-                          <figcaption class="info">
-                            <a href="#" class="title text-dark">
-                              Product name goes here nice
-                            </a>
-                            <p class="text-muted small">
-                              Size: XL, Color: blue, <br /> Brand: Gucci
-                            </p>
-                          </figcaption>
-                        </figure>
-                      </td>
-                      <td>
-                        <select class="form-control">
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                        </select>
-                      </td>
-                      <td>
-                        <div class="price-wrap">
-                          <var class="price">$149.97</var>
-                          <small class="text-muted"> $75.00 each </small>
-                        </div>
-                      </td>
-                      <td class="text-right">
                         <a
-                          data-original-title="Save to Wishlist"
-                          title=""
                           href=""
-                          class="btn btn-light mr-2"
-                          data-toggle="tooltip"
+                          class="btn btn-light"
+                          style={{ color: "#ff7979", borderColor: "#ff7979" }}
                         >
-                          {" "}
-                          <i class="fa fa-heart"></i>
-                        </a>
-                        <a href="" class="btn btn-light btn-round">
-                          {" "}
-                          Remove
-                        </a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <figure class="itemside">
-                          <div class="aside">
-                            <img
-                              src="assets/images/items/3.jpg"
-                              class="img-sm"
-                            />
-                          </div>
-                          <figcaption class="info">
-                            <a href="#" class="title text-dark">
-                              Another name of some product goes just here
-                            </a>
-                            <p class="small text-muted">
-                              Size: XL, Color: blue, Brand: Tissot
-                            </p>
-                          </figcaption>
-                        </figure>
-                      </td>
-                      <td>
-                        <select class="form-control">
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                        </select>
-                      </td>
-                      <td>
-                        <div class="price-wrap">
-                          <var class="price">$98.00</var>
-                          <small class="text-muted"> $578.00 each</small>
-                        </div>
-                      </td>
-                      <td class="text-right">
-                        <a
-                          data-original-title="Save to Wishlist"
-                          title=""
-                          href=""
-                          class="btn btn-light mr-2"
-                          data-toggle="tooltip"
-                        >
-                          {" "}
-                          <i class="fa fa-heart"></i>
-                        </a>
-                        <a href="" class="btn btn-light btn-round">
                           {" "}
                           Remove
                         </a>
@@ -287,6 +201,10 @@ function App() {
                   <button
                     type="button"
                     class="btn btn-primary float-md-right"
+                    style={{
+                      backgroundColor: "#ff7979",
+                      borderColor: "#ff7979",
+                    }}
                     onClick={() => generatePDF(paymentDetails)}
                   >
                     GenerateReport <i class="bi bi-download"></i>
