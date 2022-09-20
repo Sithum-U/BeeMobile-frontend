@@ -1,5 +1,49 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
+const rows = [
+  {
+    id: "itemName",
+    label: "Item Name",
+    minWidth: 100,
+    align: "center",
+    main: "#f44336",
+  },
+  {
+    id: "itemPrice",
+    label: "Item Price",
+    minWidth: 100,
+    align: "center",
+    main: "#f44336",
+  },
+  {
+    id: "itemQuantity",
+    label: "Item Quantity",
+    minWidth: 100,
+    align: "center",
+    main: "#f44336",
+  },
+  {
+    id: "totalItemPrice",
+    label: "Total Item Price",
+    minWidth: 170,
+    align: "center",
+    // format: (value) => value.toLocaleString('en-US'),
+  },
+];
 function App() {
+  const [paymentDetails, setPaymentDetails] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filtered, setfiltered] = useState([]);
+  const [itemName, setitemName] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8000/payment/")
+      .then((res) => res.json())
+      .then((data) => {
+        setPaymentDetails(data);
+      });
+  }, []);
   return (
     <div className="App">
       <section class="section-pagetop bg">
@@ -200,49 +244,46 @@ function App() {
                 </p>
               </div>
             </main>
+
+            {/* ...............................Payment Details......................... */}
             <aside class="col-md-3">
-              <div class="card mb-3">
-                <div class="card-body">
-                  <form>
-                    <div class="form-group">
-                      <label>Have coupon?</label>
-                      <div class="input-group">
-                        <input
-                          type="text"
-                          class="form-control"
-                          name=""
-                          placeholder="Coupon code"
-                        />
-                        <span class="input-group-append">
-                          <button class="btn btn-primary">Apply</button>
-                        </span>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-body">
-                  <dl class="dlist-align">
-                    <dt>Total price:</dt>
-                    <dd class="text-right">USD 568</dd>
-                  </dl>
-                  <dl class="dlist-align">
-                    <dt>Discount:</dt>
-                    <dd class="text-right">USD 658</dd>
-                  </dl>
-                  <dl class="dlist-align">
-                    <dt>Total:</dt>
-                    <dd class="text-right  h5">
-                      <strong>$1,650</strong>
-                    </dd>
-                  </dl>
-                  <hr />
-                  <p class="text-center mb-3">
-                    <img src="assets/images/misc/payments.png" height="26" />
-                  </p>
-                </div>
-              </div>
+              {paymentDetails.map((payment) => (
+                <table
+                  key={payment.email}
+                  class="table table-borderless table-shopping-cart"
+                >
+                  <thead class="text-muted">
+                    <tr class="small text-uppercase">
+                      <th scope="col">Product</th>
+                      <th scope="col" width="120">
+                        Quantity
+                      </th>
+                      <th scope="col" class="text-right" width="200">
+                        {" "}
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Email Address : {payment.email}</td>
+                      <td>
+                        <select class="form-control">
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                        </select>
+                      </td>
+                      <td>
+                        <div class="price-wrap">
+                          <var class="price">$1156.00</var>
+                          <small class="text-muted"> $315.20 each </small>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              ))}
             </aside>
           </div>
         </div>
@@ -271,17 +312,6 @@ function App() {
           </p>
         </div>
       </section>
-
-      <footer class="section-footer border-top padding-y">
-        <div class="container">
-          <p class="float-md-right">
-            &copy; Copyright 2020 All rights reserved
-          </p>
-          <p>
-            <a href="#">Terms and conditions</a>
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }
