@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./product.css";
 import axios from 'axios';
-import SideBar from "../sidebar/sidebar";
+import SideBar from "../Layout/sidebar/sidebar";
 
 const Product = () => {
     const [product, setProduct] = useState([]);
@@ -14,6 +14,9 @@ const Product = () => {
      const [price, setPrice] = useState("");
      const [image, setImage] = useState("");
 
+     const onChangeFile = e => {
+        setImage(e.target.files[0]);
+     }
     const handleSubmit = () => {
         const url = 'http://localhost:8000/product/'
         const credentials = { productCode, productName, description, category, price, image }
@@ -38,7 +41,7 @@ const Product = () => {
             <SideBar/>
             <div style={{ width: "82%", justifyContent: "center", display: "flex", alignItems: "center" }}>
             <div style={{ backgroundColor: "white", width: "60%", justifyContent: "center", display: "flex", alignItems: "center" }}>
-            <form style={{width:"50%"}}>
+            <form style={{width:"50%"}} encType="multipart/form-data">
         <h1>Create Article</h1>
             <div class="form-group">
                 <input type="text" class="form-control item" onChange={(e) => setProductCode(e.target.value)} id="productCode" placeholder="Product code"/>
@@ -56,7 +59,7 @@ const Product = () => {
                 <input type="text" class="form-control item" onChange={(e) => setPrice(e.target.value)} id="price" placeholder="price"/>
             </div>
             <div class="form-group">
-                <input type="file" class="form-control item" onChange={(e) => setImage(e.target.value)} id="img" accept="image/*"/>
+                <input type="file" filename="image" class="form-control item" onChange={onChangeFile} id="img" accept="image/*"/>
             </div>
             <div class="form-group">
                 <button type="button" onClick={handleSubmit} class="btn btn-block create-account">Create Article</button>
