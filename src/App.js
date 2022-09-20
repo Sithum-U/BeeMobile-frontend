@@ -12,8 +12,11 @@ import ProductDetails from "./components/product/productDetails";
 import ProductAgri from "./components/product/productAgri";
 import ProductInnovation from "./components/product/productInnovation";
 import ProductEdit from "./components/product/Edit";
+import Rating from "./components/PurchaseOrder/Rating/rating";
+import LandingPage from "./components/Layout/LandingPage";
 import Home from "./components/Layout/Home/Home";
 import Single from "./components/product/single";
+
 
 function App() {
   return (
@@ -28,7 +31,17 @@ function App() {
         <Route path="/product" exact element={<Product />} />
         <Route path="/product/edit/:id" exact element={<ProductEdit />} />
         <Route path="/productTable" exact element={<ProductTable />} />
+
+        <Route path="/rating" exact element={<Rating />} />
+        <Route path="/landingPage" exact element={<LandingPage />} />
+        <Route
+          path="/productDetails/fertilizer"
+          exact
+          element={<ProductDetails />}
+        />
+
         <Route path="/productDetails/fertilizer" exact element={<ProductDetails />} />
+
         <Route path="/productDetails/agri" exact element={<ProductAgri />} />
         <Route path="/productDetails/innovation" exact element={<ProductInnovation />} />
         <Route path="/product/single/:id" exact element={<Single />} />
