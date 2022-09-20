@@ -247,43 +247,89 @@ function App() {
 
             {/* ...............................Payment Details......................... */}
             <aside class="col-md-3">
-              {paymentDetails.map((payment) => (
-                <table
-                  key={payment.email}
-                  class="table table-borderless table-shopping-cart"
-                >
-                  <thead class="text-muted">
-                    <tr class="small text-uppercase">
-                      <th scope="col">Product</th>
-                      <th scope="col" width="120">
-                        Quantity
-                      </th>
-                      <th scope="col" class="text-right" width="200">
-                        {" "}
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Email Address : {payment.email}</td>
-                      <td>
-                        <select class="form-control">
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                        </select>
-                      </td>
-                      <td>
-                        <div class="price-wrap">
-                          <var class="price">$1156.00</var>
-                          <small class="text-muted"> $315.20 each </small>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              ))}
+              <div class="card mb-3">
+                <div class="card-body">
+                  {paymentDetails.map((payment) => (
+                    <table
+                      key={payment.email}
+                      class="table table-borderless table-shopping-cart"
+                    >
+                      <thead class="text-muted">
+                        <tr class="small text-uppercase">
+                          <th scope="col">Payment Details</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Email Address : {payment.email}</td>
+                        </tr>
+                        <tr>
+                          <td> Card Number : {payment.cardInformation}</td>
+                        </tr>
+                        <tr>
+                          <td> Expiry Date : {payment.expDate}</td>
+                        </tr>
+                        <tr>
+                          <td> CVV code : {payment.cvc}</td>
+                        </tr>
+                        <tr>
+                          <td>Card Holder Name : {payment.nameOnCard}</td>
+                        </tr>
+                        <tr>
+                          <td>Payment Region : {payment.region}</td>
+                        </tr>
+                        <tr>
+                          <td>Zip Code : {payment.zip}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  ))}
+                </div>
+              </div>
+            </aside>
+            <aside class="col-md-3">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <form>
+                    <div class="form-group">
+                      <label>Have coupon?</label>
+                      <div class="input-group">
+                        <input
+                          type="text"
+                          class="form-control"
+                          name=""
+                          placeholder="Coupon code"
+                        />
+                        <span class="input-group-append">
+                          <button class="btn btn-primary">Apply</button>
+                        </span>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-body">
+                  <dl class="dlist-align">
+                    <dt>Total price:</dt>
+                    <dd class="text-right">USD 568</dd>
+                  </dl>
+                  <dl class="dlist-align">
+                    <dt>Discount:</dt>
+                    <dd class="text-right">USD 658</dd>
+                  </dl>
+                  <dl class="dlist-align">
+                    <dt>Total:</dt>
+                    <dd class="text-right  h5">
+                      <strong>$1,650</strong>
+                    </dd>
+                  </dl>
+                  <hr />
+                  <p class="text-center mb-3">
+                    <img src="assets/images/misc/payments.png" height="26" />
+                  </p>
+                </div>
+              </div>
             </aside>
           </div>
         </div>
