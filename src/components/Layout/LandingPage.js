@@ -3,7 +3,7 @@ import React from "react";
 export default function LandingPage() {
   return (
     <div className="App">
-      <div class="preloader">
+      {/* <div class="preloader">
         <div class="loader">
           <div class="ytp-spinner">
             <div class="ytp-spinner-container">
@@ -18,9 +18,9 @@ export default function LandingPage() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
-      <header class="header">
+      {/* <header class="header">
         <div class="navbar-area">
           <div class="container">
             <div class="row align-items-center">
@@ -79,7 +79,7 @@ export default function LandingPage() {
             </div>
           </div>
         </div>
-      </header>
+      </header> */}
 
       <section id="home" class="hero-section">
         <div class="hero-shape">
