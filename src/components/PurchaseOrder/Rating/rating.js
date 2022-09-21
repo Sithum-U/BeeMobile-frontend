@@ -69,13 +69,29 @@ export default function Rating() {
             <textarea
               cols="50"
               placeholder="Describe your experience.."
+              id="description"
+              name="description"
+              autoFocus
+              onChange={(e) => setDescription(e.target.value)}
             ></textarea>
           </div>
           <div className="textarea">
-            <textarea placeholder="Enter Your Name"></textarea>
+            <textarea
+              placeholder="Enter Your Name"
+              id="name"
+              name="name"
+              autoFocus
+              onChange={(e) => setName(e.target.value)}
+            ></textarea>
           </div>
           <div className="textarea">
-            <textarea placeholder="Enter Your Profession"></textarea>
+            <textarea
+              placeholder="Enter Your Profession"
+              id="profession"
+              name="profession"
+              autoFocus
+              onChange={(e) => setProfession(e.target.value)}
+            ></textarea>
           </div>
           <div className="btn">
             <button type="submit">Post</button>
