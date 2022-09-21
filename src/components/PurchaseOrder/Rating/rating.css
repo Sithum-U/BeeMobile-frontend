@@ -13,6 +13,8 @@ body {
   text-align: center;
 } */
 .ratingContainer {
+  margin-left: 40%;
+  margin-top: 10%;
   position: relative;
   width: 400px;
   background: #111;
@@ -65,7 +67,7 @@ input#rate-5:checked ~ label {
   color: #fe7;
   text-shadow: 0 0 20px #952;
 }
-#rate-1:checked ~ form header:before {
+/* #rate-1:checked ~ form header:before {
   content: "I just hate it ";
 }
 #rate-2:checked ~ form header:before {
@@ -79,7 +81,7 @@ input#rate-5:checked ~ label {
 }
 #rate-5:checked ~ form header:before {
   content: "I just love it ";
-}
+} */
 .ratingContainer form {
   display: none;
 }
@@ -99,6 +101,7 @@ form .textarea {
   height: 100px;
   width: 100%;
   overflow: hidden;
+  margin-bottom: 10px;
 }
 form .textarea textarea {
   height: 100%;
