@@ -21,13 +21,13 @@ const Home = () => {
                 <img src={agri} width="1500" height="400" />
             </div>
             {product.data ?
-                    product.data.map((item) => {
-                        return (
-            <div className="container" key={item._id}><br />
-                
+                product.data.map((item) => {
+                    return (
+                        <div className="container" key={item._id}><br />
+
                             <MDBRow className='row-cols-1 row-cols-md-3 g-4'>
                                 <MDBCol>
-                                    <MDBCard style={{width:"400px"}}>
+                                    <MDBCard style={{ width: "400px" }}>
                                         <MDBCardTitle>{item.productName}</MDBCardTitle>
                                         <MDBCardImage
                                             src='https://smedigest.com.ng/wp-content/uploads/2017/10/from-business-name-to-company-registration.jpg'
@@ -37,22 +37,20 @@ const Home = () => {
                                         <MDBCardBody>
                                             <p>{item.description}</p>
                                             <MDBCardText>
-                                                <Link to={"/product/single/"+ item._id}>
-                                                    <Button variant="success" style={{width:"300px"}}>Read More ></Button>
+                                                <Link to={"/product/single/" + item._id}>
+                                                    <Button variant="success" style={{ width: "300px" }}>Read More ></Button>
                                                 </Link>
                                             </MDBCardText>
                                         </MDBCardBody>
                                     </MDBCard>
-                                    
+
                                 </MDBCol>
                             </MDBRow>
-                        
 
-
-            </div>
-            );
-                                })
-                                : <div></div>}
+                        </div>
+                    );
+                })
+                : <div></div>}
         </div>
 
     );
