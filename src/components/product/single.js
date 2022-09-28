@@ -50,7 +50,13 @@ const Single = () => {
                         </div>
                     </div>
                 </div>
+                
             </div><br /><br /><br />
+            {product.data ?
+            <div style={{justifyContent: "center", display: "flex", alignItems: "center"}}>
+            <img src={`${product.data.image}`} alt='...' position='top' style={{height: "100 px", weight:"100px"}}/>
+            </div>
+            : <div></div>}
 
             <article class="mb-4">
                 <div class="container px-4 px-lg-5">
