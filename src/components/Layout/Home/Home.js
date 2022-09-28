@@ -29,8 +29,8 @@ const Home = () => {
                                 <MDBCol>
                                     <MDBCard style={{ width: "400px" }}>
                                         <MDBCardTitle>{item.productName}</MDBCardTitle>
-                                        <MDBCardImage
-                                            src='https://smedigest.com.ng/wp-content/uploads/2017/10/from-business-name-to-company-registration.jpg'
+                                        <img
+                                            src={`${item.image}`}
                                             alt='...'
                                             position='top'
                                         />
