@@ -59,6 +59,7 @@ const Product = () => {
                 body: formData,
             });
             if(res.ok){
+                alert("Details Added Successfully");
                 window.location.reload();
             }
 
