@@ -14,6 +14,7 @@ import ProductInnovation from "./components/product/productInnovation";
 import ProductEdit from "./components/product/Edit";
 import Home from "./components/Layout/Home/Home";
 import Single from "./components/product/single";
+import ProductUpdate from "./components/product/update";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="/productDetails/agri" exact element={<ProductAgri />} />
         <Route path="/productDetails/innovation" exact element={<ProductInnovation />} />
         <Route path="/product/single/:id" exact element={<Single />} />
+        <Route path="/product/update/:id" exact element={<ProductUpdate />} />
       </Routes>
     </BrowserRouter>
   );

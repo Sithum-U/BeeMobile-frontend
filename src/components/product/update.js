@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import "./product.css";
 import axios from 'axios';
 import SideBar from "../Layout/sidebar/sidebar";
+import { Link, useParams } from "react-router-dom";
 
-const Product = () => {
+const ProductUpdate = () => {
     const [product, setProduct] = useState({
         productCode: "",
         productName: "",
@@ -60,22 +61,22 @@ const Product = () => {
             <form style={{width:"50%"}} encType="multipart/form-data">
         <h1>Create Article</h1>
             <div class="form-group">
-                <input type="text" class="form-control item" defaultValue={update.productCode} onChange={handleChange('productCode')} name="productCode" placeholder="Product code"/>
+                <input type="text" class="form-control item" defaultValue={update.data.productCode} onChange={handleChange('productCode')} name="productCode" placeholder="Product code"/>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control item" defaultValue={update.productName} onChange={handleChange('productName')} name="productName" placeholder="Product Name"/>
+                <input type="text" class="form-control item" defaultValue={update.data.productName} onChange={handleChange('productName')} name="productName" placeholder="Product Name"/>
             </div>
             <div class="form-group">
-                <input type="textarea" class="form-control item" defaultValue={update.description} onChange={handleChange('description')} name="description" placeholder="Description"/>
+                <input type="textarea" class="form-control item" defaultValue={update.data.description} onChange={handleChange('description')} name="description" placeholder="Description"/>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control item" defaultValue={update.category} onChange={handleChange('category')} name="category" placeholder="Category"/>
+                <input type="text" class="form-control item" defaultValue={update.data.category} onChange={handleChange('category')} name="category" placeholder="Category"/>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control item" defaultValue={update.price} onChange={handleChange('price')} name="price" placeholder="price"/>
+                <input type="text" class="form-control item" defaultValue={update.data.price} onChange={handleChange('price')} name="price" placeholder="price"/>
             </div>
             <div class="form-group">
-                <input type="file" class="form-control item" defaultValue={update.image} accept="image/*" name="image"  onChange={handleChange('image')} />
+                <input type="file" class="form-control item" defaultValue={update.data.image} accept="image/*" name="image"  onChange={handleChange('image')} />
             </div>
             <div class="form-group">
                 <button type="button" onClick={handleSubmit} class="btn btn-block create-account">Update Article</button>
@@ -90,4 +91,4 @@ const Product = () => {
 
 };
 
-export default Product;
+export default ProductUpdate;
