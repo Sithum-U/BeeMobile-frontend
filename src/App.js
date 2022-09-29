@@ -30,7 +30,6 @@ function App() {
         <Route path="/checkout" exact element={<Checkout />} />
         <Route path="/products" exact element={<Products />} />
         <Route path="/product" exact element={<Product />} />
-        <Route path="/product/edit/:id" exact element={<ProductEdit />} />
         <Route path="/productTable" exact element={<ProductTable />} />
 
         <Route path="/rating" exact element={<Rating />} />
@@ -46,7 +45,7 @@ function App() {
         <Route path="/productDetails/agri" exact element={<ProductAgri />} />
         <Route path="/productDetails/innovation" exact element={<ProductInnovation />} />
         <Route path="/product/single/:id" exact element={<Single />} />
-        <Route path="/product/update/:id" exact element={<ProductUpdate />} />
+        <Route path="/product/edit/:id" exact element={<ProductUpdate />} />
       </Routes>
     </BrowserRouter>
   );

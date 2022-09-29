@@ -102,10 +102,10 @@ const ProductTable = () => {
                               <td>{item.description}</td>
                               <td>{item.category}</td>
                               <td>{item.price}</td>
-                              <td>{item.image}</td>
+                              <td><img src={`${item.image}`} alt='...' position='top' width="100" height="100"/></td>
                               <td style={{ minWidth: 190 }}>
                                 <Link
-                                  to={"/product/update/" + item._id}
+                                  to={"/product/edit/" + item._id}
                                   type="submit"
                                 >
                                   {/* <i class="fa fa-trash"></i> UPDATE */}
