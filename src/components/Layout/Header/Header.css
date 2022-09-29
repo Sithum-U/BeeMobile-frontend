@@ -21,13 +21,16 @@ header {
   transition: 0.6s;
   padding: 0px 100px;
   z-index: 10000;
-  background: #084818;
+  background: #06283D;
 }
 
 header.sticky {
   padding: 5px 100px;
   background: #b2bec3;
+  /* background: url("../../Layout/Images/agriculturebg.jpg") no-repeat center
+    center fixed; */
 }
+
 header logo {
   position: relative;
   font-weight: 700;
@@ -56,26 +59,39 @@ header ul li a {
   transition: 0.6s;
 }
 
-/* .banner {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  background-image: url("../agriculturebg.jpg");
-  background-size: cover;
-} */
-
 header.sticky .logo,
 header.sticky ul li a {
   color: #fff;
 }
 
 .zoomCart:hover {
-  -ms-transform: scale(1.5); /* IE 9 */
-  -webkit-transform: scale(1.5); /* Safari 3-8 */
+  -ms-transform: scale(1.5);
+  /* IE 9 */
+  -webkit-transform: scale(1.5);
+  /* Safari 3-8 */
   transform: scale(1.5);
 }
+
 .zoomBadge:hover {
-  -ms-transform: scale(2); /* IE 9 */
-  -webkit-transform: scale(1.5); /* Safari 3-8 */
+  -ms-transform: scale(2);
+  /* IE 9 */
+  -webkit-transform: scale(1.5);
+  /* Safari 3-8 */
   transform: scale(1.5);
+}
+
+/* .navItems {} */
+
+.navButton {
+  margin-left: 20px;
+  border: none;
+  padding: 5px 15px;
+  color: #06283D;
+  background-color: cornsilk;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
 }

@@ -15,11 +15,12 @@ import React from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import "./cartstyle.css";
 import { Link, useNavigate } from "react-router-dom";
-import cartEmpty from "../Images/Emptycart.png";
+import myGif from "../Images/Emptypreview.gif";
 
 export default function Cart(props) {
   const { cartItems, onAdd, onRemove, onDelete } = props;
-  const itemsPrice = 0;
+  const itemsPrice = cartItems.reduce((a, c) => a + c.qty * c.price, 0);
+
   const taxPrice = itemsPrice * 0.14;
   const shippingPrice = itemsPrice > 2000 ? 0 : 20;
   const totalPrice = itemsPrice + taxPrice + shippingPrice;
@@ -53,7 +54,18 @@ export default function Cart(props) {
                       <hr className="my-4" />
 
                       <MDBRow>
-                        {cartItems.length === 0 && <img src={cartEmpty} />}
+                        {cartItems.length === 0 && (
+                          <div className="center">
+                            <img src={myGif} />
+                            <h3 className="emptyCartMain">
+                              Your Cart is Empty
+                            </h3>
+                            <h4 className="emptyCartSecond">
+                              Looks like you haven't added anything to your cart
+                              yet
+                            </h4>
+                          </div>
+                        )}
                         {cartItems.map((item) => (
                           <div
                             key={item.id}
@@ -63,7 +75,7 @@ export default function Cart(props) {
                               <MDBCardImage
                                 src={item.image}
                                 fluid
-                                className="rounded-3"
+                                className="cartImage"
                                 alt="Cotton T-shirt"
                               />
                             </MDBCol>
@@ -84,33 +96,34 @@ export default function Cart(props) {
                               xl="3"
                               className="d-flex align-items-center"
                             >
-                              <MDBBtn
+                              <div
                                 onClick={() => onRemove(item)}
                                 color="link"
                                 className="px-2"
                               >
-                                <MDBIcon icon="minus" />
-                              </MDBBtn>
+                                <i class="bi bi-dash-circle-fill"></i>
+                              </div>
 
                               <MDBInput
                                 type="number"
                                 min="0"
                                 max="10"
                                 defaultValue={1}
+                                onChange={cartItems.length}
                                 size="sm"
                               />
 
-                              <MDBBtn
+                              <div
                                 onClick={() => onAdd(item)}
                                 color="link"
                                 className="px-2"
                               >
-                                <MDBIcon icon="plus" />
-                              </MDBBtn>
+                                <i class="bi bi-plus-circle-fill"></i>
+                              </div>
                             </MDBCol>
                             <MDBCol md="3" lg="2" xl="2" className="text-end">
                               <MDBTypography tag="h6" className="mb-0">
-                                {item.qty} x ${item.price.toFixed(2)}
+                                Rs: {item.qty * item.price.toFixed(2)} /=
                               </MDBTypography>
                             </MDBCol>
                             <MDBCol md="1" lg="1" xl="1" className="text-end">
@@ -135,7 +148,8 @@ export default function Cart(props) {
                             href="/productDetails/innovation"
                             className="text-body"
                           >
-                            <MDBIcon icon="chevron-left" /> Back to shop
+                            <i className="bi bi-skip-backward-fill"></i> Back to
+                            shop
                           </MDBCardText>
                         </MDBTypography>
                       </div>
@@ -143,7 +157,9 @@ export default function Cart(props) {
                   </MDBCol>
                   {/* ----------------------------- Side pane summary---------------------------------------------------------- */}
                   <MDBCol lg="4" className="bg-grey">
-                    {cartItems.length === 0 && <div>Cart is empty</div>}
+                    {cartItems.length === 0 && (
+                      <div className="center">Cart is empty</div>
+                    )}
                     {cartItems.map((item) => (
                       <div className="p-5">
                         <MDBTypography
@@ -159,7 +175,9 @@ export default function Cart(props) {
                           <MDBTypography tag="h5" className="text-uppercase">
                             {item.length}
                           </MDBTypography>
-                          <MDBTypography tag="h5">Rs 4700/=</MDBTypography>
+                          <MDBTypography tag="h5">
+                            Rs: {itemsPrice.toFixed(2)} /=
+                          </MDBTypography>
                         </div>
 
                         <MDBTypography tag="h5" className="text-uppercase mb-3">
@@ -172,10 +190,10 @@ export default function Cart(props) {
                             style={{ width: "100%" }}
                           >
                             <option value="1">
-                              Standard-Delivery- Rs250.00
+                              Standard-Delivery- Rs200.00
                             </option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <option value="2">Quick-Delivery- Rs500.00</option>
+                            <option value="3">Smart-Delivery- Rs300.00</option>
                             <option value="4">Four</option>
                           </select>
                         </div>
