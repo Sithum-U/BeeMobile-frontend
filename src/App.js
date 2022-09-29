@@ -32,7 +32,6 @@ function App() {
         <Route path="/checkout" exact element={<Checkout />} />
         <Route path="/products" exact element={<Products />} />
         <Route path="/product" exact element={<Product />} />
-        <Route path="/product/edit/:id" exact element={<ProductEdit />} />
         <Route path="/productTable" exact element={<ProductTable />} />
 
         <Route path="/rating" exact element={<Rating />} />
@@ -51,6 +50,7 @@ function App() {
         <Route path="/product/update/:id" exact element={<ProductUpdate />} />
         <Route path="/login" exact element={<Login />} />
         <Route path="/signup" exact element={<Signup />} />
+        <Route path="/product/edit/:id" exact element={<ProductUpdate />} />
       </Routes>
     </BrowserRouter>
   );
