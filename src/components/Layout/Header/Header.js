@@ -109,8 +109,12 @@ export default function Header({ countCartItems }) {
       )}
       <div className="navItems">
         <div>
-          <button className="navButton">Register</button>
-          <button className="navButton"><FontAwesomeIcon icon={faRightToBracket} />  Login</button>
+          <a href="/signup">
+            <button className="navButton">Register</button>
+          </a>
+          <a href="/login">
+            <button className="navButton"><FontAwesomeIcon icon={faRightToBracket} />  Login</button>
+          </a>
         </div>
       </div>
     </header>
