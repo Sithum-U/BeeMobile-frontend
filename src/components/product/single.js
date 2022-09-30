@@ -54,7 +54,7 @@ const Single = () => {
             </div><br /><br /><br />
             {product.data ?
             <div style={{justifyContent: "center", display: "flex", alignItems: "center"}}>
-            <img src={`${product.data.image}`} alt='...' position='top' style={{height: "100 px", weight:"100px"}}/>
+            <img src={`${product.data.image}`} alt='...' position='top' width="800" height="350"/>
             </div>
             : <div></div>}
 

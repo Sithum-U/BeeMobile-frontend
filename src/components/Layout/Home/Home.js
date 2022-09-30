@@ -3,6 +3,7 @@ import agri from '../../product/home.png';
 import { MDBCard, MDBCardImage, MDBCardBody, MDBCardTitle, MDBCardText, MDBRow, MDBCol } from 'mdb-react-ui-kit';
 import { Button } from 'react-bootstrap';
 import { Link } from "react-router-dom";
+import "./Home.css";
 
 const Home = () => {
     const [product, setproduct] = useState([]);
@@ -35,7 +36,7 @@ const Home = () => {
                                             position='top'
                                         />
                                         <MDBCardBody>
-                                            <p>{item.description}</p>
+                                            <div className="truncate">{item.description}</div>
                                             <MDBCardText>
                                                 <Link to={"/product/single/" + item._id}>
                                                     <Button variant="success" style={{ width: "300px" }}>Read More ></Button>
