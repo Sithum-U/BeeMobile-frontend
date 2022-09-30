@@ -111,6 +111,15 @@
 
 .blue_btn:hover {
   background-color: #00b894;
+  visibility: visible;
+}
+.info_alert {
+  visibility: hidden;
+}
+.alert:hover .info_alert {
+  visibility: visible;
+  /* opacity: 1;
+  transform: translateX(-50%) translateY(0px); */
 }
 
 .blue_btn:active {
@@ -142,3 +151,27 @@
   font-size: 80px;
   color: #3e8e41;
 }
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+/* 
+.tooltip .tooltiptext {
+  position: absolute;
+  bottom: 55px;
+  width: 400px;
+  background-color: rgb(214, 182, 20);
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  visibility: hidden;
+  opacity: 0;
+  color: #fff;
+  text-align: center;
+  transition: 0.5s;
+  transform: translateX(-50%) translateY(-50px);
+  Position the tooltip
+  position: absolute;
+  z-index: 1;
+} */

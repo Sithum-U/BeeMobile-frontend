@@ -1,24 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Main from "./Main";
 import data from "./data";
 import Cart from "./Cart";
+import Home from "../../Layout/Home/Home";
+// import { useParams } from "react-router-dom";
 import Header from "../../Layout/Header/Header";
+import { useParams } from "react-router-dom";
 
-export default function CartFunctions() {
+function CartFunctions() {
   const [cartItems, setCartItems] = useState([]);
+  // const { id } = useParams();
+  // const { products } = data;
 
-  const { products } = data;
+  // const [product, setproduct] = useState([]);
+  // const { id } = useParams();
+  // useEffect(() => {
+  //   fetch(`http://localhost:8000/product/${id}`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setproduct(data);
+  //       console.log(data);
+  //     });
+  // }, []);
 
-  //   useEffect(() => {
-  //     fetch("http://localhost:9000/product/")
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         setpoRequestManage(data);
-  //       });
-  //   }, []);
+  // console.log("ddd");
 
   const onAdd = (product) => {
+    // console.log(product);
     const exist = cartItems.find((x) => x.id === product.id);
+    // console.log("Exist item");
     if (exist) {
       setCartItems(
         cartItems.map((x) =>
@@ -28,6 +38,7 @@ export default function CartFunctions() {
     } else {
       setCartItems([...cartItems, { ...product, qty: 1 }]);
     }
+    console.log(cartItems);
   };
 
   const onRemove = (product) => {
@@ -56,8 +67,9 @@ export default function CartFunctions() {
   };
   return (
     <div>
-      <Header countCartItems={cartItems.length}></Header>
-      <Main products={products} onAdd={onAdd}></Main>
+      {/* <Header countCartItems={cartItems.length}></Header> */}
+      {/* <Main products={products} onAdd={onAdd}></Main> */}
+      {/* <Home onAdd={onAdd} cartItems={cartItems} /> */}
       <Cart
         cartItems={cartItems}
         onAdd={onAdd}
@@ -67,3 +79,5 @@ export default function CartFunctions() {
     </div>
   );
 }
+
+export default CartFunctions;
