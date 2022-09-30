@@ -2,9 +2,11 @@ import React from "react";
 import Badge from "@mui/material/Badge";
 import logo from "../Images/backgroundlogo.png";
 import cart from "../Images/cart.png";
-// import "../style.css";
 import "./Header.css";
 import { Link, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faRightToBracket } from '@fortawesome/free-solid-svg-icons'
+
 
 export default function Header({ countCartItems }) {
   window.addEventListener("scroll", function () {
@@ -17,7 +19,44 @@ export default function Header({ countCartItems }) {
       <div class="logo">
         <img src={logo} width="125px" />
       </div>
-      <nav>
+      {/* -----------newley changed header part-------------------- */}
+      <div>
+        <div class="col-lg-12">
+          <nav class="navbar navbar-expand-lg">
+            <div
+              class="collapse navbar-collapse sub-menu-bar"
+              id="navbarSupportedContent"
+            >
+              <ul id="nav" class="navbar-nav ml-auto">
+                <li class="nav-item">
+                  <a href="#home">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="page-scroll" href="#services">
+                    Services
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="page-scroll" href="#about">
+                    About
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="page-scroll" href="#how">
+                    How It Works
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="page-scroll" href="#testimonial">
+                    Testimonials
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+      {/* <nav>
         <ul id="MenuItems">
           <li>
             <a href="">Home</a>
@@ -35,7 +74,7 @@ export default function Header({ countCartItems }) {
             <a href="">Account</a>
           </li>
         </ul>
-      </nav>
+      </nav> */}
 
       {countCartItems ? (
         <Badge
@@ -68,6 +107,12 @@ export default function Header({ countCartItems }) {
           </a>
         </li>
       )}
+      <div className="navItems">
+        <div>
+          <button className="navButton">Register</button>
+          <button className="navButton"><FontAwesomeIcon icon={faRightToBracket} />  Login</button>
+        </div>
+      </div>
     </header>
   );
 }
