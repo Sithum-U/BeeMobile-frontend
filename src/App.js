@@ -11,7 +11,6 @@ import ProductTable from "./components/product/productTable";
 import ProductDetails from "./components/product/productDetails";
 import ProductAgri from "./components/product/productAgri";
 import ProductInnovation from "./components/product/productInnovation";
-import ProductEdit from "./components/product/Edit";
 import Rating from "./components/PurchaseOrder/Rating/rating";
 import LandingPage from "./components/Layout/LandingPage";
 import Home from "./components/Layout/Home/Home";
