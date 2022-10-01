@@ -5,38 +5,26 @@ import Logo from "../../Layout/Images/backgroundlogo.png";
 import Signature from "../../PurchaseOrder/Images/AgroPro signature.jpg";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import Snackbar from "@mui/material/Snackbar";
+import Slide from "@mui/material/Slide";
+import Button from "@mui/material/Button";
 
-// const rows = [
-//   {
-//     id: "itemName",
-//     label: "Item Name",
-//     minWidth: 100,
-//     align: "center",
-//     main: "#f44336",
-//   },
-//   {
-//     id: "itemPrice",
-//     label: "Item Price",
-//     minWidth: 100,
-//     align: "center",
-//     main: "#f44336",
-//   },
-//   {
-//     id: "itemQuantity",
-//     label: "Item Quantity",
-//     minWidth: 100,
-//     align: "center",
-//     main: "#f44336",
-//   },
-//   {
-//     id: "totalItemPrice",
-//     label: "Total Item Price",
-//     minWidth: 170,
-//     align: "center",
-//     // format: (value) => value.toLocaleString('en-US'),
-//   },
-// ];
+function TransitionLeft(props) {
+  return <Slide {...props} direction="left" />;
+}
+
 function OrderConfirmationForm() {
+  const [open, setOpen] = React.useState(false);
+  const [transition, setTransition] = React.useState(undefined);
+
+  const handleClick = (Transition) => () => {
+    setTransition(() => Transition);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   // --------------------screenshot as a pdf-----------------------------
   const exportPDF = () => {
     const input = document.getElementById("OrderConfirmationForm");
@@ -50,7 +38,7 @@ function OrderConfirmationForm() {
       const imgData = canvas.toDataURL("img/png");
       const pdf = new jsPDF("p", "mm", "a4");
       pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
-      pdf.save("goatrank.pdf");
+      pdf.save("Order Details.pdf");
     });
   };
   const [paymentDetails, setPaymentDetails] = useState([]);
@@ -127,6 +115,12 @@ function OrderConfirmationForm() {
   //   doc.addImage(Signature, "JPEG", 120, 80, 70, 40);
   //   doc.save("Contract Details Report.pdf");
   // };
+
+  const clickNotify = () => {
+    Notification.requestPermission().then((perm) => {
+      new Notification("Example", { body: "Thi is kkk" });
+    });
+  };
 
   return (
     <div className="App" id="OrderConfirmationForm">
@@ -243,18 +237,28 @@ function OrderConfirmationForm() {
                     {" "}
                     Make Purchase <i class="fa fa-chevron-right"></i>{" "}
                   </a> */}
-                  <button
-                    type="button"
-                    class="btn btn-primary float-md-right"
-                    style={{
-                      backgroundColor: "#ff7979",
-                      borderColor: "#ff7979",
-                    }}
-                    // onClick={() => generatePDF(paymentDetails)}
-                    onClick={() => exportPDF()}
-                  >
-                    GenerateReport <i class="bi bi-download"></i>
-                  </button>{" "}
+
+                  <div onClick={handleClick(TransitionLeft)}>
+                    <button
+                      type="button"
+                      class="btn btn-primary float-md-right"
+                      style={{
+                        backgroundColor: "#ff7979",
+                        borderColor: "#ff7979",
+                      }}
+                      // onClick={() => generatePDF(paymentDetails)}
+                      onClick={() => exportPDF()}
+                    >
+                      GenerateReport <i class="bi bi-download"></i>
+                    </button>{" "}
+                  </div>
+                  <Snackbar
+                    open={open}
+                    onClose={handleClose}
+                    TransitionComponent={transition}
+                    message="I love snacks"
+                    key={transition ? transition.name : ""}
+                  />
                   <a href="#" class="btn btn-light">
                     {" "}
                     <i class="fa fa-chevron-left"></i> Continue shopping{" "}
@@ -270,7 +274,7 @@ function OrderConfirmationForm() {
               </div>
             </main>
 
-            {/* ...............................Payment Details.........................
+            {/* ...............................Payment Details......................... */}
             <aside class="col-md-3">
               <div class="card mb-3">
                 <div class="card-body">
@@ -309,7 +313,7 @@ function OrderConfirmationForm() {
                   ))}
                 </div>
               </div>
-            </aside> */}
+            </aside>
 
             <aside class="col-md-3">
               <div class="card mb-3">
