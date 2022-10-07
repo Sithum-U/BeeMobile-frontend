@@ -122,6 +122,18 @@ function OrderConfirmationForm() {
     });
   };
 
+  // Item Delete
+  const onDelete = (product) => {
+    const exist = cartItems.find((x) => x.id === product.id);
+
+    if (exist) {
+      setCartItems(cartItems.filter((x) => x.id !== product.id));
+
+      console.log("Delete button clicked");
+    } else {
+      console.log("Id not found");
+    }
+  };
   return (
     <div className="App" id="OrderConfirmationForm">
       {/* <section class="section-pagetop bg"> */}
@@ -211,17 +223,17 @@ function OrderConfirmationForm() {
                               {" "}
                               <i class="fa fa-heart"></i>
                             </a>
-                            <a
-                              href=""
+                            <button
                               class="btn btn-light"
                               style={{
                                 color: "#ff7979",
                                 borderColor: "#ff7979",
                               }}
+                              onClick={() => onDelete(item)}
                             >
                               {" "}
                               Remove
-                            </a>
+                            </button>
                           </td>
                         </tr>
                       ))

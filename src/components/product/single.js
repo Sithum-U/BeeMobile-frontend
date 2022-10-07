@@ -51,18 +51,18 @@ const Single = () => {
         alert(error.message);
       });
 
-    // const exist = cartItems.find((x) => x._id === item._id);
-    // console.log(exist);
-    // if (exist) {
-    //   setCartItems(
-    //     cartItems.map((x) =>
-    //       x.id === item.id ? { ...exist, qty: exist.qty + 1 } : x
-    //     )
-    //   );
-    // } else {
-    //   setCartItems([...cartItems, { ...item, qty: 1 }]);
-    // }
-    // console.log(cartItems);
+    const exist = cartItems.find((x) => x._id === item._id);
+    console.log(exist);
+    if (exist) {
+      setCartItems(
+        cartItems.map((x) =>
+          x.id === item.id ? { ...exist, qty: exist.qty + 1 } : x
+        )
+      );
+    } else {
+      setCartItems([...cartItems, { ...item, qty: 1 }]);
+    }
+    console.log(cartItems);
   };
   return (
     <div>
