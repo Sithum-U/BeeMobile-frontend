@@ -5,8 +5,6 @@ import styles from "./styles.module.css";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import { red } from "@mui/material/colors";
-import Alert from "@mui/material/Alert";
-import Stack from "@mui/material/Stack";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -14,18 +12,9 @@ const Signup = () => {
   const [expDate, setExpDate] = useState("");
   const [cvc, setcvc] = useState("");
   const [nameOnCard, setNameOnCard] = useState("");
-  // const [region, setRegion] = useState("");
+  const [region, setRegion] = useState("");
   const [zip, setzip] = useState("");
   const [payments, setPayments] = useState("");
-
-  // useEffect(() => {
-  //   fetch(`http://localhost:8000/payment/${id}`)
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setUpdatePanelDetails(data);
-  //       console.log(data);
-  //     });
-  // }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,7 +24,7 @@ const Signup = () => {
       expDate,
       cvc,
       nameOnCard,
-      // region,
+      region,
       zip,
     };
 
@@ -51,7 +40,7 @@ const Signup = () => {
         expDate("");
         cvc("");
         nameOnCard("");
-        // region("");
+        region("");
         zip("");
       })
       .catch((error) => {
@@ -146,9 +135,6 @@ const Signup = () => {
                     autoFocus
                     onChange={(e) => setExpDate(e.target.value)}
                   />
-                  <p class="text-center mb-3">
-                    <img src="assets/images/misc/payments.png" height="26" />
-                  </p>
                 </Grid>
                 <Grid
                   item
@@ -193,8 +179,7 @@ const Signup = () => {
                   onChange={(e) => setNameOnCard(e.target.value)}
                 />
               </Grid>
-
-              {/* <Grid
+              <Grid
                 item
                 xs={5}
                 sx={{
@@ -212,7 +197,7 @@ const Signup = () => {
                   autoFocus
                   onChange={(e) => setRegion(e.target.value)}
                 />
-              </Grid> */}
+              </Grid>
               <Grid
                 item
                 xs={5}
@@ -233,16 +218,9 @@ const Signup = () => {
                 />
               </Grid>
             </div>
-
-            <div class={styles.alert}>
-              <button type="submit" className={styles.blue_btn}>
-                Add Payment Details
-              </button>
-              <Alert severity="info" className={styles.info_alert}>
-                Info Alert — payment details will taken in to process!
-              </Alert>
-              {/* <span class={styles.tooltiptext}>Tooltip text</span> */}
-            </div>
+            <button type="submit" className={styles.blue_btn}>
+              Add Payment Details
+            </button>
           </form>
         </div>
       </div>
