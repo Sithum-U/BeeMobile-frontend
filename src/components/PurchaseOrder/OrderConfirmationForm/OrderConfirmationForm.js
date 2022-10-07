@@ -97,6 +97,21 @@ function App() {
     doc.addImage(Signature, "JPEG", 120, 80, 70, 40);
     doc.save("Contract Details Report.pdf");
   };
+
+
+  // Item Delete
+  const onDelete = (product) => {
+    const exist = cartItems.find((x) => x.id === product.id);
+
+    if (exist) {
+      setCartItems(cartItems.filter((x) => x.id !== product.id));
+
+      console.log("Delete button clicked");
+    } else {
+      console.log("Id not found");
+    }
+  };
+
   return (
     <div className="App">
       {/* <section class="section-pagetop bg"> */}
@@ -148,6 +163,25 @@ function App() {
                             <a href="#" class="title text-dark">
                               Some name of item goes here nice
                             </a>
+
+                            <button
+                              class="btn btn-light"
+                              style={{
+                                color: "#ff7979",
+                                borderColor: "#ff7979",
+                              }}
+                              onClick={() => onDelete(item)}
+                            >
+                              {" "}
+                              Remove
+                            </button>
+                          </td>
+                        </tr>
+                      ))
+                    ) : (
+                      <div></div>
+                    )}
+
                             <p class="text-muted small">
                               Size: XL, Color: blue, <br /> Brand: Gucci
                             </p>
@@ -189,6 +223,7 @@ function App() {
                         </a>
                       </td>
                     </tr>
+
                   </tbody>
                 </table>
 

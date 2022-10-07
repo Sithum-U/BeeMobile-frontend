@@ -29,6 +29,32 @@ const Single = () => {
                                     : <div></div>}
 
 
+    const exist = cartItems.find((x) => x._id === item._id);
+    console.log(exist);
+    if (exist) {
+      setCartItems(
+        cartItems.map((x) =>
+          x.id === item.id ? { ...exist, qty: exist.qty + 1 } : x
+        )
+      );
+    } else {
+      setCartItems([...cartItems, { ...item, qty: 1 }]);
+    }
+    console.log(cartItems);
+  };
+  return (
+    <div>
+      <div class="masthead">
+        <div class="container position-relative px-4 px-lg-5">
+          <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+              <div class="post-heading">
+                {product.data ? (
+                  <h1>{product.data.productName}</h1>
+                ) : (
+                  <div></div>
+                )}
+
                                 <span class="meta">
                                     Category :
                                     {product.data ?
@@ -51,6 +77,7 @@ const Single = () => {
                     </div>
                 </div>
             </div><br /><br /><br />
+
 
             <article class="mb-4">
                 <div class="container px-4 px-lg-5">
