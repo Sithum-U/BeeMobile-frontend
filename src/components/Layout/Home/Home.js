@@ -39,41 +39,44 @@ const Home = () => {
         }}
       >
         <img src={agri} width="1500" height="400" />
+        <br/><br/>
       </div>
-      {product.data ? (
-        product.data.map((item) => {
-          return (
-            <div className="container" key={item._id}>
-              <br />
-
-              <MDBRow className="row-cols-1 row-cols-md-3 g-4">
-                <MDBCol>
-                  <MDBCard style={{ width: "400px" }}>
-                    <MDBCardTitle>{item.productName}</MDBCardTitle>
-                    <MDBCardImage
-                      src="https://smedigest.com.ng/wp-content/uploads/2017/10/from-business-name-to-company-registration.jpg"
-                      alt="..."
-                      position="top"
-                    />
-                    <MDBCardBody>
-                      <p>{item.description}</p>
-                      <MDBCardText>
-                        <Link to={"/product/single/" + item._id}>
-                          <Button variant="success" style={{ width: "300px" }}>
-                            Read More
-                          </Button>
-                        </Link>
-                      </MDBCardText>
-                    </MDBCardBody>
-                  </MDBCard>
-                </MDBCol>
-              </MDBRow>
-            </div>
-          );
-        })
-      ) : (
-        <div></div>
-      )}
+      <MDBRow>
+        <div class="row">
+          {product.data ? (
+            product.data.map((item) => {
+              return (
+                <div class="col-4">
+                  <MDBCol>
+                    <MDBCard style={{ width: "300px", justifyContent: "center", display: "flex", alignItems: "center" }}>
+                      <MDBCardTitle>{item.productName}</MDBCardTitle>
+                      <MDBCardImage
+                        src={`${item.image}`} width="300" height="200"
+                        alt="..."
+                        position="top"
+                      />
+                      <MDBCardBody>
+                        <div className="truncate">
+                          <p>{item.description}</p>
+                        </div>
+                        <MDBCardText>
+                          <Link to={"/product/single/" + item._id}>
+                            <Button variant="success" style={{ width: "200px" }}>
+                              Read More
+                            </Button>
+                          </Link>
+                        </MDBCardText>
+                      </MDBCardBody>
+                    </MDBCard>
+                  </MDBCol>
+                </div>
+              );
+            })
+          ) : (
+            <div></div>
+          )}
+        </div>
+      </MDBRow>
     </div>
   );
 };
