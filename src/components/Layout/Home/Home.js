@@ -48,7 +48,7 @@ const Home = () => {
               return (
                 <div class="col-4">
                   <MDBCol>
-                    <MDBCard style={{ width: "300px", justifyContent: "center", display: "flex", alignItems: "center" }}>
+                    <MDBCard style={{ width: "300px"}}>
                       <MDBCardTitle>{item.productName}</MDBCardTitle>
                       <MDBCardImage
                         src={`${item.image}`} width="300" height="200"
