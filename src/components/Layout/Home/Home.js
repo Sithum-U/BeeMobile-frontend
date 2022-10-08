@@ -1,21 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Cart from "../../PurchaseOrder/Cart/Cart";
-import axios from "axios";
-import agri from "../../product/home.png";
-import {
-  MDBCard,
-  MDBCardImage,
-  MDBCardBody,
-  MDBCardTitle,
-  MDBCardText,
-  MDBRow,
-  MDBCol,
-} from "mdb-react-ui-kit";
-import { Button } from "react-bootstrap";
+import agri from '../../product/home.png';
+import { MDBCard, MDBCardImage, MDBCardBody, MDBCardTitle, MDBCardText, MDBRow, MDBCol } from 'mdb-react-ui-kit';
+import { Button } from 'react-bootstrap';
 import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
-
-import "./Home.css";
 
 const Home = () => {
   const [product, setproduct] = useState([]);
@@ -79,6 +66,7 @@ const Home = () => {
       </MDBRow>
     </div>
   );
+
 };
 
 export default Home;
