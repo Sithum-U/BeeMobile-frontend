@@ -1,103 +1,126 @@
 import React, { useEffect, useState } from "react";
-import jspdf from "jspdf";
-import "jspdf-autotable";
+// import jspdf from "jspdf";
+// import "jspdf-autotable";
 import Logo from "../../Layout/Images/backgroundlogo.png";
 import Signature from "../../PurchaseOrder/Images/AgroPro signature.jpg";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
+import Snackbar from "@mui/material/Snackbar";
+import Slide from "@mui/material/Slide";
+import Button from "@mui/material/Button";
 
-const rows = [
-  {
-    id: "itemName",
-    label: "Item Name",
-    minWidth: 100,
-    align: "center",
-    main: "#f44336",
-  },
-  {
-    id: "itemPrice",
-    label: "Item Price",
-    minWidth: 100,
-    align: "center",
-    main: "#f44336",
-  },
-  {
-    id: "itemQuantity",
-    label: "Item Quantity",
-    minWidth: 100,
-    align: "center",
-    main: "#f44336",
-  },
-  {
-    id: "totalItemPrice",
-    label: "Total Item Price",
-    minWidth: 170,
-    align: "center",
-    // format: (value) => value.toLocaleString('en-US'),
-  },
-];
-function App() {
+function TransitionLeft(props) {
+  return <Slide {...props} direction="left" />;
+}
+
+function OrderConfirmationForm() {
+  const [open, setOpen] = React.useState(false);
+  const [transition, setTransition] = React.useState(undefined);
+
+  const handleClick = (Transition) => () => {
+    setTransition(() => Transition);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  // --------------------screenshot as a pdf-----------------------------
+  const exportPDF = () => {
+    const input = document.getElementById("OrderConfirmationForm");
+    html2canvas(input, {
+      logging: true,
+      letterRendering: 1,
+      useCORS: true,
+    }).then((canvas) => {
+      const imgWidth = 288;
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      const imgData = canvas.toDataURL("img/png");
+      const pdf = new jsPDF("p", "mm", "a4");
+      pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+      pdf.save("Order Details.pdf");
+    });
+  };
   const [paymentDetails, setPaymentDetails] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filtered, setfiltered] = useState([]);
   const [itemName, setitemName] = useState([]);
+
+  const [cartItems, setCartItems] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:8000/cartItem/")
+      .then((res) => res.json())
+      .then((res) => {
+        setCartItems(res.data);
+      });
+  }, []);
+  console.log(cartItems);
 
   useEffect(() => {
     fetch("http://localhost:8000/payment/")
       .then((res) => res.json())
       .then((data) => {
         setPaymentDetails(data);
+        // console.log(paymentDetails);
       });
   }, []);
+  // console.log(paymentDetails);
 
   //genarate pdf
 
-  const generatePDF = (tickets) => {
-    const doc = new jspdf();
-    const tableColumn = [
-      "order ID",
-      "Item Name",
-      "Item Price",
-      "Item Quantity",
-      "Item Price",
-    ];
-    const tableRows = [];
-    const date = Date().split(" ");
-    const dateStr = date[1] + "-" + date[2] + "-" + date[3];
+  // const generatePDF = (tickets) => {
+  //   const doc = new jspdf();
+  //   const tableColumn = [
+  //     "order ID",
+  //     "Item Name",
+  //     "Item Price",
+  //     "Item Quantity",
+  //     "Item Price",
+  //   ];
+  //   const tableRows = [];
+  //   const date = Date().split(" ");
+  //   const dateStr = date[1] + "-" + date[2] + "-" + date[3];
 
-    tickets.map((ticket) => {
-      const ticketData = [
-        ticket._id,
-        ticket.itemName,
-        ticket.itemPrice,
-        ticket.itemQuantity,
-        ticket.itemPrice * ticket.itemQuantity,
-      ];
-      tableRows.push(ticketData);
+  //   tickets.map((ticket) => {
+  //     const ticketData = [
+  //       ticket._id,
+  //       ticket.itemName,
+  //       ticket.itemPrice,
+  //       ticket.itemQuantity,
+  //       ticket.itemPrice * ticket.itemQuantity,
+  //     ];
+  //     tableRows.push(ticketData);
+  //   });
+  //   tickets.map((payment) => {
+  //     const ticketData = [
+  //       payment.email,
+  //       payment.cardInformation,
+  //       payment.expDate,
+  //       payment.cvc,
+  //       payment.nameOnCard,
+  //       payment.region,
+  //       payment.zip,
+  //     ];
+  //     tableRows.push(ticketData);
+  //   });
+  //   doc.text("AgroPro Solution Provider", 70, 8).setFontSize(13);
+  //   doc.text("Order Confirmation Report", 14, 16).setFontSize(13);
+  //   doc.text(`Report Genarated Date - ${dateStr}`, 14, 23);
+  //   //right down width height
+  //   doc.addImage(Logo, "JPEG", 170, 8, 25, 25);
+  //   doc.autoTable(tableColumn, tableRows, {
+  //     styles: { fontSize: 8 },
+  //     startY: 35,
+  //   });
+  //   doc.addImage(Signature, "JPEG", 120, 80, 70, 40);
+  //   doc.save("Contract Details Report.pdf");
+  // };
+
+  const clickNotify = () => {
+    Notification.requestPermission().then((perm) => {
+      new Notification("Example", { body: "Thi is kkk" });
     });
-    tickets.map((payment) => {
-      const ticketData = [
-        payment.email,
-        payment.cardInformation,
-        payment.expDate,
-        payment.cvc,
-        payment.nameOnCard,
-        payment.region,
-        payment.zip,
-      ];
-      tableRows.push(ticketData);
-    });
-    doc.text("AgroPro Solution Provider", 70, 8).setFontSize(13);
-    doc.text("Order Confirmation Report", 14, 16).setFontSize(13);
-    doc.text(`Report Genarated Date - ${dateStr}`, 14, 23);
-    //right down width height
-    doc.addImage(Logo, "JPEG", 170, 8, 25, 25);
-    doc.autoTable(tableColumn, tableRows, {
-      styles: { fontSize: 8 },
-      startY: 35,
-    });
-    doc.addImage(Signature, "JPEG", 120, 80, 70, 40);
-    doc.save("Contract Details Report.pdf");
   };
-
 
   // Item Delete
   const onDelete = (product) => {
@@ -111,9 +134,8 @@ function App() {
       console.log("Id not found");
     }
   };
-
   return (
-    <div className="App">
+    <div className="App" id="OrderConfirmationForm">
       {/* <section class="section-pagetop bg"> */}
       <section>
         <div class="container">
@@ -150,20 +172,57 @@ function App() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>
-                        <figure class="itemside">
-                          <div class="aside">
-                            <img
-                              src="assets/images/items/1.jpg"
-                              class="img-sm"
-                            />
-                          </div>
-                          <figcaption class="info">
-                            <a href="#" class="title text-dark">
-                              Some name of item goes here nice
+                    {cartItems ? (
+                      cartItems.map((item) => (
+                        <tr key={item.productId}>
+                          <td>
+                            <figure class="itemside">
+                              <div class="aside">
+                                <img
+                                  src={item.image}
+                                  // src="assets/images/items/1.jpg"
+                                  class="img-sm"
+                                />
+                              </div>
+                              <figcaption class="info">
+                                <a href="#" class="title text-dark">
+                                  {item.productName}
+                                </a>
+                                <p class="text-muted small">
+                                  Product Code: {item.productCode} <br />{" "}
+                                  Category: {item.category}
+                                </p>
+                              </figcaption>
+                            </figure>
+                          </td>
+                          <td>
+                            <select class="form-control">
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                            </select>
+                          </td>
+                          <td>
+                            <div class="price-wrap">
+                              <var class="price">$1156.00</var>
+                              <small class="text-muted">
+                                {" "}
+                                {/* Rs: {item.price} each{" "} */}
+                              </small>
+                            </div>
+                          </td>
+                          <td class="text-right">
+                            <a
+                              data-original-title="Save to Wishlist"
+                              title=""
+                              href=""
+                              class="btn btn-light mr-2"
+                              data-toggle="tooltip"
+                            >
+                              {" "}
+                              <i class="fa fa-heart"></i>
                             </a>
-
                             <button
                               class="btn btn-light"
                               style={{
@@ -181,49 +240,6 @@ function App() {
                     ) : (
                       <div></div>
                     )}
-
-                            <p class="text-muted small">
-                              Size: XL, Color: blue, <br /> Brand: Gucci
-                            </p>
-                          </figcaption>
-                        </figure>
-                      </td>
-                      <td>
-                        <select class="form-control">
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                        </select>
-                      </td>
-                      <td>
-                        <div class="price-wrap">
-                          <var class="price">$1156.00</var>
-                          <small class="text-muted"> $315.20 each </small>
-                        </div>
-                      </td>
-                      <td class="text-right">
-                        <a
-                          data-original-title="Save to Wishlist"
-                          title=""
-                          href=""
-                          class="btn btn-light mr-2"
-                          data-toggle="tooltip"
-                        >
-                          {" "}
-                          <i class="fa fa-heart"></i>
-                        </a>
-                        <a
-                          href=""
-                          class="btn btn-light"
-                          style={{ color: "#ff7979", borderColor: "#ff7979" }}
-                        >
-                          {" "}
-                          Remove
-                        </a>
-                      </td>
-                    </tr>
-
                   </tbody>
                 </table>
 
@@ -233,17 +249,28 @@ function App() {
                     {" "}
                     Make Purchase <i class="fa fa-chevron-right"></i>{" "}
                   </a> */}
-                  <button
-                    type="button"
-                    class="btn btn-primary float-md-right"
-                    style={{
-                      backgroundColor: "#ff7979",
-                      borderColor: "#ff7979",
-                    }}
-                    onClick={() => generatePDF(paymentDetails)}
-                  >
-                    GenerateReport <i class="bi bi-download"></i>
-                  </button>{" "}
+
+                  <div onClick={handleClick(TransitionLeft)}>
+                    <button
+                      type="button"
+                      class="btn btn-primary float-md-right"
+                      style={{
+                        backgroundColor: "#ff7979",
+                        borderColor: "#ff7979",
+                      }}
+                      // onClick={() => generatePDF(paymentDetails)}
+                      onClick={() => exportPDF()}
+                    >
+                      GenerateReport <i class="bi bi-download"></i>
+                    </button>{" "}
+                  </div>
+                  <Snackbar
+                    open={open}
+                    onClose={handleClose}
+                    TransitionComponent={transition}
+                    message="I love snacks"
+                    key={transition ? transition.name : ""}
+                  />
                   <a href="#" class="btn btn-light">
                     {" "}
                     <i class="fa fa-chevron-left"></i> Continue shopping{" "}
@@ -280,9 +307,7 @@ function App() {
                         <tr>
                           <td> Card Number : {payment.cardInformation}</td>
                         </tr>
-                        <tr>
-                          <td> Expiry Date : {payment.expDate}</td>
-                        </tr>
+
                         <tr>
                           <td> CVV code : {payment.cvc}</td>
                         </tr>
@@ -301,6 +326,7 @@ function App() {
                 </div>
               </div>
             </aside>
+
             <aside class="col-md-3">
               <div class="card mb-3">
                 <div class="card-body">
@@ -376,4 +402,4 @@ function App() {
   );
 }
 
-export default App;
+export default OrderConfirmationForm;

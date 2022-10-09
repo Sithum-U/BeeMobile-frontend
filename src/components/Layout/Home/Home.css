@@ -59,6 +59,6 @@
     text-align: center;
     background-color: #bde1c1;
     margin: 0 auto; /* Added */
-        float: none; /* Added */
-        margin-bottom: 10px; /* Added */
+    float: none; /* Added */
+    margin-bottom: 10px; /* Added */
   }
