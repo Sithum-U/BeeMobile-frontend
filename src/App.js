@@ -11,11 +11,11 @@ import ProductTable from "./components/product/productTable";
 import ProductDetails from "./components/product/productDetails";
 import ProductAgri from "./components/product/productAgri";
 import ProductInnovation from "./components/product/productInnovation";
-import ProductEdit from "./components/product/Edit";
 import Rating from "./components/PurchaseOrder/Rating/rating";
 import LandingPage from "./components/Layout/LandingPage";
 import Home from "./components/Layout/Home/Home";
 import Single from "./components/product/single";
+import ProductUpdate from "./components/product/update";
 
 
 /**
@@ -30,16 +30,16 @@ function App() {
       <Routes>
         {/* <Route exact path="/checkout" component={checkout} /> */}
         {/* <Route path="/PaymentForm" exact element={<PaymentForm />} /> */}
-        <Route path="/" exact element={<Home />} />
+        <Route path="/home" exact element={<Home />} />
         <Route path="/Cart" exact element={<Cart />} />
         <Route path="/checkout" exact element={<Checkout />} />
         <Route path="/products" exact element={<Products />} />
         <Route path="/product" exact element={<Product />} />
-        <Route path="/product/edit/:id" exact element={<ProductEdit />} />
+        <Route path="/product/edit/:id" exact element={<ProductUpdate />} />
         <Route path="/productTable" exact element={<ProductTable />} />
 
         <Route path="/rating" exact element={<Rating />} />
-        <Route path="/landingPage" exact element={<LandingPage />} />
+        <Route path="/" exact element={<LandingPage />} />
         <Route
           path="/productDetails/fertilizer"
           exact
