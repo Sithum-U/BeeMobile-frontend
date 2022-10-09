@@ -6,6 +6,7 @@ import "./Header.css";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faRightToBracket } from '@fortawesome/free-solid-svg-icons'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
 
 
 export default function Header({ countCartItems }) {
@@ -114,6 +115,9 @@ export default function Header({ countCartItems }) {
           </a>
           <a href="/login">
             <button className="navButton"><FontAwesomeIcon icon={faRightToBracket} />  Login</button>
+          </a>
+          <a href="/landingPage">
+            <button className="navUserButton"><FontAwesomeIcon icon={faUser} /></button>
           </a>
         </div>
       </div>
