@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { NavDropdown } from "react-bootstrap";
 
 export default function Header({ countCartItems }) {
   window.addEventListener("scroll", function () {
@@ -117,11 +118,10 @@ export default function Header({ countCartItems }) {
               <FontAwesomeIcon icon={faRightToBracket} /> Login
             </button>
           </a>
-          <a href="/landingPage">
-            <button className="navUserButton">
-              <FontAwesomeIcon icon={faUser} />
-            </button>
-          </a>
+          <NavDropdown title="Sithum Udara" id="navbarScrollingDropdown">
+            <NavDropdown.Item href="#action3">My profile</NavDropdown.Item>
+            <NavDropdown.Item href="#action4">Logout</NavDropdown.Item>
+          </NavDropdown>
         </div>
       </div>
     </header>
