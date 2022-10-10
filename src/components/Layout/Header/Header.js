@@ -4,10 +4,9 @@ import logo from "../Images/backgroundlogo.png";
 import cart from "../Images/cart.png";
 import "./Header.css";
 import { Link, useNavigate } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faRightToBracket } from '@fortawesome/free-solid-svg-icons'
-import { faUser } from '@fortawesome/free-solid-svg-icons'
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 export default function Header({ countCartItems }) {
   window.addEventListener("scroll", function () {
@@ -114,10 +113,14 @@ export default function Header({ countCartItems }) {
             <button className="navButton">Register</button>
           </a>
           <a href="/login">
-            <button className="navButton"><FontAwesomeIcon icon={faRightToBracket} />  Login</button>
+            <button className="navButton">
+              <FontAwesomeIcon icon={faRightToBracket} /> Login
+            </button>
           </a>
           <a href="/landingPage">
-            <button className="navUserButton"><FontAwesomeIcon icon={faUser} /></button>
+            <button className="navUserButton">
+              <FontAwesomeIcon icon={faUser} />
+            </button>
           </a>
         </div>
       </div>

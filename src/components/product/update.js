@@ -16,20 +16,22 @@ const ProductUpdate = () => {
     const [update, setUpdate] = useState([]);
     const { id } = useParams();
 
-    useEffect(() => {
-        fetch(`http://localhost:8000/product/${id}`)
-          .then((res) => res.json())
-          .then((data) => {
-            setUpdate(data);
-            console.log(data);
-          });
-      }, []);
-
     const handleChange = (name) => (e) => {
         const value = name === "image" ? e.target.files[0] : e.target.value;
         setProduct({ ...product, [name]: value });
       };
-      const handleSubmit = async() => {
+
+    useEffect(() => {
+        fetch(`http://localhost:8000/product/${id}`)
+          .then((res) => res.json())
+          .then(res => {
+            setUpdate(res.data);
+            //console.log(data);
+          });
+      }, []);
+
+      const handleSubmit = async(e) => {
+        e.preventDefault();
         try{
             let formData = new FormData();
             formData.append('productCode', product.productCode);
@@ -40,7 +42,7 @@ const ProductUpdate = () => {
             formData.append('image', product.image);
 
             const res = await fetch(`http://localhost:8000/product/${id}`,{
-                method: "POST",
+                method: "PUT",
                 body: formData,
             });
             if(res.ok){
@@ -52,31 +54,31 @@ const ProductUpdate = () => {
             console.log(error);
         }
       }
-    
+     console.log(update);
     return (
         <div class="registration-form" style={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
             <SideBar/>
             <div style={{ width: "82%", justifyContent: "center", display: "flex", alignItems: "center" }}>
             <div style={{ backgroundColor: "white", width: "60%", justifyContent: "center", display: "flex", alignItems: "center" }}>
             <form style={{width:"50%"}} encType="multipart/form-data">
-        <h1>Create Article</h1>
+            <h1>Create Article</h1>
             <div class="form-group">
-                <input type="text" class="form-control item" defaultValue={update.data.productCode} onChange={handleChange('productCode')} name="productCode" placeholder="Product code"/>
+                <input type="text" class="form-control item" defaultValue={update.productCode} onChange={handleChange('productCode')} name="productCode" placeholder=""/>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control item" defaultValue={update.data.productName} onChange={handleChange('productName')} name="productName" placeholder="Product Name"/>
+                <input type="text" class="form-control item" defaultValue={update.productName} onChange={handleChange('productName')} name="productName" placeholder="Product Name"/>
             </div>
             <div class="form-group">
-                <input type="textarea" class="form-control item" defaultValue={update.data.description} onChange={handleChange('description')} name="description" placeholder="Description"/>
+                <input type="textarea" class="form-control item" defaultValue={update.description} onChange={handleChange('description')} name="description" placeholder="Description"/>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control item" defaultValue={update.data.category} onChange={handleChange('category')} name="category" placeholder="Category"/>
+                <input type="text" class="form-control item" defaultValue={update.category} onChange={handleChange('category')} name="category" placeholder="Category"/>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control item" defaultValue={update.data.price} onChange={handleChange('price')} name="price" placeholder="price"/>
+                <input type="text" class="form-control item" defaultValue={update.price} onChange={handleChange('price')} name="price" placeholder="price"/>
             </div>
             <div class="form-group">
-                <input type="file" class="form-control item" defaultValue={update.data.image} accept="image/*" name="image"  onChange={handleChange('image')} />
+                <input type="file" class="form-control item" defaultValue={update.image} accept="image/*" name="image"  onChange={handleChange('image')} />
             </div>
             <div class="form-group">
                 <button type="button" onClick={handleSubmit} class="btn btn-block create-account">Update Article</button>
