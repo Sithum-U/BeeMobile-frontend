@@ -4,6 +4,10 @@ import logo from "../Images/backgroundlogo.png";
 import cart from "../Images/cart.png";
 import "./Header.css";
 import { Link, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { NavDropdown } from "react-bootstrap";
 
 export default function Header({ countCartItems }) {
   window.addEventListener("scroll", function () {
@@ -104,6 +108,23 @@ export default function Header({ countCartItems }) {
           </a>
         </li>
       )}
+      <div className="navItems">
+        <div>
+          <a href="/signup">
+            <button className="navButton">Register</button>
+          </a>
+          <a href="/login">
+            <button className="navButton">
+              <FontAwesomeIcon icon={faRightToBracket} /> Login
+            </button>
+          </a>
+          <NavDropdown title="Sithum Udara" id="navbarScrollingDropdown">
+            <NavDropdown.Item href="#action3">My profile</NavDropdown.Item>
+            <NavDropdown.Item href="#action4">Logout</NavDropdown.Item>
+          </NavDropdown>
+        </div>
+      </div>
+
     </header>
   );
 }

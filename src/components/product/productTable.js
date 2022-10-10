@@ -80,7 +80,6 @@ const ProductTable = () => {
                         <div>
                             <div>
                                 <div className="table-responsive">
-                                    {/* product table */}
                                     <table className="table table-striped table-hover table-bordered">
                                         <thead className="thead-dark">
                                             <tr>
