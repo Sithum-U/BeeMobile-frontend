@@ -73,3 +73,33 @@ header.sticky ul li a {
   -webkit-transform: scale(1.5); /* Safari 3-8 */
   transform: scale(1.5);
 }
+
+/* .navItems {} */
+
+.navButton {
+  margin-left: 20px;
+  border: none;
+  padding: 5px 15px;
+  color: #06283D;
+  background-color: cornsilk;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+}
+
+.navUserButton {
+  margin-left: 20px;
+  border: none;
+  padding: 5px 15px;
+  color: #06283D;
+  background-color: white;
+  border-radius: 100%;
+  cursor: pointer;
+  display: inline-block;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+}

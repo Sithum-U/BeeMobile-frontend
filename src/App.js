@@ -16,13 +16,14 @@ import LandingPage from "./components/Layout/LandingPage";
 import Home from "./components/Layout/Home/Home";
 import Single from "./components/product/single";
 import ProductUpdate from "./components/product/update";
-
+import Login from "./components/Auth/Login/login";
+import Signup from "./components/Auth/signup/Signup";
 
 /**
  * advertisement
  */
- import Advertisement from "./components/Advertisement/advertisement.js";
- import ViewAdvertisement from "./components/Advertisement/viewadvertisement.js";
+import Advertisement from "./components/Advertisement/advertisement.js";
+import ViewAdvertisement from "./components/Advertisement/viewadvertisement.js";
 
 function App() {
   return (
@@ -46,15 +47,24 @@ function App() {
           element={<ProductDetails />}
         />
 
-        <Route path="/productDetails/fertilizer" exact element={<ProductDetails />} />
-        
+        <Route
+          path="/productDetails/fertilizer"
+          exact
+          element={<ProductDetails />}
+        />
 
         <Route path="/productDetails/agri" exact element={<ProductAgri />} />
-        <Route path="/productDetails/innovation" exact element={<ProductInnovation />} />
+        <Route
+          path="/productDetails/innovation"
+          exact
+          element={<ProductInnovation />}
+        />
         <Route path="/product/single/:id" exact element={<Single />} />
 
         <Route path="/advertisement/advertise" element={<Advertisement />} />
         <Route path="/advertisement/view" element={<ViewAdvertisement />} />
+        <Route path="/login" exact element={<Login />} />
+        <Route path="/signup" exact element={<Signup />} />
       </Routes>
     </BrowserRouter>
   );
