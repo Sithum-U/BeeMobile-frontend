@@ -1,0 +1,60 @@
+@media (min-width: 1025px) {
+  .h-custom {
+    height: 100vh !important;
+  }
+}
+
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
+  font-size: 1rem;
+  line-height: 2.15;
+  padding-left: 0.2em;
+  padding-right: 0.75em;
+}
+
+.card-registration .select-arrow {
+  top: 13px;
+}
+
+.bg-grey {
+  background-color: #49c969;
+  border-radius: 0 15px 15px 0;
+}
+
+.emptyCartMain {
+  font-family: "Times New Roman", cursive;
+  padding-top: 5px;
+  font-size: 30px;
+  color: #49c969;
+}
+.emptyCartSecond {
+  font-family: "Times New Roman", cursive;
+  padding-top: 5px;
+  font-size: 20px;
+  color: #49c969;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+.cartImage {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* font awsome icons styling */
+.bi-trash {
+  color: rgb(235, 83, 83);
+  font-size: 20px;
+}
+.bi-plus-circle-fill {
+  color: #49c969;
+  font-size: 20px;
+}
+.bi-dash-circle-fill {
+  color: #49c969;
+  font-size: 20px;
+}

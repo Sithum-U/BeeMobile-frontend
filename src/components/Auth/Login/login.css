@@ -1,0 +1,15 @@
+.lock {
+    background-color: green;
+}
+
+.btnSignin {
+    background-color: gray;
+}
+
+.btnSignin:hover {
+    background-color: darkgreen;
+}
+
+.gridContainer {
+    justify-content: right;
+}
