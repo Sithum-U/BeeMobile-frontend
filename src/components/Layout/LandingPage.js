@@ -18,6 +18,7 @@ export default function LandingPage() {
   //   }
   // }, [history]);
 
+
   return (
     <div className="App">
       {/* <div class="preloader">

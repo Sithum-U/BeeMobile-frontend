@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import agri from '../../product/home.png';
+import slider2 from '../Images/slider2.png';
+import slider3 from '../Images/slider3.png';
 import { MDBCard, MDBContainer, MDBCardImage, MDBCardBody, MDBCardTitle, MDBCardText, MDBRow, MDBCol } from 'mdb-react-ui-kit';
 import { Button } from 'react-bootstrap';
 import { Link } from "react-router-dom";
@@ -18,7 +20,7 @@ const Home = () => {
 
   return (
     <div>
-      <div
+      {/* <div
         style={{
           justifyContent: "center",
           display: "flex",
@@ -27,7 +29,47 @@ const Home = () => {
       >
         <img src={agri} width="1500" height="400" />
         <br/><br/>
+      </div> */}
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+    <video playsinline="playsinline" width="100%" autoplay="autoplay" height="500" muted="muted" loop="loop">
+        <source src="https://mdbcdn.b-cdn.net/img/video/Tropical.mp4" type="video/mp4" />
+      </video>
+      <div class="carousel-caption d-none d-md-block">
+        <h5>First slide label</h5>
+        <p>Some representative placeholder content for the first slide.</p>
       </div>
+    </div>
+    <div class="carousel-item">
+    <img src={slider2} width="1550" height="500" alt="First slide"/>
+    <div class="carousel-caption d-none d-md-block">
+        <h5>First slide label</h5>
+        <p>Some representative placeholder content for the first slide.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+    <img src={slider3} width="1550" height="500" alt="First slide"/>
+    <div class="carousel-caption d-none d-md-block">
+        <h5>First slide label</h5>
+        <p>Some representative placeholder content for the first slide.</p>
+      </div>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
       <MDBContainer>
       <MDBRow className="align-items-center mt-5 mb-6">
         <div class="row">

@@ -94,7 +94,13 @@ const ProductTable = () => {
                                         </thead>
                                         <tbody>
                                             {product.data ?
-                                                product.data.map((item) => {
+                                            product.data.filter((item) => {
+                                                if (search == "") {
+                                                    return item
+                                                } else if (item.productName.toLowerCase().includes(search.toLowerCase())) {
+                                                    return item
+                                                }
+                                            }).map((item) => {
                                                     return (
                                                         <tr key={item._id}>
                                                             <td>{item.productCode}</td>

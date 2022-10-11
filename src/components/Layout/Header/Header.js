@@ -124,6 +124,7 @@ export default function Header({ countCartItems }) {
           </NavDropdown>
         </div>
       </div>
+
     </header>
   );
 }
