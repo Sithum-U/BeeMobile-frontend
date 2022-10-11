@@ -8,6 +8,10 @@ import SoloAlert from "soloalert";
 
 const ProductTable = () => {
     const [product, setproduct] = useState([]);
+    //Id for update record and delete
+    const [id, setId] = useState("");
+    //search filter
+    const [search, setSearch] = useState('');
     useEffect(() => {
         fetch("http://localhost:8000/product/")
             .then((res) => res.json())
@@ -68,8 +72,6 @@ const ProductTable = () => {
             },
         });
     }
-    //Id for update record and delete
-    const [id, setId] = useState("");
     return (
         <div class="registration-form" style={{ justifyContent: "center", display: "flex" }}>
             <SideBar />
