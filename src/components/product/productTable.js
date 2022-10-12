@@ -78,6 +78,9 @@ const ProductTable = () => {
             <SideBar />
             <div style={{ backgroundColor: '#dfe3e9', width: "82%" }}>
                 <div className="container"><br />
+                    <Link to="/product/" >
+                        <Button size="sm" variant="success">Add Product</Button>
+                    </Link><br /><br />
                     <h3 className="bg-dark text-white p-3">Product Table</h3><br />
                     {/* <div>
                         <h4>Search Here</h4>
@@ -91,8 +94,8 @@ const ProductTable = () => {
 
                                 <div class="form">
                                     <i class="fa fa-search"></i>
-                                    <input type="text" class="form-control form-input" placeholder="Search Product Name..." onChange={e => { setSearch(e.target.value) }}/>
-                                        <span class="left-pan"><i class="fa fa-microphone"></i></span>
+                                    <input type="text" class="form-control form-input" placeholder="Search Product..." onChange={e => { setSearch(e.target.value) }} />
+                                    <span class="left-pan"><i class="fa fa-microphone"></i></span>
                                 </div>
 
                             </div>
