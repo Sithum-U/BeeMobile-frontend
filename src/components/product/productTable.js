@@ -5,6 +5,7 @@ import { Button } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import SideBar from "../Layout/sidebar/sidebar";
 import SoloAlert from "soloalert";
+import "../product/product.css";
 
 const ProductTable = () => {
     const [product, setproduct] = useState([]);
@@ -78,6 +79,27 @@ const ProductTable = () => {
             <div style={{ backgroundColor: '#dfe3e9', width: "82%" }}>
                 <div className="container"><br />
                     <h3 className="bg-dark text-white p-3">Product Table</h3><br />
+                    {/* <div>
+                        <h4>Search Here</h4>
+                        <input type="text" placeholder="Search..." onChange={e => { setSearch(e.target.value) }} />
+                    </div> */}
+                    <div class="container">
+
+                        <div class="row height d-flex justify-content-center align-items-center">
+
+                            <div class="col-md-6">
+
+                                <div class="form">
+                                    <i class="fa fa-search"></i>
+                                    <input type="text" class="form-control form-input" placeholder="Search Product Name..." onChange={e => { setSearch(e.target.value) }}/>
+                                        <span class="left-pan"><i class="fa fa-microphone"></i></span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
                     <div shadow='0' border='info' background='white' >
                         <div>
                             <div>
@@ -96,13 +118,13 @@ const ProductTable = () => {
                                         </thead>
                                         <tbody>
                                             {product.data ?
-                                            product.data.filter((item) => {
-                                                if (search == "") {
-                                                    return item
-                                                } else if (item.productName.toLowerCase().includes(search.toLowerCase())) {
-                                                    return item
-                                                }
-                                            }).map((item) => {
+                                                product.data.filter((item) => {
+                                                    if (search == "") {
+                                                        return item
+                                                    } else if (item.productName.toLowerCase().includes(search.toLowerCase())) {
+                                                        return item
+                                                    }
+                                                }).map((item) => {
                                                     return (
                                                         <tr key={item._id}>
                                                             <td>{item.productCode}</td>
@@ -114,7 +136,7 @@ const ProductTable = () => {
                                                                 src={`${item.image}`}
                                                                 alt="..."
                                                                 position="top"
-                                                                height= "100 px"  width= "100px"
+                                                                height="100 px" width="100px"
                                                             /></td>
                                                             <td style={{ minWidth: 190 }}>
                                                                 <Link to={"/product/edit/" + item._id}>
