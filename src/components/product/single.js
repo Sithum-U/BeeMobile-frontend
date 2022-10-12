@@ -25,34 +25,96 @@ const Single = () => {
         // console.log(data);
       });
   }, []);
-  console.log(product);
+  console.log(product.data);
 
-  const onAdd = (item) => {
-    // console.log(item._id);
-
-    console.log(product);
-    axios
-      .post("http://localhost:8000/cartItem/", product.data)
-      .then((res) => {
-        alert("Cart Details Successfully added!");
-        // axios.get("http://localhost:8000/cartItem/").then((res) => {
-        //   setPayments(res.data);
-        // });
-        // productCode("");
-        // productName("");
-        // description("");
-        // category("");
-        // price("");
-        // image("");
-        // countInStock("");
-      })
-      .catch((error) => {
-        console.log(error.message);
-        alert(error.message);
+  useEffect(() => {
+    fetch(`http://localhost:8000/cartItem/`)
+      .then((res) => res.json())
+      .then((data) => {
+        setCartItems(data);
+        // console.log(data);
       });
+  }, []);
 
-    // const exist = cartItems.find((x) => x._id === item._id);
-    // console.log(exist);
+  console.log();
+  console.log(cartItems);
+  const onAdd = (item) => {
+    // for (let i = 0; i <= cartItems.data.length; i++) {
+    //   if (
+    //     cartItems.data[i].cartId != product.data._id ||
+    //     cartItems.data[i].cartId === undefined
+    //   ) {
+    //     console.log(i);
+
+    //   } else {
+    //     alert("Item Available in cart");
+    //     console.log("JKKKK");
+    //   }
+    // }
+    // console.log("product._id", product.data._id);
+    // console.log("cartItems.data[0].cartId", cartItems.data);
+
+    try {
+      // if (cartItems.data.some((el) => el.cartId != product.data._id)) {
+      //   console.log("ture");
+      //   axios
+      //     .post("http://localhost:8000/cartItem/", product.data)
+      //     .then((res) => {
+      //       alert("Cart Details Successfully added!");
+      //     })
+      //     .catch((error) => {
+      //       console.log(error.message);
+      //       alert(error.message);
+      //     });
+      // } else {
+      //   console.log("false");
+      //   if (el) {
+      // setCartItems(
+      //   cartItems.map((x) =>
+      //     x.cartId === product.d ? { ...el, qty: el.qty + 1 } : x
+      //   )
+      // );
+      // } else {
+      //   setCartItems([...cartItems, { ...item, qty: 1 }]);
+      // }
+      // }
+      console.log("cartItems", cartItems);
+      cartItems.data.forEach((item, index) => {
+        console.log("el", item);
+        if (item.cartId === product.data._id) {
+          console.log("ture");
+
+          console.log("el", cartItems.data[index]);
+          console.log("cartItems[index].qty", cartItems.data[index].qty);
+          cartItems.data[index].qty++;
+          console.log(item.cartId);
+          console.log(product.data._id);
+          //update
+          setCartItems(cartItems.data);
+
+          console.log("cartItems[index].qty", cartItems.data[index].qty);
+        } else {
+          axios
+            .post("http://localhost:8000/cartItem/", product.data)
+            .then((res) => {
+              alert("Cart Details Successfully added!");
+            })
+            .catch((error) => {
+              console.log(error.message);
+              alert(error.message);
+            });
+        }
+      });
+    } catch (error) {
+      console.log("error", error);
+    }
+
+    console.log("TEst", test);
+
+    const exist = cartItems.find((value) => value._id === product.data._id);
+    console.log(exist);
+    // console.log(product.data._id);
+    // console.log(item._id);
     // if (exist) {
     //   setCartItems(
     //     cartItems.map((x) =>
@@ -62,7 +124,6 @@ const Single = () => {
     // } else {
     //   setCartItems([...cartItems, { ...item, qty: 1 }]);
     // }
-    // console.log(cartItems);
   };
   return (
     <div>

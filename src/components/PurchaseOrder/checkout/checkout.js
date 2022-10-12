@@ -15,6 +15,7 @@ import OrderConfirmationForm from "../ReviewOrderForm/ReviewOrderForm";
 import ReviewOrderForm from "../OrderConfirmationForm/OrderConfirmationForm";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
+import Rating from "../Rating/rating";
 
 const steps = ["Payment Details", "Review Your Order", "Order Confirmation"];
 
@@ -59,14 +60,15 @@ export default function PO() {
           <React.Fragment>
             {activeStep === steps.length ? (
               <React.Fragment>
-                <Typography variant="h5" gutterBottom>
+                {/* <Typography variant="h5" gutterBottom>
                   Thank you for your order.
                 </Typography>
                 <Typography variant="subtitle1">
                   Your order number is #2001539. Order created succefully.We
                   will notify your order , and will send you an update when your
                   order is ready to be delivered.
-                </Typography>
+                </Typography> */}
+                <Rating />
               </React.Fragment>
             ) : (
               <React.Fragment>

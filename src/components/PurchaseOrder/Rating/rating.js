@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import "./rating.css";
 
@@ -96,6 +97,11 @@ export default function Rating() {
           <div className="btn">
             <button type="submit">Post</button>
           </div>
+          <Link to="/home">
+            <button class="button86" role="button">
+              Return To Home
+            </button>
+          </Link>
         </form>
       </div>
     </div>

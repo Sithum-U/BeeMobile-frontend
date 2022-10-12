@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Badge from "@mui/material/Badge";
 import logo from "../Images/backgroundlogo.png";
 import cart from "../Images/cart.png";
@@ -12,6 +12,17 @@ export default function Header({ countCartItems }) {
     var header = document.querySelector("header");
     header.classList.toggle("sticky", window.scrollY > 0);
   });
+
+  const [cartItems, setCartItems] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:8000/cartItem/")
+      .then((res) => res.json())
+      .then((res) => {
+        setCartItems(res.data);
+      });
+  }, []);
+  console.log(cartItems);
+
   return (
     // <div class="container">
     <header>
@@ -28,10 +39,10 @@ export default function Header({ countCartItems }) {
             >
               <ul id="nav" class="navbar-nav ml-auto">
                 <li class="nav-item">
-                  <a href="#home">Home</a>
+                  <a href="home">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="page-scroll" href="#services">
+                  <a class="page-scroll" href="services">
                     Services
                   </a>
                 </li>
@@ -50,6 +61,11 @@ export default function Header({ countCartItems }) {
                     Testimonials
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a class="page-scroll" href="/home">
+                    Products
+                  </a>
+                </li>
               </ul>
             </div>
           </nav>
@@ -58,42 +74,30 @@ export default function Header({ countCartItems }) {
       {/* <nav>
         <ul id="MenuItems">
           <li>
-            <a href="">Home</a>
-          </li>
-          <li>
-            <a href="">Products</a>
-          </li>
-          <li>
-            <a href="">About</a>
-          </li>
-          <li>
-            <a href="">Contact</a>
-          </li>
-          <li>
-            <a href="">Account</a>
+            <a href="/home">Products</a>
           </li>
         </ul>
       </nav> */}
-      {/* 
-      {countCartItems ? (
-        <Badge
-          className="zoomBadge"
-          badgeContent={countCartItems}
-          color="success"
-        >
-          <li>
-            <a href="/Cart">
-              <img
-                className="zoomCart"
-                src={cart}
-                width="50px"
-                height="50px"
-                color="#fff"
-              />
-            </a>
-          </li>
-        </Badge>
-      ) : (
+
+      {/* {CartItems ? ( */}
+      <Badge
+        className="zoomBadge"
+        badgeContent={cartItems.length}
+        color="success"
+      >
+        <li>
+          <a href="/Cart">
+            <img
+              className="zoomCart"
+              src={cart}
+              width="50px"
+              height="50px"
+              color="#fff"
+            />
+          </a>
+        </li>
+      </Badge>
+      {/* ) : (
         <li>
           <a href="/Cart">
             <img
