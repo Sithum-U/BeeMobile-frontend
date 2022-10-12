@@ -13,3 +13,9 @@
 .gridContainer {
     justify-content: right;
 }
+
+.loginContainer {
+    display: flex;
+    flex-direction: column;
+    margin: 100px;
+}

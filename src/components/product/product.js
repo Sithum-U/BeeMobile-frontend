@@ -29,16 +29,6 @@ const Product = () => {
      const upload = (e) => {
         setImage(e.target.files[0]);
      }
-
-    // setProgressPercent(0)
-    // const options = {
-    //     onUploadProgress: (progressEvent) => {
-    //         const {loaded,total} = progressEvent
-    //         let percent = Math.floor ((loaded * 100) / total)
-    //         console.log(`${loaded}kb of ${total}kb | ${percent}%`);
-    //         setProgressPercent(percent)
-    //     }
-    // }
     
     const handleChange = (name) => (e) => {
         const value = name === "image" ? e.target.files[0] : e.target.value;
@@ -67,25 +57,7 @@ const Product = () => {
             console.log(error);
         }
       }
-    // const handleSubmit =() => {
-    //     const url = 'http://localhost:8000/product/'
-    //     const credentials = { productCode, productName, description, category, price, image }
-    //     axios.post(url, credentials)
-    //         .then(response => {
-    //                 const result = response.data
-    //                 const { status, message } = result;
-    //                 if (status !== 'SUCCESS') {
-    //                     alert(message, status)
-    //                 }
-    //                 else {
-    //                     alert(message);
-    //                     window.location.reload();
-    //                 }
-    //         })
-    //         .catch(err => {
-    //             console.log(err);
-    //         })
-    // }
+   
     return (
         <div class="registration-form" style={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
             <SideBar/>

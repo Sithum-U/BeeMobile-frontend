@@ -84,6 +84,7 @@ const Single = () => {
         if (item.cartId === product.data._id) {
           console.log("ture");
 
+<<<<<<< HEAD
           console.log("el", cartItems.data[index]);
           console.log("cartItems[index].qty", cartItems.data[index].qty);
           cartItems.data[index].qty++;
@@ -104,6 +105,34 @@ const Single = () => {
               alert(error.message);
             });
         }
+=======
+    console.log(product);
+    console.log(item);
+    console.log(item.id);
+    const exist = cartItems.find((x) => x.data._id === product.data._id);
+    console.log(exist);
+    console.log(product.data._id);
+    console.log(item.data.id);
+    console.log(item._id);
+    axios
+      .post("http://localhost:8000/cartItem/", product.data)
+      .then((res) => {
+        alert("Cart Details Successfully added!");
+        // axios.get("http://localhost:8000/cartItem/").then((res) => {
+        //   setPayments(res.data);
+        // });
+        // productCode("");
+        // productName("");
+        // description("");
+        // category("");
+        // price("");
+        // image("");
+        // countInStock("");
+      })
+      .catch((error) => {
+        console.log(error.message);
+        alert(error.message);
+>>>>>>> f1ca2e8aa98225c3e31b3afdb39d987a968afb9e
       });
     } catch (error) {
       console.log("error", error);
@@ -111,6 +140,7 @@ const Single = () => {
 
     console.log("TEst", test);
 
+<<<<<<< HEAD
     const exist = cartItems.find((value) => value._id === product.data._id);
     console.log(exist);
     // console.log(product.data._id);
@@ -124,6 +154,20 @@ const Single = () => {
     // } else {
     //   setCartItems([...cartItems, { ...item, qty: 1 }]);
     // }
+=======
+    // const exist = cartItems.find((x) => x._id === item._id);
+    // console.log(exist);
+    if (exist) {
+      setCartItems(
+        cartItems.map((x) =>
+          x.id === item.id ? { ...exist, qty: exist.qty + 1 } : x
+        )
+      );
+    } else {
+      setCartItems([...cartItems, { ...item, qty: 1 }]);
+    }
+    console.log(cartItems);
+>>>>>>> f1ca2e8aa98225c3e31b3afdb39d987a968afb9e
   };
   return (
     <div>
@@ -180,7 +224,7 @@ const Single = () => {
             src={`${product.data.image}`}
             alt="..."
             position="top"
-            style={{ height: "100 px", weight: "100px" }}
+            height= "300 px" width= "700px"
           />
         </div>
       ) : (

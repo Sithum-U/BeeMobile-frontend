@@ -9,6 +9,16 @@ export default function LandingPage() {
         setRateDetails(data);
       });
   }, []);
+
+  // useEffect(() => {
+  //   const userInfo = localStorage.getItem("userInfo");
+
+  //   if (userInfo) {
+  //     history.push("/");
+  //   }
+  // }, [history]);
+
+
   return (
     <div className="App">
       {/* <div class="preloader">
