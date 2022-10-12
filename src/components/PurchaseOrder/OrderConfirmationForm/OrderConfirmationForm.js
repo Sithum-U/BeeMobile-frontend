@@ -348,6 +348,8 @@ function OrderConfirmationForm() {
                   </form>
                 </div>
               </div>
+            </aside>
+            <aside class="col-md-3">
               <div class="card">
                 <div class="card-body">
                   <dl class="dlist-align">

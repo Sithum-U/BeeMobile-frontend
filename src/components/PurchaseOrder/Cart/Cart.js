@@ -1,60 +1,181 @@
-import {
-  MDBBtn,
-  MDBCard,
-  MDBCardBody,
-  MDBCardImage,
-  MDBCardText,
-  MDBCol,
-  MDBContainer,
-  MDBIcon,
-  MDBInput,
-  MDBRow,
-  MDBTypography,
-} from "mdb-react-ui-kit";
-import React from "react";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import "./cartstyle.css";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import Logo from "../../Layout/Images/backgroundlogo.png";
+import Signature from "../../PurchaseOrder/Images/AgroPro signature.jpg";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
+import Snackbar from "@mui/material/Snackbar";
+import Slide from "@mui/material/Slide";
+import Button from "@mui/material/Button";
+import axios from "axios";
+import SoloAlert from "soloalert";
+import styles from "./styles.module.css";
 import myGif from "../Images/Emptypreview.gif";
 
-export default function Cart(props) {
-  const { cartItems, onAdd, onRemove, onDelete } = props;
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import InputLabel from "@mui/material/InputLabel";
+
+function OrderConfirmationForm() {
+  const [open, setOpen] = React.useState(false);
+  const [transition, setTransition] = React.useState(undefined);
+
+  const [paymentDetails, setPaymentDetails] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filtered, setfiltered] = useState([]);
+  const [itemName, setitemName] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8000/cartItem/")
+      .then((res) => res.json())
+      .then((res) => {
+        setCartItems(res.data);
+      });
+  }, []);
+  console.log(cartItems);
+
+  useEffect(() => {
+    fetch("http://localhost:8000/payment/")
+      .then((res) => res.json())
+      .then((data) => {
+        setPaymentDetails(data);
+        // console.log(paymentDetails);
+      });
+  }, []);
   const itemsPrice = cartItems.reduce((a, c) => a + c.qty * c.price, 0);
+  const totalPrice = itemsPrice;
+  const handleQtyChange = (e) => {
+    e.preventDefault();
+    setCartItems(e.target.value);
+  };
 
-  const taxPrice = itemsPrice * 0.14;
-  const shippingPrice = itemsPrice > 2000 ? 0 : 20;
-  const totalPrice = itemsPrice + taxPrice + shippingPrice;
+  const clickNotify = () => {
+    Notification.requestPermission().then((perm) => {
+      new Notification("Example", { body: "Thi is kkk" });
+    });
+  };
+
+  // ----------------------------Item Delete----------------------------------------
+  async function delet(id) {
+    SoloAlert.confirm({
+      title: "Confirm Delete",
+      body: "Are you sure",
+      theme: "dark",
+      useTransparency: true,
+      onOk: async function () {
+        try {
+          const result = await (
+            await axios.delete(`http://localhost:8000/cartItem/${id}`)
+          ).status;
+          console.log(result);
+
+          if (result === 200) {
+            SoloAlert.alert({
+              title: "Welcome!",
+              body: "Deletion is successful",
+              icon: "success",
+              theme: "dark",
+              useTransparency: true,
+              onOk: function () {
+                window.location = "/cart";
+              },
+            });
+          }
+        } catch (err) {
+          SoloAlert.alert({
+            title: "Oops!",
+            body: "Something went wrong",
+            icon: "error",
+            theme: "dark",
+            useTransparency: true,
+            onOk: function () {},
+          });
+        }
+      },
+      onCancel: function () {
+        SoloAlert.alert({
+          title: "Oops!",
+          body: "You canceled delete request",
+          icon: "warning",
+          theme: "dark",
+          useTransparency: true,
+          onOk: function () {},
+        });
+      },
+    });
+  }
+
   return (
-    <section className="h-100 h-custom" style={{ backgroundColor: "#eee" }}>
-      <MDBContainer className="py-5 h-100">
-        <MDBRow className="justify-content-center align-items-center h-100">
-          <MDBCol size="12">
-            <MDBCard
-              className="card-registration card-registration-2"
-              style={{ borderRadius: "15px" }}
-            >
-              <MDBCardBody className="p-0">
-                <MDBRow className="g-0">
-                  <MDBCol lg="8">
-                    <div className="p-5">
-                      <div className="d-flex justify-content-between align-items-center mb-5">
-                        <MDBTypography
-                          tag="h1"
-                          className="fw-bold mb-0 text-black"
-                        >
-                          Shopping Cart
-                        </MDBTypography>
-                        <MDBTypography className="mb-0 text-muted">
-                          {cartItems.length === 0
-                            ? "No Items in the list"
-                            : cartItems.length + " Items"}
-                        </MDBTypography>
-                      </div>
-                      {/* ------------------------cart details display--------------------------------------------------------- */}
-                      <hr className="my-4" />
+    // <div className={styles.signup_container}>
+    <div className={styles.signup_form_container}>
+      {/* <div> */}
+      <div>
+        <div className="App" id="OrderConfirmationForm">
+          {/* <section class="section-pagetop bg"> */}
 
-                      <MDBRow>
-                        {cartItems.length === 0 && (
+          <Box sx={{ flexGrow: 1 }}>
+            <AppBar position="static" style={{ backgroundColor: "#fdcb6e" }}>
+              <Toolbar>
+                {/* <IconButton
+                  size="large"
+                  edge="start"
+                  color="inherit"
+                  aria-label="menu"
+                  sx={{ mr: 2 }}
+                >
+                  <MenuIcon />
+                </IconButton> */}
+                <section>
+                  <div class="container">
+                    <h3 class="title-page">Review Your Order</h3>
+                  </div>
+                </section>
+                <Typography variant="h6" component="div" sx={{ flexGrow: 5 }}>
+                  <input
+                    type="text"
+                    className={styles.search}
+                    name="search"
+                    placeholder="Search.."
+                    onChange={(e) => {
+                      setSearchTerm(e.target.value);
+                    }}
+                  />
+                </Typography>
+                {/* <Button color="inherit">Login</Button> */}
+              </Toolbar>
+            </AppBar>
+          </Box>
+
+          <section class="section-content padding-y">
+            <div class="container">
+              <div class="row">
+                <main class="col-md-9">
+                  {/* <div class="card"> */}
+                  <table class="table table-borderless table-shopping-cart">
+                    {/* <thead class="text-muted">
+                      <tr class="small text-uppercase">
+                        <th scope="col">Product</th>
+                        <th scope="col" width="120">
+                          Quantity
+                        </th>
+                        <th scope="col" width="120">
+                          Price
+                        </th>
+                        <th scope="col" class="text-right" width="200">
+                          {" "}
+                        </th>
+                      </tr>
+                    </thead> */}
+                    <tbody>
+                      {cartItems.length === 0 && (
+                        <div className={styles.emptyCart_container}>
                           <div className="center">
                             <img src={myGif} />
                             <h3 className="emptyCartMain">
@@ -65,171 +186,179 @@ export default function Cart(props) {
                               yet
                             </h4>
                           </div>
-                        )}
-                        {cartItems.map((item) => (
-                          <div
-                            key={item.id}
-                            className="mb-4 d-flex justify-content-between align-items-center"
-                          >
-                            <MDBCol md="2" lg="2" xl="2">
-                              <MDBCardImage
-                                src={item.image}
-                                fluid
-                                className="cartImage"
-                                alt="Cotton T-shirt"
-                              />
-                            </MDBCol>
-                            <MDBCol md="3" lg="3" xl="3">
-                              <MDBTypography tag="h6" className="text-muted">
-                                {item.name}
-                              </MDBTypography>
-                              <MDBTypography
-                                tag="h6"
-                                className="text-black mb-0"
-                              >
-                                {item.name}
-                              </MDBTypography>
-                            </MDBCol>
-                            <MDBCol
-                              md="3"
-                              lg="3"
-                              xl="3"
-                              className="d-flex align-items-center"
-                            >
-                              <div
-                                onClick={() => onRemove(item)}
-                                color="link"
-                                className="px-2"
-                              >
-                                <i class="bi bi-dash-circle-fill"></i>
+                        </div>
+                      )}
+                      {cartItems ? (
+                        cartItems
+                          .filter((value) => {
+                            if (searchTerm === "") {
+                              return value;
+                            } else if (
+                              value.productName
+                                .toLowerCase()
+                                .includes(searchTerm.toLowerCase())
+                            ) {
+                              return value;
+                            }
+                          })
+                          .map((item) => (
+                            <div className={styles.productCart_container}>
+                              <tr key={item.productId}>
+                                <td>
+                                  <figure class="itemside">
+                                    <div class="aside">
+                                      <img
+                                        src={item.image}
+                                        // src="assets/images/items/1.jpg"
+                                        class="img-sm"
+                                      />
+                                    </div>
+                                    <figcaption class="info">
+                                      <a href="#" class="title text-dark">
+                                        {item.productName}
+                                      </a>
+                                      <p class="text-muted small">
+                                        Product Code: {item.productCode} <br />{" "}
+                                        Category: {item.category}
+                                      </p>
+                                    </figcaption>
+                                  </figure>
+                                </td>
+                                {/* <td>
+                                    <Select
+                                      placeholder="1"
+                                      // name="role"
+                                      onChange={handleQtyChange}
+                                      value={cartItems.qty}
+                                      required
+                                      // className={styles.dropdown}
+                                    >
+                                      <MenuItem value={1}>1</MenuItem>
+                                      <MenuItem value={2}>2</MenuItem>
+                                      <MenuItem value={3}>3</MenuItem>
+                                      <MenuItem value={4}>4</MenuItem>
+                                      <MenuItem value={5}>5</MenuItem>
+                                    </Select>
+                                  
+                                  </td> */}
+                                <td>
+                                  <div class="price-wrap">
+                                    <var class="price">
+                                      Rs : {item.price} /=
+                                    </var>
+                                    <small class="text-muted">
+                                      {" "}
+                                      {/* Rs: {item.price} each{" "} */}
+                                    </small>
+                                  </div>
+                                </td>
+                                <td class="text-right">
+                                  <a
+                                    data-original-title="Save to Wishlist"
+                                    title=""
+                                    href=""
+                                    class="btn btn-light mr-2"
+                                    data-toggle="tooltip"
+                                  >
+                                    {" "}
+                                    <i class="fa fa-heart"></i>
+                                  </a>
+                                  <button
+                                    class="btn btn-light"
+                                    style={{
+                                      color: "#ff7979",
+                                      borderColor: "#ff7979",
+                                    }}
+                                    onClick={(e) => {
+                                      delet(item._id);
+                                    }}
+                                  >
+                                    Remove
+                                  </button>
+                                </td>
+                              </tr>
+                            </div>
+                          ))
+                      ) : (
+                        <div></div>
+                      )}
+                    </tbody>
+                  </table>
+                  {/* </div> */}
+                </main>
+                {cartItems ? (
+                  cartItems.map((item) => (
+                    <aside class="col-md-3">
+                      <div class="card mb-3">
+                        <div class="card-body">
+                          <form>
+                            <div class="form-group">
+                              <label>Have coupon?</label>
+                              <div class="input-group">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  name=""
+                                  placeholder="Coupon code"
+                                />
+                                <span class="input-group-append">
+                                  <button class="btn btn-primary">Apply</button>
+                                </span>
                               </div>
-
-                              <MDBInput
-                                type="number"
-                                min="0"
-                                max="10"
-                                defaultValue={1}
-                                onChange={cartItems.length}
-                                size="sm"
-                              />
-
-                              <div
-                                onClick={() => onAdd(item)}
-                                color="link"
-                                className="px-2"
-                              >
-                                <i class="bi bi-plus-circle-fill"></i>
-                              </div>
-                            </MDBCol>
-                            <MDBCol md="3" lg="2" xl="2" className="text-end">
-                              <MDBTypography tag="h6" className="mb-0">
-                                Rs: {item.qty * item.price.toFixed(2)} /=
-                              </MDBTypography>
-                            </MDBCol>
-                            <MDBCol md="1" lg="1" xl="1" className="text-end">
-                              <MDBBtn
-                                onClick={() => onDelete(item)}
-                                color="link"
-                                className="px-2"
-                              >
-                                <i class="bi bi-trash"></i>
-                              </MDBBtn>
-                            </MDBCol>
-                          </div>
-                        ))}
-                      </MDBRow>
-
-                      <hr className="my-4" />
-                      {/* ----------------------------- Back To shop Button------------------------------------------------------- */}
-                      <div className="pt-5">
-                        <MDBTypography tag="h6" className="mb-0">
-                          <MDBCardText
-                            tag="a"
-                            href="/productDetails/innovation"
-                            className="text-body"
-                          >
-                            <i className="bi bi-skip-backward-fill"></i> Back to
-                            shop
-                          </MDBCardText>
-                        </MDBTypography>
+                            </div>
+                          </form>
+                        </div>
                       </div>
-                    </div>
-                  </MDBCol>
-                  {/* ----------------------------- Side pane summary---------------------------------------------------------- */}
-                  <MDBCol lg="4" className="bg-grey">
-                    {cartItems.length === 0 && (
-                      <div className="center">Cart is empty</div>
-                    )}
-                    {cartItems.map((item) => (
-                      <div className="p-5">
-                        <MDBTypography
-                          tag="h3"
-                          className="fw-bold mb-5 mt-2 pt-1"
-                        >
-                          Summary
-                        </MDBTypography>
-
-                        <hr className="my-4" />
-
-                        <div className="d-flex justify-content-between mb-4">
-                          <MDBTypography tag="h5" className="text-uppercase">
-                            {item.length}
-                          </MDBTypography>
-                          <MDBTypography tag="h5">
-                            Rs: {itemsPrice.toFixed(2)} /=
-                          </MDBTypography>
+                      <div class="card">
+                        <div class="card-body">
+                          <dl class="dlist-align">
+                            <dt>Total price:</dt>
+                            <dd class="text-right">{item.totalPrice}</dd>
+                          </dl>
+                          <dl class="dlist-align">
+                            <dt>Discount:</dt>
+                            <dd class="text-right">USD 658</dd>
+                          </dl>
+                          <dl class="dlist-align">
+                            <dt>{}</dt>
+                            <dd class="text-right  h5">
+                              <strong>$1,650</strong>
+                            </dd>
+                          </dl>
+                          <hr />
+                          <p class="text-center mb-3">
+                            <img
+                              src="assets/images/misc/payments.png"
+                              height="26"
+                            />
+                          </p>
                         </div>
-
-                        <MDBTypography tag="h5" className="text-uppercase mb-3">
-                          Shipping
-                        </MDBTypography>
-
-                        <div className="mb-4 pb-2">
-                          <select
-                            className="select p-2 rounded bg-grey"
-                            style={{ width: "100%" }}
-                          >
-                            <option value="1">
-                              Standard-Delivery- Rs200.00
-                            </option>
-                            <option value="2">Quick-Delivery- Rs500.00</option>
-                            <option value="3">Smart-Delivery- Rs300.00</option>
-                            <option value="4">Four</option>
-                          </select>
-                        </div>
-
-                        <MDBTypography tag="h5" className="text-uppercase mb-3">
-                          Voucher Code
-                        </MDBTypography>
-
-                        <div className="mb-5">
-                          <MDBInput size="lg" label="Enter your code" />
-                        </div>
-
-                        <hr className="my-4" />
-
-                        <div className="d-flex justify-content-between mb-5">
-                          <MDBTypography tag="h5" className="text-uppercase">
-                            Total price
-                          </MDBTypography>
-                          <MDBTypography tag="h5">
-                            ${totalPrice.toFixed(2)}
-                          </MDBTypography>
-                        </div>
-                        <Link to="/checkout" style={{ textDecoration: "none" }}>
-                          <MDBBtn color="dark" block size="lg">
-                            Proceed To Checkout
-                          </MDBBtn>
+                      </div>
+                      <div>
+                        <Link to="/home">
+                          <button className={styles.button62} role="button">
+                            <i class="bi bi-arrow-left-square"></i>Back To Home
+                          </button>
+                        </Link>
+                        <Link to="/checkout">
+                          <button className={styles.button62} role="button">
+                            Proceed To Payment{""}
+                            <i class="bi bi-arrow-right-square"></i>
+                          </button>
                         </Link>
                       </div>
-                    ))}
-                  </MDBCol>
-                </MDBRow>
-              </MDBCardBody>
-            </MDBCard>
-          </MDBCol>
-        </MDBRow>
-      </MDBContainer>
-    </section>
+                    </aside>
+                  ))
+                ) : (
+                  <div></div>
+                )}
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
   );
 }
+
+export default OrderConfirmationForm;

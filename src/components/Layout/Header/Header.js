@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Badge from "@mui/material/Badge";
 import logo from "../Images/backgroundlogo.png";
 import cart from "../Images/cart.png";
@@ -6,14 +6,23 @@ import "./Header.css";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { NavDropdown } from "react-bootstrap";
 
 export default function Header({ countCartItems }) {
   window.addEventListener("scroll", function () {
     var header = document.querySelector("header");
     header.classList.toggle("sticky", window.scrollY > 0);
   });
+
+  const [cartItems, setCartItems] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:8000/cartItem/")
+      .then((res) => res.json())
+      .then((res) => {
+        setCartItems(res.data);
+      });
+  }, []);
+  console.log(cartItems);
+
   return (
     // <div class="container">
     <header>
@@ -30,10 +39,10 @@ export default function Header({ countCartItems }) {
             >
               <ul id="nav" class="navbar-nav ml-auto">
                 <li class="nav-item">
-                  <a href="#home">Home</a>
+                  <a href="home">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="page-scroll" href="#services">
+                  <a class="page-scroll" href="services">
                     Services
                   </a>
                 </li>
@@ -52,6 +61,11 @@ export default function Header({ countCartItems }) {
                     Testimonials
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a class="page-scroll" href="/home">
+                    Products
+                  </a>
+                </li>
               </ul>
             </div>
           </nav>
@@ -60,42 +74,17 @@ export default function Header({ countCartItems }) {
       {/* <nav>
         <ul id="MenuItems">
           <li>
-            <a href="">Home</a>
-          </li>
-          <li>
-            <a href="">Products</a>
-          </li>
-          <li>
-            <a href="">About</a>
-          </li>
-          <li>
-            <a href="">Contact</a>
-          </li>
-          <li>
-            <a href="">Account</a>
+            <a href="/home">Products</a>
           </li>
         </ul>
       </nav> */}
 
-      {countCartItems ? (
-        <Badge
-          className="zoomBadge"
-          badgeContent={countCartItems}
-          color="success"
-        >
-          <li>
-            <a href="/Cart">
-              <img
-                className="zoomCart"
-                src={cart}
-                width="50px"
-                height="50px"
-                color="#fff"
-              />
-            </a>
-          </li>
-        </Badge>
-      ) : (
+      {/* {CartItems ? ( */}
+      <Badge
+        className="zoomBadge"
+        badgeContent={cartItems.length}
+        color="success"
+      >
         <li>
           <a href="/Cart">
             <img
@@ -107,7 +96,20 @@ export default function Header({ countCartItems }) {
             />
           </a>
         </li>
-      )}
+      </Badge>
+      {/* ) : (
+        <li>
+          <a href="/Cart">
+            <img
+              className="zoomCart"
+              src={cart}
+              width="50px"
+              height="50px"
+              color="#fff"
+            />
+          </a>
+        </li>
+      )} */}
       <div className="navItems">
         <div>
           <a href="/signup">
@@ -118,13 +120,8 @@ export default function Header({ countCartItems }) {
               <FontAwesomeIcon icon={faRightToBracket} /> Login
             </button>
           </a>
-          <NavDropdown title="Sithum Udara" id="navbarScrollingDropdown">
-            <NavDropdown.Item href="#action3">My profile</NavDropdown.Item>
-            <NavDropdown.Item href="#action4">Logout</NavDropdown.Item>
-          </NavDropdown>
         </div>
       </div>
-
     </header>
   );
 }
