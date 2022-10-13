@@ -98,7 +98,7 @@ export default function LandingPage() {
         </div>
       </header> */}
 
-      <section id="home" class="hero-section">
+      <section id="about" class="hero-section">
         <div class="hero-shape">
           <img src="assets/img/hero/hero-shape.svg" alt="" class="shape" />
         </div>
