@@ -49,8 +49,12 @@ function OrderConfirmationForm() {
         // console.log(paymentDetails);
       });
   }, []);
-  const itemsPrice = cartItems.reduce((a, c) => a + c.qty * c.price, 0);
-  const totalPrice = itemsPrice;
+  const initialValue = 0;
+  const totalPrice = cartItems.reduce(
+    (accumilator, current) => accumilator + current.price,
+    initialValue
+  );
+  console.log(totalPrice);
   const handleQtyChange = (e) => {
     e.preventDefault();
     setCartItems(e.target.value);
@@ -286,72 +290,67 @@ function OrderConfirmationForm() {
                   </table>
                   {/* </div> */}
                 </main>
-                {cartItems ? (
-                  cartItems.map((item) => (
-                    <aside class="col-md-3">
-                      <div class="card mb-3">
-                        <div class="card-body">
-                          <form>
-                            <div class="form-group">
-                              <label>Have coupon?</label>
-                              <div class="input-group">
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  name=""
-                                  placeholder="Coupon code"
-                                />
-                                <span class="input-group-append">
-                                  <button class="btn btn-primary">Apply</button>
-                                </span>
-                              </div>
-                            </div>
-                          </form>
-                        </div>
-                      </div>
-                      <div class="card">
-                        <div class="card-body">
-                          <dl class="dlist-align">
-                            <dt>Total price:</dt>
-                            <dd class="text-right">{item.totalPrice}</dd>
-                          </dl>
-                          <dl class="dlist-align">
-                            <dt>Discount:</dt>
-                            <dd class="text-right">USD 658</dd>
-                          </dl>
-                          <dl class="dlist-align">
-                            <dt>{}</dt>
-                            <dd class="text-right  h5">
-                              <strong>$1,650</strong>
-                            </dd>
-                          </dl>
-                          <hr />
-                          <p class="text-center mb-3">
-                            <img
-                              src="assets/images/misc/payments.png"
-                              height="26"
+                <aside class="col-md-3">
+                  <div class="card mb-3">
+                    <div class="card-body">
+                      <form>
+                        <div class="form-group">
+                          <label>Have coupon?</label>
+                          <div class="input-group">
+                            <input
+                              type="text"
+                              class="form-control"
+                              name=""
+                              placeholder="Coupon code"
                             />
-                          </p>
+                            <span class="input-group-append">
+                              <button class="btn btn-primary">Apply</button>
+                            </span>
+                          </div>
                         </div>
-                      </div>
-                      <div>
-                        <Link to="/home">
-                          <button className={styles.button62} role="button">
-                            <i class="bi bi-arrow-left-square"></i>Back To Home
-                          </button>
-                        </Link>
-                        <Link to="/checkout">
-                          <button className={styles.button62} role="button">
-                            Proceed To Payment{""}
-                            <i class="bi bi-arrow-right-square"></i>
-                          </button>
-                        </Link>
-                      </div>
-                    </aside>
-                  ))
-                ) : (
-                  <div></div>
-                )}
+                      </form>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-body">
+                      <dl class="dlist-align">
+                        <dt>Total price:</dt>
+                        <dd class="text-right">{totalPrice}</dd>
+                      </dl>
+                      <dl class="dlist-align">
+                        <dt>Discount:</dt>
+                        <dd class="text-right">USD 658</dd>
+                      </dl>
+                      <dl class="dlist-align">
+                        <dt>{}</dt>
+                        <dd class="text-right  h5">
+                          <strong>$1,650</strong>
+                        </dd>
+                      </dl>
+                      <hr />
+                      <p class="text-center mb-3">
+                        <img
+                          src="assets/images/misc/payments.png"
+                          height="26"
+                        />
+                      </p>
+                    </div>
+                  </div>
+                  <div>
+                    <Link to="/home">
+                      <button className={styles.button62} role="button">
+                        <i class="bi bi-arrow-left-square"></i>Back To Home
+                      </button>
+                    </Link>
+                    <Link to="/checkout">
+                      <button className={styles.button62} role="button">
+                        Proceed To Payment{""}
+                        <i class="bi bi-arrow-right-square"></i>
+                      </button>
+                    </Link>
+                  </div>
+                </aside>
+                ))
               </div>
             </div>
           </section>
