@@ -158,7 +158,7 @@ export default function LandingPage() {
             <div class="col-lg-4 col-md-6">
               <div class="single-service wow fadeInUp" data-wow-delay=".2s">
                 <div class="icon">
-                  <img src="assets/img/service/service-icon-1.svg" alt="" />
+                  <img src="assets/img/service/fertilizer.svg" alt="" />
                 </div>
                 <div class="content">
                   <h3>Fertilizers</h3>
@@ -174,7 +174,7 @@ export default function LandingPage() {
             <div class="col-lg-4 col-md-6">
               <div class="single-service wow fadeInUp" data-wow-delay=".4s">
                 <div class="icon">
-                  <img src="assets/img/service/service-icon-2.svg" alt="" />
+                  <img src="assets/img/service/legumes.svg" alt="" />
                 </div>
                 <div class="content">
                   <h3>Legumes</h3>
@@ -188,7 +188,7 @@ export default function LandingPage() {
             <div class="col-lg-4 col-md-6">
               <div class="single-service wow fadeInUp" data-wow-delay=".6s">
                 <div class="icon">
-                  <img src="assets/img/service/service-icon-3.svg" alt="" />
+                  <img src="assets/img/service/lifestock.svg" alt="" />
                 </div>
                 <div class="content">
                   <h3>Live Stock</h3>
@@ -203,7 +203,7 @@ export default function LandingPage() {
             <div class="col-lg-4 col-md-6">
               <div class="single-service wow fadeInUp" data-wow-delay=".2s">
                 <div class="icon">
-                  <img src="assets/img/service/service-icon-4.svg" alt="" />
+                  <img src="assets/img/service/herbs.svg" alt="" />
                 </div>
                 <div class="content">
                   <h3>Herbs</h3>
@@ -217,7 +217,7 @@ export default function LandingPage() {
             <div class="col-lg-4 col-md-6">
               <div class="single-service wow fadeInUp" data-wow-delay=".4s">
                 <div class="icon">
-                  <img src="assets/img/service/service-icon-5.svg" alt="" />
+                  <img src="assets/img/service/service-icon-2.svg" alt="" />
                 </div>
                 <div class="content">
                   <h3>Vegitables</h3>
@@ -232,7 +232,7 @@ export default function LandingPage() {
             <div class="col-lg-4 col-md-6">
               <div class="single-service wow fadeInUp" data-wow-delay=".6s">
                 <div class="icon">
-                  <img src="assets/img/service/service-icon-6.svg" alt="" />
+                  <img src="assets/img/service/fruits.svg" alt="" />
                 </div>
                 <div class="content">
                   <h3>Fruits</h3>
