@@ -1,19 +1,21 @@
-import React from "react";
-import Typography from "@material-ui/core/Typography";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 
-export default function OrderConfirmationForm() {
+function WithHeaderStyledExample() {
   return (
-    <div>
-      <React.Fragment>
-        <Typography variant="h5" gutterBottom>
-          Thank you for your order.
-        </Typography>
-        <Typography variant="subtitle1">
+    <Card style={{ margin: "60px 40px 40px 40px " }}>
+      <Card.Header as="h5">Order Confirmation</Card.Header>
+      <Card.Body>
+        <Card.Title>Thank you for your order.</Card.Title>
+        <Card.Text>
           Your order number is #2001539. Order created succefully.We will notify
           your order , and will send you an update when your order is ready to
           be delivered.
-        </Typography>
-      </React.Fragment>
-    </div>
+        </Card.Text>
+        <Button variant="primary">Go back to home</Button>
+      </Card.Body>
+    </Card>
   );
 }
+
+export default WithHeaderStyledExample;

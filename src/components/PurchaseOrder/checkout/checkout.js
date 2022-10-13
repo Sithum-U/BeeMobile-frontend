@@ -60,25 +60,18 @@ export default function PO() {
           <React.Fragment>
             {activeStep === steps.length ? (
               <React.Fragment>
-                {/* <Typography variant="h5" gutterBottom>
-                  Thank you for your order.
-                </Typography>
-                <Typography variant="subtitle1">
-                  Your order number is #2001539. Order created succefully.We
-                  will notify your order , and will send you an update when your
-                  order is ready to be delivered.
-                </Typography> */}
                 <Rating />
               </React.Fragment>
             ) : (
               <React.Fragment>
                 {getStepContent(activeStep)}
                 <div className={styles.buttons}>
-                  {activeStep !== 0 && (
-                    <Button onClick={handleBack} className={styles.button}>
-                      Back
-                    </Button>
-                  )}
+                  {activeStep !== 0 ||
+                    (activeStep !== 2 && (
+                      <Button onClick={handleBack} className={styles.button}>
+                        Back
+                      </Button>
+                    ))}
                   {activeStep === 0 ? (
                     <Link to="/Cart">
                       <button
@@ -97,7 +90,14 @@ export default function PO() {
                     onClick={handleNext}
                     className={styles.button}
                   >
-                    {activeStep === steps.length - 1 ? "Place order" : "Next"}
+                    {activeStep === steps.length - 1 ? (
+                      <h4 style={{ color: "#ffffff" }}>
+                        Rate Us{" "}
+                        <i class="bi bi-star" style={{ color: "yellow" }}></i>
+                      </h4>
+                    ) : (
+                      "Next"
+                    )}
                   </Button>
                 </div>
               </React.Fragment>
