@@ -98,6 +98,11 @@ const Single = () => {
                   )}
                   on August 24, 2022
                   <br />
+                  {product.data ? (
+                    <h3> Rs.{product.data.price} </h3>
+                  ) : (
+                    <div></div>
+                  )}<br />
                   <Link to="/">
                     <Button variant="danger">Pay Now</Button>
                   </Link>

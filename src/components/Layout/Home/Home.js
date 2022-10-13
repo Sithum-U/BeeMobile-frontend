@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import agri from '../../product/home.png';
+import slider1 from '../Images/slider1.png';
 import slider2 from '../Images/slider2.png';
 import slider3 from '../Images/slider3.png';
 import { MDBCard, MDBContainer, MDBCardImage, MDBCardBody, MDBCardTitle, MDBCardText, MDBRow, MDBCol } from 'mdb-react-ui-kit';
@@ -38,26 +39,24 @@ const Home = () => {
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-    <video playsinline="playsinline" width="100%" autoplay="autoplay" height="500" muted="muted" loop="loop">
-        <source src="https://mdbcdn.b-cdn.net/img/video/Tropical.mp4" type="video/mp4" />
-      </video>
+    <img src={slider1} width="1550" height="500" alt="First slide"/>
       <div class="carousel-caption d-none d-md-block">
-        <h5>First slide label</h5>
-        <p>Some representative placeholder content for the first slide.</p>
+        <h5>AgroPro</h5>
+        <p>Improving your Agriculture</p>
       </div>
     </div>
     <div class="carousel-item">
     <img src={slider2} width="1550" height="500" alt="First slide"/>
     <div class="carousel-caption d-none d-md-block">
-        <h5>First slide label</h5>
-        <p>Some representative placeholder content for the first slide.</p>
+        <h5>AgrPro</h5>
+        <p>Inventing new Methods and Products</p>
       </div>
     </div>
     <div class="carousel-item">
     <img src={slider3} width="1550" height="500" alt="First slide"/>
     <div class="carousel-caption d-none d-md-block">
-        <h5>First slide label</h5>
-        <p>Some representative placeholder content for the first slide.</p>
+        <h5>AgrPro</h5>
+        <p>Inventing new Methods and Products</p>
       </div>
     </div>
   </div>
@@ -78,7 +77,7 @@ const Home = () => {
               return (
                 <div class="col-4">
                   <MDBCol>
-                    <MDBCard style={{ width: "300px", justifyContent: "center", display: "flex", alignItems: "center" }}>
+                    <MDBCard style={{ width: "300px", height: "200 px", justifyContent: "center", display: "flex", alignItems: "center" }}>
                       <MDBCardTitle>{item.productName}</MDBCardTitle>
                       <MDBCardImage
                         src={`${item.image}`} width="300" height="200"

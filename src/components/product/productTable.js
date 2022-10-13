@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./product.css";
 import axios from 'axios';
+import jspdf from "jspdf";
+import "jspdf-autotable";
 import { Button } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import SideBar from "../Layout/sidebar/sidebar";
@@ -73,11 +75,55 @@ const ProductTable = () => {
             },
         });
     }
+
+    const generatePDF = (product) => {
+
+        const doc = new jspdf();
+        const tableColumn = [
+            "Product Code",
+            "Product Name",
+            "Description",
+            "Category",
+            "Price"
+        ];
+
+        const tableRows = [];
+        const date = Date().split(" ");
+        const dateStr = date[1] + "-" + date[2] + "-" + date[3];
+
+        product.data.map((product) => {
+            const productData = [
+                product.productCode,
+                product.productName,
+                product.description,
+                product.category,
+                product.price
+            ];
+
+            tableRows.push(productData);
+        });
+        // doc.text("Presentation Marks Report", 14, 16).setFontSize(13);
+        doc.text(`Date - ${dateStr}`, 14, 23);
+
+        //right down width height
+
+        // doc.addImage(img, "JPEG", 170, 8, 25, 25);
+
+        doc.autoTable(tableColumn, tableRows, {
+            styles: { fontSize: 10 },
+            startY: 35,
+        });
+
+        // doc.addImage(img1, "JPEG", 120, 140, 70, 40);
+        doc.save("Products.pdf");
+
+    };
     return (
         <div class="registration-form" style={{ justifyContent: "center", display: "flex" }}>
             <SideBar />
             <div style={{ backgroundColor: '#dfe3e9', width: "82%" }}>
                 <div className="container"><br />
+                <button onClick={() => { generatePDF(product) }}>Download</button>
                     <Link to="/product/" >
                         <Button size="sm" variant="success">Add Product</Button>
                     </Link><br /><br />
