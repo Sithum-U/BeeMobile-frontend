@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { MDBCol } from "mdbreact";
 import {
   Card,
   Container,
@@ -11,8 +13,10 @@ import {
 import UpdateIcon from "@material-ui/icons/Update";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import axios from "axios";
-
-
+// import jspdf from "jspdf";
+// import "jspdf-autotable";
+// import img from "../components/wsLogo.jpg";
+// import img1 from "../components/signature.jpg";
 // import { useHistory } from "react-router-dom";
 import {
   Button,
@@ -24,10 +28,14 @@ import {
 } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 
+
 function ViewAdvertisement(props) {
   const [advertisement, setAdvertisement] = useState([]);
   const [view, viewState] = useState(false);
   const [vdelete, viewDelete] = useState(false);
+  const [vupdate, viewupdate] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  
   
   // const history = useHistory();
   useEffect(() => {
@@ -64,18 +72,55 @@ function ViewAdvertisement(props) {
         console.log("error=>", err);
       });
   };
+ 
+    // const generatePDF = (tickets) => {
+    //   const doc = new jspdf();
+    //   const tableColumn = [
+    //     "title",
+    //     "description",
+    //     "date",
+    //     "email",
+    //     "photo",
+    //   ];
+    //   const tableRows = [];
+    //   const date = Date().split(" ");
+    //   const dateStr = date[1] + "-" + date[2] + "-" + date[3];
+
+    //   tickets.map((ticket) => {
+    //     const ticketData = [
+    //       ticket._id,
+    //       ticket.title,
+    //       ticket.description,
+    //       ticket.date,
+    //       ticket.email,
+    //       ticket.photo,
+    //     ];
+    //     tableRows.push(ticketData);
+    //   });
+    //   doc.text("Hotel.lk", 70, 8).setFontSize(13);
+    //   doc.text("Hotel Details Report", 14, 16).setFontSize(13);
+    //   doc.text(`Report Genarated Date - ${dateStr}`, 14, 23);
+
+    //   doc.addImage(img, "JPEG", 170, 8, 25, 25);
+    //   doc.autoTable(tableColumn, tableRows, {
+    //     styles: { fontSize: 8 },
+    //     startY: 35,
+    //   });
+    //   doc.addImage(img1, "JPEG", 120, 140, 70, 40);
+    //   doc.save("Branch Details Report.pdf");
+    // };
 
 
   const UpdateAdvertisement = (id) => {
     axios
-      .get(`http://localhost:8000/advertise/delete/${id}`)
+      .get(`http://localhost:8000/advertise/update/${id}`)
       .then((res) => {
         window.location = "/advertisement/view";
-        alert("Advertisement Deleted");
-        if (!viewDelete) {
-          viewDelete(true);
+        alert("Advertisement Updated");
+        if (!viewupdate) {
+          viewupdate(true);
         } else {
-          viewDelete(false);
+          viewupdate(false);
         }
       })
       .catch((err) => {
@@ -103,6 +148,36 @@ function ViewAdvertisement(props) {
                   </Button>
                 </Col>
               </Row>
+
+
+
+              {/* <button
+          type="button"
+          class="btn btn-secondary btn-sm"
+          onClick={() => generatePDF(hotel)}
+        >
+          GenerateReport
+        </button> */}
+
+
+              <MDBCol md="6">
+          <input
+            class="form-control"
+            id="myInput"
+            name="title"
+            type="text"
+            placeholder="Search..."
+            
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+             
+            }}
+            
+          />
+        </MDBCol>
+    <br></br>
+
+        
               <hr className="divide" />
             </div>
             <Grid container spacing={3}>
@@ -118,11 +193,12 @@ function ViewAdvertisement(props) {
                             height="190"
                             image=""
                             src={`http://localhost:3000/${adver.photo}`}
-                            title="Contemplative Reptile"
+                            title="Image"
                           />
                           <CardContent>
                             <Typography gutterBottom component="h2">
                               {adver.title}
+                              
                             </Typography>
                             <Typography
                               style={{ fontSize: "12px" }}
@@ -157,7 +233,7 @@ function ViewAdvertisement(props) {
                             >
                               Delete
                             </Button>
-                            <Button
+                            {/* <Button
                               style={{
                                 backgroundColor: "green",
                                 color: "white",
@@ -169,7 +245,22 @@ function ViewAdvertisement(props) {
                               onClick={UpdateAdvertisement.bind(this, adver._id)}
                             >
                               Update
-                            </Button>
+                            </Button> */}
+                            <Link to={"/advertise/update/" + adver._id}>
+
+                                                                    <Button Button
+                              style={{
+                                backgroundColor: "green",
+                                color: "white",
+                                padding:"5px"
+                              }}
+                              size="medium"
+                              color="primary"
+                              className={"m-2"}startIcon={<UpdateIcon/>}
+                              onClick={UpdateAdvertisement.bind(this, adver._id)}
+                            >Update</Button>|
+
+                                                                </Link>
                           </div>
                         </Card>
                       </div>
