@@ -18,7 +18,6 @@ export default function LandingPage() {
   //   }
   // }, [history]);
 
-
   return (
     <div className="App">
       {/* <div class="preloader">
@@ -107,21 +106,42 @@ export default function LandingPage() {
           <div class="row align-items-center">
             <div class="col-lg-6">
               <div class="hero-content">
+                <img src="assets/img/backgroundlogo.png" alt="" class="shape" />
                 <h1 class="wow fadeInUp" data-wow-delay=".2s">
-                  Home Delivery <span>From Stores Near You</span>{" "}
+                  Agro Pro{" "}
+                  <span>
+                    <h2>Your's Solution Provider</h2>
+                  </span>{" "}
                 </h1>
                 <p class="wow fadeInUp" data-wow-delay=".4s">
-                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                  diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                  aliquyam erat, sed diam voluptua.
+                  The purpose of this research was to pinpoint the challenges
+                  faced by Sri Lankan farmers as a result of the financial
+                  crisis, as the country's government failed to boost domestic
+                  production of organic pesticides and fertilizers or offer
+                  farmers subsidies to purchase them. Crop yields were destroyed
+                  by the unexpected policy change. Average yields of rice, a
+                  staple food in Sri Lanka that was previously produced
+                  successfully and even exported, were reduced by about 30%. The
+                  Department of Census and Statistics Agriculture and
+                  Environment Statistics Division gathers, analyzes, and
+                  disseminates data pertaining to this crisis. The Division
+                  compiles statistics on the extent and production of paddy as
+                  well as other temporary and seasonal crops, livestock, and
+                  production costs. The main goal of this study is to provide
+                  solutions to the problems that Sri Lankan farmers face, such
+                  as those related to production, marketing, and finances. The
+                  “AgroPro” website, which we have implemented, is one of the
+                  best solution providers in Sri Lanka for the aforementioned
+                  crisis. The purpose of this website is to provide solutions
+                  and sample techniques, after investigating the goal, primary
+                  data was gathered from the farmers. Findings: To learn about
+                  the farmers' experiences with production, marketing, and
+                  financial issues. This study aids in boosting agricultural
+                  productivity and encourages farmers to produce more goods.
+                  originality and value. Extreme care was taken to provide
+                  pertinent explanations in vernacular to enable the respondents
+                  to respond as precisely and confidently as possible.
                 </p>
-                <a
-                  href="javascript:void(0)"
-                  class="main-btn btn-hover wow fadeInUp"
-                  data-wow-delay=".6s"
-                >
-                  Download App
-                </a>
               </div>
             </div>
             <div class="col-lg-6">
