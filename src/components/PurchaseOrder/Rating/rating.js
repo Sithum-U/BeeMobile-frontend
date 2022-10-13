@@ -26,7 +26,7 @@ export default function Rating() {
     axios
       .post("http://localhost:8000/rate/add", rateObj)
       .then((res) => {
-        alert("Rating Details Successfully added!");
+        alert("Thankyou for your feedback");
         axios.get("http://localhost:8000/rate/").then((res) => {
           setRates(res.data);
         });
