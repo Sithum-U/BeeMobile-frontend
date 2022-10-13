@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import "./landingPage.css";
 export default function LandingPage() {
   const [rateDetails, setRateDetails] = useState([]);
   useEffect(() => {
@@ -362,6 +362,95 @@ export default function LandingPage() {
             </div>
           </div>
           <div
+            class="container"
+            style={{
+              display: "flex",
+              flexDirection: "row-reverse",
+              width: "400px",
+              height: "400px",
+            }}
+          >
+            {rateDetails.map((rate) => (
+              <li
+                style={{
+                  flexBasis: "300px",
+                  margin: "15px",
+                  flexGrow: 0,
+                  flexShrink: 0,
+                }}
+              >
+                <a href="" class="card">
+                  {/* <img
+                  src="https://i.imgur.com/2DhmtJ4.jpg"
+                  class="card__image"
+                  alt=""
+                /> */}
+                  <div
+                    class="rating"
+                    style={{
+                      color: "Orange",
+                      fontSize: "30px",
+                    }}
+                  >
+                    <i
+                      class="lni lni-star-filled"
+                      style={{
+                        color: "Orange",
+                        fontSize: "30px",
+                      }}
+                    ></i>
+                    <i
+                      class="lni lni-star-filled"
+                      style={{
+                        color: "Orange",
+                        fontSize: "30px",
+                      }}
+                    ></i>
+                    <i
+                      class="lni lni-star-filled"
+                      style={{
+                        color: "Orange",
+                        fontSize: "30px",
+                      }}
+                    ></i>
+                    <i
+                      class="lni lni-star-filled"
+                      style={{
+                        color: "Orange",
+                        fontSize: "30px",
+                      }}
+                    ></i>
+                    <i
+                      class="lni lni-star-filled"
+                      style={{
+                        color: "Orange",
+                        fontSize: "30px",
+                      }}
+                    ></i>
+                  </div>
+
+                  <div class="card__overlay">
+                    <div class="card__header">
+                      <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
+                        <path />
+                      </svg>
+                      <img
+                        class="card__thumb"
+                        src="assets/img/testimonial/testimonial-1.png"
+                        alt=""
+                      />
+                      <div class="card__header-text">
+                        <h3 class="card__title">{rate.name}</h3>
+                        <span class="card__status">{rate.profession}</span>
+                      </div>
+                    </div>
+                    <p class="card__description">{rate.profession}</p>
+                  </div>
+                </a>
+              </li>
+            ))}
+          </div>
+          {/* <div
             style={{
               display: "flex",
               flexDirection: "row-reverse",
@@ -373,13 +462,28 @@ export default function LandingPage() {
               <div class="row testimonial-wrapper" style={{ display: "flex" }}>
                 <div
                   class="col-lg-4 col-md-6 -mt-30"
-                  style={{ flexGrow: 20, flexShrink: 0, flexBasis: "50px" }}
+                  style={{
+                    flexGrow: 20,
+                    flexShrink: 0,
+                    flexBasis: "50px",
+                  }}
                 >
                   <div
                     class="single-testimonial wow fadeInUp"
                     data-wow-delay=".2s"
+                    style={{
+                      backgroundColor: "white",
+                      flexBasis: "100px",
+                      flexGrow: 0,
+                      flexShrink: 0,
+                    }}
                   >
-                    <div class="rating">
+                    <div
+                      class="rating"
+                      style={{
+                        alignItems: "center",
+                      }}
+                    >
                       <i class="lni lni-star-filled"></i>
                       <i class="lni lni-star-filled"></i>
                       <i class="lni lni-star-filled"></i>
@@ -402,8 +506,8 @@ export default function LandingPage() {
                       </div>
                     </div>
                   </div>
-                </div>
-                {/* <div class="col-lg-4 col-md-6 -mt-60">
+                </div> */}
+          {/* <div class="col-lg-4 col-md-6 -mt-60">
                 <div
                   class="single-testimonial wow fadeInUp"
                   data-wow-delay=".4s"
@@ -437,7 +541,7 @@ export default function LandingPage() {
                   </div>
                 </div>
               </div> */}
-                {/* <div class="col-lg-4 col-md-6">
+          {/* <div class="col-lg-4 col-md-6">
                 <div
                   class="single-testimonial wow fadeInUp"
                   data-wow-delay=".6s"
@@ -471,7 +575,7 @@ export default function LandingPage() {
                   </div>
                 </div>
               </div> */}
-                {/* <div class="col-lg-4 col-md-6 -mt-30">
+          {/* <div class="col-lg-4 col-md-6 -mt-30">
                 <div
                   class="single-testimonial wow fadeInUp"
                   data-wow-delay=".2s"
@@ -505,7 +609,7 @@ export default function LandingPage() {
                   </div>
                 </div>
               </div> */}
-                {/* <div class="col-lg-4 col-md-6 -mt-60">
+          {/* <div class="col-lg-4 col-md-6 -mt-60">
                 <div
                   class="single-testimonial wow fadeInUp"
                   data-wow-delay=".4s"
@@ -539,7 +643,7 @@ export default function LandingPage() {
                   </div>
                 </div>
               </div> */}
-                {/* <div class="col-lg-4 col-md-6">
+          {/* <div class="col-lg-4 col-md-6">
                 <div
                   class="single-testimonial wow fadeInUp"
                   data-wow-delay=".6s"
@@ -573,9 +677,9 @@ export default function LandingPage() {
                   </div>
                 </div>
               </div> */}
-              </div>
+          {/* </div>
             ))}
-          </div>
+          </div> */}
         </div>
       </section>
 
