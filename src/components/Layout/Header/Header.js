@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Badge from "@mui/material/Badge";
 import logo from "../Images/backgroundlogo.png";
-import cart from "../Images/cart.png";
+import cart from "../Images/sprite.png";
 import "./Header.css";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
