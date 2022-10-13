@@ -64,7 +64,7 @@ const Product = () => {
             <div style={{ width: "82%", justifyContent: "center", display: "flex", alignItems: "center" }}>
             <div style={{ backgroundColor: "white", width: "60%", justifyContent: "center", display: "flex", alignItems: "center" }}>
             <form style={{width:"50%"}} encType="multipart/form-data">
-        <h1>Create Article</h1>
+            <h1>Create Article</h1>
             <div class="form-group">
                 <input type="text" class="form-control item" onChange={handleChange('productCode')} name="productCode" placeholder="Product code"/>
             </div>
