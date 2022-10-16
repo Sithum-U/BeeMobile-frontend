@@ -7,6 +7,8 @@ import Grid from "@mui/material/Grid";
 // import { red } from "@mui/material/colors";
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
+import { Typography } from "@mui/material";
+import Button from "@mui/material/Button";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -219,7 +221,10 @@ const Signup = () => {
                     onChange={(e) => setCardInformation(e.target.value)}
                   />
                 </Grid>
-                <p class="text-center mb-3">
+                <p
+                  class="text-center mb-3"
+                  style={{ margin: "25px 0px 0px 50px" }}
+                >
                   <img
                     src="assets/images/misc/payments.png"
                     styles={{ height: "25px", marginTop: "50px" }}
@@ -357,6 +362,13 @@ const Signup = () => {
                 <th>Actions</th>
               </tr> */}
               <div className={styles.right}>
+                <Typography
+                  variant="h4"
+                  gutterBottom
+                  style={{ marginBottom: "80px" }}
+                >
+                  Edit Payment Details
+                </Typography>
                 {payments &&
                   payments.length > 0 &&
                   payments.map((course, index) => (
@@ -395,7 +407,7 @@ const Signup = () => {
                                   fullWidth
                                   label="Email"
                                   autoFocus
-                                  style={{ margin: 10 }}
+                                  style={{ marginLeft: 50 }}
                                   type="text"
                                   value={editEmail}
                                   onChange={(e) => seteditEmail(e.target.value)}
@@ -431,7 +443,7 @@ const Signup = () => {
                                   fullWidth
                                   label="Card Information"
                                   autoFocus
-                                  style={{ margin: 5 }}
+                                  style={{ marginLeft: 50 }}
                                   type="number"
                                   value={editCardInformation}
                                   onChange={(e) =>
@@ -467,7 +479,7 @@ const Signup = () => {
                                   fullWidth
                                   // label="Expiry Date"
                                   autoFocus
-                                  style={{ margin: 5 }}
+                                  style={{ marginLeft: 50 }}
                                   type="date"
                                   value={editExpDate}
                                   onChange={(e) =>
@@ -503,7 +515,7 @@ const Signup = () => {
                                   fullWidth
                                   label="CVC"
                                   autoFocus
-                                  style={{ margin: 5 }}
+                                  style={{ marginLeft: 50 }}
                                   type="number"
                                   value={editcvc}
                                   onChange={(e) => seteditcvc(e.target.value)}
@@ -537,7 +549,7 @@ const Signup = () => {
                                   fullWidth
                                   label="Name On Card"
                                   autoFocus
-                                  style={{ margin: 5 }}
+                                  style={{ marginLeft: 50 }}
                                   type="text"
                                   value={editNameOnCard}
                                   onChange={(e) =>
@@ -573,7 +585,7 @@ const Signup = () => {
                                   fullWidth
                                   label="Zip"
                                   autoFocus
-                                  style={{ margin: 5 }}
+                                  style={{ marginLeft: 50 }}
                                   type="number"
                                   value={editZip}
                                   onChange={(e) => seteditZip(e.target.value)}
@@ -584,46 +596,53 @@ const Signup = () => {
                             )}
                           </td>
                           <td>
-                            <button
-                              style={{
-                                margin: 5,
-                                marginLeft: "20%",
-                                marginTop: "10px",
-                              }}
-                              className={styles.blue_btn}
-                              id={course._id}
-                              onClick={(e) => onEditClick(e)}
-                            >
-                              {isEditClick && course._id === editId
-                                ? "Cancel"
-                                : "Update"}
-                            </button>
-                            <div className={styles.blue_horizontal}>
-                              {isEditClick && course._id === editId && (
-                                <button
+                            <div style={{ margin: "50px 10px 0px 10px " }}>
+                              <Button
+                                style={{
+                                  margin: 5,
+                                  marginLeft: "20%",
+                                  marginTop: "10px",
+                                  display: "inline-block",
+                                }}
+                                variant="contained"
+                                className={styles.blue_btn}
+                                id={course._id}
+                                onClick={(e) => onEditClick(e)}
+                              >
+                                {isEditClick && course._id === editId
+                                  ? "Cancel"
+                                  : "Update"}
+                              </Button>
+
+                              <div className={styles.blue_horizontal}>
+                                {isEditClick && course._id === editId && (
+                                  <Button
+                                    style={{
+                                      margin: 5,
+                                      marginLeft: "10px",
+                                      marginTop: "10px",
+                                    }}
+                                    variant="contained"
+                                    className={styles.blue_btn}
+                                    onClick={(e) => updateData(e)}
+                                  >
+                                    Save<i class="bi bi-arrow-bar-up"></i>
+                                  </Button>
+                                )}
+                                <Button
                                   style={{
                                     margin: 5,
                                     marginLeft: "10px",
                                     marginTop: "10px",
                                   }}
+                                  variant="contained"
                                   className={styles.blue_btn}
-                                  onClick={(e) => updateData(e)}
+                                  id={course._id}
+                                  onClick={(e) => deleteCourse(e)}
                                 >
-                                  Save<i class="bi bi-arrow-bar-up"></i>
-                                </button>
-                              )}
-                              <button
-                                style={{
-                                  margin: 5,
-                                  marginLeft: "10px",
-                                  marginTop: "10px",
-                                }}
-                                className={styles.blue_btn}
-                                id={course._id}
-                                onClick={(e) => deleteCourse(e)}
-                              >
-                                Delete<i class="bi bi-trash-fill"></i>
-                              </button>
+                                  Delete<i class="bi bi-trash-fill"></i>
+                                </Button>
+                              </div>
                             </div>
                           </td>
                         </Grid>

@@ -1,37 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import Logo from "../../Layout/Images/backgroundlogo.png";
-import Signature from "../../PurchaseOrder/Images/AgroPro signature.jpg";
-import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
-import Snackbar from "@mui/material/Snackbar";
-import Slide from "@mui/material/Slide";
-import Button from "@mui/material/Button";
+import "./cart.css";
 import axios from "axios";
 import SoloAlert from "soloalert";
 import styles from "./styles.module.css";
 import myGif from "../Images/Emptypreview.gif";
+import { Link } from "react-router-dom";
+import cart from "../../Layout/Images/cart.png";
+import Badge from "@mui/material/Badge";
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import InputLabel from "@mui/material/InputLabel";
 
-function OrderConfirmationForm() {
-  const [open, setOpen] = React.useState(false);
-  const [transition, setTransition] = React.useState(undefined);
+export default function Cart() {
+  const [open, setOpen] = useState(false);
+  const [transition, setTransition] = useState(undefined);
 
   const [paymentDetails, setPaymentDetails] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filtered, setfiltered] = useState([]);
   const [itemName, setitemName] = useState([]);
   const [cartItems, setCartItems] = useState([]);
-
   useEffect(() => {
     fetch("http://localhost:8000/cartItem/")
       .then((res) => res.json())
@@ -50,11 +40,12 @@ function OrderConfirmationForm() {
       });
   }, []);
   const initialValue = 0;
-  const totalPrice = cartItems.reduce(
+  const subtotalPrice = cartItems.reduce(
     (accumilator, current) => accumilator + current.price,
     initialValue
   );
-  console.log(totalPrice);
+  const shippingPrice = 20;
+  const totalPrice = subtotalPrice + shippingPrice;
   const handleQtyChange = (e) => {
     e.preventDefault();
     setCartItems(e.target.value);
@@ -73,7 +64,8 @@ function OrderConfirmationForm() {
       body: "Are you sure",
       theme: "dark",
       useTransparency: true,
-      onOk: async function () {
+      onOk: async function (e) {
+        e.preventDefault();
         try {
           const result = await (
             await axios.delete(`http://localhost:8000/cartItem/${id}`)
@@ -115,249 +107,237 @@ function OrderConfirmationForm() {
       },
     });
   }
-
   return (
-    // <div className={styles.signup_container}>
-    <div className={styles.signup_form_container}>
-      {/* <div> */}
-      <div>
-        <div className="App" id="OrderConfirmationForm">
-          {/* <section class="section-pagetop bg"> */}
-
-          <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static" style={{ backgroundColor: "#fdcb6e" }}>
-              <Toolbar>
-                {/* <IconButton
-                  size="large"
-                  edge="start"
-                  color="inherit"
-                  aria-label="menu"
-                  sx={{ mr: 2 }}
+    <div class="container mt-5 p-3 rounded cart">
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="static" style={{ backgroundColor: "blue" }}>
+          <Toolbar>
+            <section>
+              <div class="container">
+                <h3
+                  class="title-page"
+                  styles={{ margin: "50px", color: "white" }}
                 >
-                  <MenuIcon />
-                </IconButton> */}
-                <section>
-                  <div class="container">
-                    <h3 class="title-page">Review Your Order</h3>
-                  </div>
-                </section>
-                <Typography variant="h6" component="div" sx={{ flexGrow: 5 }}>
-                  <input
-                    type="text"
-                    className={styles.search}
-                    name="search"
-                    placeholder="Search.."
-                    onChange={(e) => {
-                      setSearchTerm(e.target.value);
-                    }}
-                  />
-                </Typography>
-                {/* <Button color="inherit">Login</Button> */}
-              </Toolbar>
-            </AppBar>
-          </Box>
+                  Review Your Order
+                </h3>
+              </div>
+            </section>
 
-          <section class="section-content padding-y">
-            <div class="container">
-              <div class="row">
-                <main class="col-md-9">
-                  {/* <div class="card"> */}
-                  <table class="table table-borderless table-shopping-cart">
-                    {/* <thead class="text-muted">
-                      <tr class="small text-uppercase">
-                        <th scope="col">Product</th>
-                        <th scope="col" width="120">
-                          Quantity
-                        </th>
-                        <th scope="col" width="120">
-                          Price
-                        </th>
-                        <th scope="col" class="text-right" width="200">
-                          {" "}
-                        </th>
-                      </tr>
-                    </thead> */}
-                    <tbody>
-                      {cartItems.length === 0 && (
-                        <div className={styles.emptyCart_container}>
-                          <div className="center">
-                            <img src={myGif} />
-                            <h3 className="emptyCartMain">
-                              Your Cart is Empty
-                            </h3>
-                            <h4 className="emptyCartSecond">
-                              Looks like you haven't added anything to your cart
-                              yet
-                            </h4>
-                          </div>
-                        </div>
-                      )}
-                      {cartItems ? (
-                        cartItems
-                          .filter((value) => {
-                            if (searchTerm === "") {
-                              return value;
-                            } else if (
-                              value.productName
-                                .toLowerCase()
-                                .includes(searchTerm.toLowerCase())
-                            ) {
-                              return value;
-                            }
-                          })
-                          .map((item) => (
-                            <div className={styles.productCart_container}>
-                              <tr key={item.productId}>
-                                <td>
-                                  <figure class="itemside">
-                                    <div class="aside">
-                                      <img
-                                        src={item.image}
-                                        // src="assets/images/items/1.jpg"
-                                        class="img-sm"
-                                      />
-                                    </div>
-                                    <figcaption class="info">
-                                      <a href="#" class="title text-dark">
-                                        {item.productName}
-                                      </a>
-                                      <p class="text-muted small">
-                                        Product Code: {item.productCode} <br />{" "}
-                                        Category: {item.category}
-                                      </p>
-                                    </figcaption>
-                                  </figure>
-                                </td>
-                                {/* <td>
-                                    <Select
-                                      placeholder="1"
-                                      // name="role"
-                                      onChange={handleQtyChange}
-                                      value={cartItems.qty}
-                                      required
-                                      // className={styles.dropdown}
-                                    >
-                                      <MenuItem value={1}>1</MenuItem>
-                                      <MenuItem value={2}>2</MenuItem>
-                                      <MenuItem value={3}>3</MenuItem>
-                                      <MenuItem value={4}>4</MenuItem>
-                                      <MenuItem value={5}>5</MenuItem>
-                                    </Select>
-                                  
-                                  </td> */}
-                                <td>
-                                  <div class="price-wrap">
-                                    <var class="price">
-                                      Rs : {item.price} /=
-                                    </var>
-                                    <small class="text-muted">
-                                      {" "}
-                                      {/* Rs: {item.price} each{" "} */}
-                                    </small>
-                                  </div>
-                                </td>
-                                <td class="text-right">
-                                  <a
-                                    data-original-title="Save to Wishlist"
-                                    title=""
-                                    href=""
-                                    class="btn btn-light mr-2"
-                                    data-toggle="tooltip"
-                                  >
-                                    {" "}
-                                    <i class="fa fa-heart"></i>
-                                  </a>
-                                  <button
-                                    class="btn btn-light"
-                                    style={{
-                                      color: "#ff7979",
-                                      borderColor: "#ff7979",
-                                    }}
-                                    onClick={(e) => {
-                                      delet(item._id);
-                                    }}
-                                  >
-                                    Remove
-                                  </button>
-                                </td>
-                              </tr>
-                            </div>
-                          ))
-                      ) : (
-                        <div></div>
-                      )}
-                    </tbody>
-                  </table>
-                  {/* </div> */}
-                </main>
-                <aside class="col-md-3">
-                  <div class="card mb-3">
-                    <div class="card-body">
-                      <form>
-                        <div class="form-group">
-                          <label>Have coupon?</label>
-                          <div class="input-group">
-                            <input
-                              type="text"
-                              class="form-control"
-                              name=""
-                              placeholder="Coupon code"
-                            />
-                            <span class="input-group-append">
-                              <button class="btn btn-primary">Apply</button>
-                            </span>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                  <div class="card">
-                    <div class="card-body">
-                      <dl class="dlist-align">
-                        <dt>Total price:</dt>
-                        <dd class="text-right">{totalPrice}</dd>
-                      </dl>
-                      <dl class="dlist-align">
-                        <dt>Discount:</dt>
-                        <dd class="text-right">USD 658</dd>
-                      </dl>
-                      <dl class="dlist-align">
-                        <dt>{}</dt>
-                        <dd class="text-right  h5">
-                          <strong>$1,650</strong>
-                        </dd>
-                      </dl>
-                      <hr />
-                      <p class="text-center mb-3">
-                        <img
-                          src="assets/images/misc/payments.png"
-                          height="26"
-                        />
-                      </p>
-                    </div>
-                  </div>
-                  <div>
-                    <Link to="/home">
-                      <button className={styles.button62} role="button">
-                        <i class="bi bi-arrow-left-square"></i>Back To Home
-                      </button>
-                    </Link>
-                    <Link to="/checkout">
-                      <button className={styles.button62} role="button">
-                        Proceed To Payment{""}
-                        <i class="bi bi-arrow-right-square"></i>
-                      </button>
-                    </Link>
-                  </div>
-                </aside>
-                ))
+            <Badge
+              className="zoomBadge"
+              badgeContent={cartItems.length}
+              color="success"
+            >
+              <li>
+                <a href="/Cart">
+                  <img
+                    className="zoomCart"
+                    src={cart}
+                    width="50px"
+                    height="50px"
+                    color="#fff"
+                  />
+                </a>
+              </li>
+            </Badge>
+          </Toolbar>
+        </AppBar>
+      </Box>
+      <div class="row no-gutters">
+        <div class="col-md-8">
+          <div class="product-details mr-2">
+            <input
+              type="text"
+              className={styles.search}
+              name="search"
+              placeholder="Search.."
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+              }}
+            />
+
+            <div class="d-flex flex-row align-items-center">
+              <i class="fa fa-long-arrow-left"></i>
+              <span class="ml-2">Continue Shopping</span>
+            </div>
+            <hr />
+            <h4 class="mb-0">Shopping cart</h4>
+            <div class="d-flex justify-content-between">
+              <span>You have {cartItems.length} items in your cart</span>
+              <div class="d-flex flex-row align-items-center">
+                <span class="text-black-50">Sort by:</span>
+                <div class="price ml-2">
+                  <span class="mr-1">price</span>
+                  <i class="fa fa-angle-down"></i>
+                </div>
               </div>
             </div>
-          </section>
+
+            {/* ......................................product items........................................................ */}
+
+            {cartItems.length === 0 && (
+              <div className={styles.emptyCart_container}>
+                <div className="center">
+                  <img src={myGif} />
+                  <h3 className="emptyCartMain">Your Cart is Empty</h3>
+                  <h4 className="emptyCartSecond">
+                    Looks like you haven't added anything to your cart yet
+                  </h4>
+                </div>
+              </div>
+            )}
+            {cartItems ? (
+              cartItems
+                .filter((value) => {
+                  if (searchTerm === "") {
+                    return value;
+                  } else if (
+                    value.productName
+                      .toLowerCase()
+                      .includes(searchTerm.toLowerCase())
+                  ) {
+                    return value;
+                  }
+                })
+                .map((item) => (
+                  <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
+                    <tr key={item.productId}>
+                      <div class="d-flex flex-row">
+                        <td>
+                          <figure class="itemside">
+                            <div class="aside">
+                              <img
+                                src={item.image}
+                                // src="assets/images/items/1.jpg"
+                                class="img-sm"
+                              />
+                            </div>
+                            <figcaption class="ml-2">
+                              <span class="font-weight-bold d-block">
+                                <a href="#" class="title text-dark">
+                                  {item.productName}
+                                </a>
+                              </span>
+                              <p class="text-muted small">
+                                Product Code: {item.productCode} <br />{" "}
+                                Category: {item.category}
+                              </p>
+                            </figcaption>
+                          </figure>
+                        </td>
+                      </div>
+                      <div class="d-flex flex-row align-items-center">
+                        <td>
+                          <div class="price-wrap">
+                            <var class="d-block ml-5 font-weight-bold">
+                              Rs : {item.price} /=
+                            </var>
+                            <small class="text-muted">
+                              {" "}
+                              {/* Rs: {item.price} each{" "} */}
+                            </small>
+                          </div>
+                        </td>
+                        <td class="text-right">
+                          <a
+                            data-original-title="Save to Wishlist"
+                            title=""
+                            href=""
+                            class="btn btn-light mr-2"
+                            data-toggle="tooltip"
+                          >
+                            {" "}
+                            1
+                          </a>
+                          <button
+                            class="btn btn-light"
+                            style={{
+                              color: "#ff7979",
+                              borderColor: "#ff7979",
+                            }}
+                            onClick={(e) => {
+                              delet(item._id);
+                            }}
+                          >
+                            Remove
+                          </button>
+                        </td>
+                      </div>
+                    </tr>
+                  </div>
+                ))
+            ) : (
+              <div></div>
+            )}
+
+            {/* <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
+              <div class="d-flex flex-row">
+                <img
+                  class="rounded"
+                  src="https://i.imgur.com/Tja5H1c.jpg"
+                  width="40"
+                />
+                <div class="ml-2">
+                  <span class="font-weight-bold d-block">
+                    Samsung galaxy Note 10&nbsp;
+                  </span>
+                  <span class="spec">256GB, Navy Blue</span>
+                </div>
+              </div>
+              <div class="d-flex flex-row align-items-center">
+                <span class="d-block">1</span>
+                <span class="d-block ml-5 font-weight-bold">$999</span>
+                <i class="fa fa-trash-o ml-3 text-black-50"></i>
+              </div>
+            </div> */}
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="payment-info">
+            <div class="d-flex justify-content-between align-items-center">
+              <span>Card details</span>
+              <img
+                class="rounded"
+                src="https://i.imgur.com/WU501C8.jpg"
+                width="30"
+              />
+            </div>
+            <span class="type d-block mt-3 mb-1">Card type</span>
+
+            <p class="text-center mb-3" style={{ margin: "25px 0px 0px 50px" }}>
+              <img
+                src="assets/images/misc/payments.png"
+                styles={{ height: "25px", marginTop: "50px" }}
+              />
+            </p>
+
+            <hr class="line" />
+            <div class="d-flex justify-content-between information">
+              <span>Subtotal</span>
+              <span>Rs :{subtotalPrice} /=</span>
+            </div>
+            <div class="d-flex justify-content-between information">
+              <span>Shipping</span>
+              <span>Rs :{shippingPrice} /=</span>
+            </div>
+            <div class="d-flex justify-content-between information">
+              <span>Total(Incl. taxes)</span>
+              <span>Rs :{totalPrice} /=</span>
+            </div>
+            <button
+              class="btn btn-primary btn-block d-flex justify-content-between mt-3"
+              type="button"
+            >
+              <span>Rs :{totalPrice} /=</span>
+              <Link to="/checkout">
+                <span style={{ color: "white" }}>
+                  Checkout<i class="fa fa-long-arrow-right ml-1"></i>
+                </span>
+              </Link>
+            </button>
+          </div>
         </div>
       </div>
     </div>
   );
 }
-
-export default OrderConfirmationForm;

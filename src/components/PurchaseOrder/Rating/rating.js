@@ -52,8 +52,12 @@ export default function Rating() {
     <div>
       {" "}
       <center>
+        <br />
+        <br />
+        <br />
+
         <Typography variant="h2" gutterBottom>
-          Thanks for rating us!
+          Thankyou for rating us!!!
         </Typography>
       </center>
       <div className="ratingContainer">

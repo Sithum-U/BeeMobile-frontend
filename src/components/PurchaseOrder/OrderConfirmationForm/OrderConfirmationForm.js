@@ -1,6 +1,6 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-
+import { Link } from "react-router-dom";
 function WithHeaderStyledExample() {
   return (
     <Card style={{ margin: "60px 40px 40px 40px " }}>
@@ -12,7 +12,10 @@ function WithHeaderStyledExample() {
           your order , and will send you an update when your order is ready to
           be delivered.
         </Card.Text>
-        <Button variant="primary">Go back to home</Button>
+        <Link to="/home">
+          {" "}
+          <Button variant="primary">Go back to home</Button>
+        </Link>
       </Card.Body>
     </Card>
   );
