@@ -8,6 +8,7 @@ import jsPDF from "jspdf";
 import Snackbar from "@mui/material/Snackbar";
 import Slide from "@mui/material/Slide";
 import Button from "@mui/material/Button";
+import { Typography } from "@mui/material";
 
 function TransitionLeft(props) {
   return <Slide {...props} direction="left" />;
@@ -36,7 +37,7 @@ function OrderConfirmationForm() {
       const imgWidth = 288;
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
       const imgData = canvas.toDataURL("img/png");
-      const pdf = new jsPDF("p", "mm", "a4");
+      const pdf = new jsPDF("p", "mm", "a3");
       pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
       pdf.save("Order Details.pdf");
     });
@@ -55,6 +56,13 @@ function OrderConfirmationForm() {
       });
   }, []);
   console.log(cartItems);
+  const initialValue = 0;
+  const subtotalPrice = cartItems.reduce(
+    (accumilator, current) => accumilator + current.price,
+    initialValue
+  );
+  const shippingPrice = 20;
+  const totalPrice = subtotalPrice + shippingPrice;
 
   useEffect(() => {
     fetch("http://localhost:8000/payment/")
@@ -139,15 +147,19 @@ function OrderConfirmationForm() {
       {/* <section class="section-pagetop bg"> */}
       <section>
         <div class="container">
-          <h3
-            class="title-page"
-            style={{
-              color: "#3e8e41",
-              fontFamily: "Lucida Handwriting",
-            }}
-          >
-            Review Your Order
-          </h3>
+          <center>
+            {" "}
+            <h3
+              class="title-page"
+              style={{
+                color: "black",
+                fontFamily: "Lucida Handwriting",
+                marginTop: 30,
+              }}
+            >
+              Order Details Summary
+            </h3>
+          </center>
         </div>
       </section>
 
@@ -155,127 +167,125 @@ function OrderConfirmationForm() {
         <div class="container">
           <div class="row">
             <main class="col-md-9">
-              <div class="card">
-                <table class="table table-borderless table-shopping-cart">
-                  <thead class="text-muted">
-                    <tr class="small text-uppercase">
-                      <th scope="col">Product</th>
-                      <th scope="col" width="120">
-                        Quantity
-                      </th>
-                      <th scope="col" width="120">
-                        Price
-                      </th>
-                      <th scope="col" class="text-right" width="200">
-                        {" "}
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {cartItems ? (
-                      cartItems.map((item) => (
-                        <tr key={item.productId}>
-                          <td>
-                            <figure class="itemside">
-                              <div class="aside">
-                                <img
-                                  src={item.image}
-                                  // src="assets/images/items/1.jpg"
-                                  class="img-sm"
-                                />
-                              </div>
-                              <figcaption class="info">
-                                <a href="#" class="title text-dark">
-                                  {item.productName}
-                                </a>
-                                <p class="text-muted small">
-                                  Product Code: {item.productCode} <br />{" "}
-                                  Category: {item.category}
-                                </p>
-                              </figcaption>
-                            </figure>
-                          </td>
-                          <td>
-                            <select class="form-control">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                            </select>
-                          </td>
-                          <td>
-                            <div class="price-wrap">
-                              <var class="price">$1156.00</var>
-                              <small class="text-muted">
-                                {" "}
-                                {/* Rs: {item.price} each{" "} */}
-                              </small>
+              <Typography variant="h5" gutterBottom>
+                {" "}
+                <b>Product Details</b>
+                <hr />
+              </Typography>
+              <table class="table table-striped">
+                <thead class="text-muted">
+                  <tr class="small text-uppercase">
+                    <th scope="col">Product</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Product Code</th>
+                    <th scope="col" width="120">
+                      Category
+                    </th>
+                    <th scope="col" width="120">
+                      Price
+                    </th>
+                    <th scope="col" class="text-right" width="200">
+                      {" "}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {cartItems ? (
+                    cartItems.map((item) => (
+                      <tr key={item.productId}>
+                        <td>
+                          <figure class="itemside">
+                            <div class="aside">
+                              <img
+                                src={item.image}
+                                // src="assets/images/items/1.jpg"
+                                class="img-sm"
+                              />
                             </div>
+                          </figure>
+                        </td>
+                        <td>
+                          <td>
+                            <figcaption class="info">
+                              <a href="#" class="title text-dark">
+                                <b>{item.productName}</b>
+                              </a>
+                            </figcaption>
                           </td>
-                          <td class="text-right">
-                            <a
-                              data-original-title="Save to Wishlist"
-                              title=""
-                              href=""
-                              class="btn btn-light mr-2"
-                              data-toggle="tooltip"
-                            >
-                              {" "}
-                              <i class="fa fa-heart"></i>
-                            </a>
-                            <button
-                              class="btn btn-light"
-                              style={{
-                                color: "#ff7979",
-                                borderColor: "#ff7979",
-                              }}
-                              onClick={() => onDelete(item)}
-                            >
-                              {" "}
-                              Remove
-                            </button>
-                          </td>
-                        </tr>
-                      ))
-                    ) : (
-                      <div></div>
-                    )}
-                  </tbody>
-                </table>
+                        </td>
+                        <td>
+                          {" "}
+                          <p class="text-muted small">{item.productCode}</p>
+                        </td>
+                        <td>
+                          <p class="text-muted small">{item.category}</p>
+                        </td>
+                        <td>
+                          <p class="text-muted small">Rs: {item.price} /=</p>
+                        </td>
+                        <td class="text-right">
+                          <a
+                            data-original-title="Save to Wishlist"
+                            title=""
+                            href=""
+                            class="btn btn-light mr-2"
+                            data-toggle="tooltip"
+                          >
+                            {" "}
+                            <i class="fa fa-heart"></i>
+                          </a>
+                          {/* <button
+                            class="btn btn-light"
+                            style={{
+                              color: "#ff7979",
+                              borderColor: "#ff7979",
+                            }}
+                            onClick={() => onDelete(item)}
+                          >
+                            {" "}
+                            Remove
+                          </button> */}
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <div></div>
+                  )}
+                </tbody>
+              </table>
 
-                {/* ---------------------------------Generate report---------------------------------  */}
-                <div class="card-body border-top">
-                  {/* <a href="#" class="btn btn-primary float-md-right">
+              {/* ---------------------------------Generate report---------------------------------  */}
+              <div class="card-body border-top">
+                {/* <a href="#" class="btn btn-primary float-md-right">
                     {" "}
                     Make Purchase <i class="fa fa-chevron-right"></i>{" "}
                   </a> */}
 
-                  <div onClick={handleClick(TransitionLeft)}>
-                    <button
-                      type="button"
-                      class="btn btn-primary float-md-right"
-                      style={{
-                        backgroundColor: "#ff7979",
-                        borderColor: "#ff7979",
-                      }}
-                      // onClick={() => generatePDF(paymentDetails)}
-                      onClick={() => exportPDF()}
-                    >
-                      GenerateReport <i class="bi bi-download"></i>
-                    </button>{" "}
-                  </div>
-                  <Snackbar
-                    open={open}
-                    onClose={handleClose}
-                    TransitionComponent={transition}
-                    message="I love snacks"
-                    key={transition ? transition.name : ""}
-                  />
-                  <a href="#" class="btn btn-light">
-                    {" "}
-                    <i class="fa fa-chevron-left"></i> Continue shopping{" "}
-                  </a>
+                <div onClick={handleClick(TransitionLeft)}>
+                  <button
+                    type="button"
+                    class="btn btn-primary float-md-right"
+                    style={{
+                      backgroundColor: "#4834d4",
+                      borderColor: "#4834d4",
+                    }}
+                    // onClick={() => generatePDF(paymentDetails)}
+                    onClick={() => exportPDF()}
+                  >
+                    GenerateReport <i class="bi bi-download"></i>
+                  </button>{" "}
                 </div>
+                <Snackbar
+                  open={open}
+                  onClose={handleClose}
+                  TransitionComponent={transition}
+                  message="Report Generated Successfully .. Please wait...."
+                  key={transition ? transition.name : ""}
+                />
+                <a href="#" class="btn btn-light">
+                  {" "}
+                  <i class="fa fa-chevron-left"></i> Continue shopping{" "}
+                </a>
               </div>
 
               <div class="alert alert-success mt-3">
@@ -285,49 +295,82 @@ function OrderConfirmationForm() {
                 </p>
               </div>
             </main>
-
-            {/* ...............................Payment Details......................... */}
             <aside class="col-md-3">
-              <div class="card mb-3">
-                <div class="card-body">
-                  {paymentDetails.map((payment) => (
-                    <table
-                      key={payment.email}
-                      class="table table-borderless table-shopping-cart"
-                    >
-                      <thead class="text-muted">
-                        <tr class="small text-uppercase">
-                          <th scope="col">Payment Details</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>Email Address : {payment.email}</td>
-                        </tr>
-                        <tr>
-                          <td> Card Number : {payment.cardInformation}</td>
-                        </tr>
-
-                        <tr>
-                          <td> CVV code : {payment.cvc}</td>
-                        </tr>
-                        <tr>
-                          <td>Card Holder Name : {payment.nameOnCard}</td>
-                        </tr>
-                        <tr>
-                          <td>Payment Region : {payment.region}</td>
-                        </tr>
-                        <tr>
-                          <td>Zip Code : {payment.zip}</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  ))}
-                </div>
+              {/* <div class="card"> */}
+              <div class="card-body" style={{ marginTop: 0 }}>
+                <Typography variant="h5" gutterBottom>
+                  <center>
+                    {" "}
+                    <b>Total Amount</b>
+                    <hr />
+                  </center>
+                </Typography>
+                <dl class="dlist-align">
+                  <dt>Sub Total :</dt>
+                  <dd class="text-right">Rs: {subtotalPrice} /=</dd>
+                </dl>
+                <dl class="dlist-align">
+                  <dt>Shipping :</dt>
+                  <dd class="text-right">Rs: {shippingPrice} /=</dd>
+                </dl>
+                <dl class="dlist-align">
+                  <dt>
+                    <b>Total:</b>
+                  </dt>
+                  <dd class="text-right  h5">
+                    <strong>Rs: {totalPrice} /=</strong>
+                  </dd>
+                </dl>
+                <hr />
+                <p class="text-center mb-3">
+                  <img src="assets/images/misc/payments.png" height="26" />
+                </p>
               </div>
+              {/* </div> */}
             </aside>
+            {/* ...............................Payment Details......................... */}
+            {/* <aside class="col-md-3"> */}
+            {/* <div class="card mb-3"> */}
+            <div class="card-body">
+              {paymentDetails.map((payment) => (
+                <table key={payment.email} class="table table-striped">
+                  <thead class="text-muted">
+                    <tr class="small text-uppercase">
+                      <Typography variant="h6" gutterBottom>
+                        {" "}
+                        <b>Payment Details</b>
+                        <hr />
+                      </Typography>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Email Address : {payment.email}</td>
+                    </tr>
+                    <tr>
+                      <td> Card Number : {payment.cardInformation}</td>
+                    </tr>
 
-            <aside class="col-md-3">
+                    <tr>
+                      <td> CVV code : {payment.cvc}</td>
+                    </tr>
+                    <tr>
+                      <td>Card Holder Name : {payment.nameOnCard}</td>
+                    </tr>
+                    <tr>
+                      <td>Payment Region : {payment.region}</td>
+                    </tr>
+                    <tr>
+                      <td>Zip Code : {payment.zip}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              ))}
+            </div>
+            {/* </div> */}
+            {/* </aside> */}
+
+            {/* <aside class="col-md-3">
               <div class="card mb-3">
                 <div class="card-body">
                   <form>
@@ -348,55 +391,28 @@ function OrderConfirmationForm() {
                   </form>
                 </div>
               </div>
-            </aside>
-            <aside class="col-md-3">
-              <div class="card">
-                <div class="card-body">
-                  <dl class="dlist-align">
-                    <dt>Total price:</dt>
-                    <dd class="text-right">USD 568</dd>
-                  </dl>
-                  <dl class="dlist-align">
-                    <dt>Discount:</dt>
-                    <dd class="text-right">USD 658</dd>
-                  </dl>
-                  <dl class="dlist-align">
-                    <dt>Total:</dt>
-                    <dd class="text-right  h5">
-                      <strong>$1,650</strong>
-                    </dd>
-                  </dl>
-                  <hr />
-                  <p class="text-center mb-3">
-                    <img src="assets/images/misc/payments.png" height="26" />
-                  </p>
-                </div>
-              </div>
-            </aside>
+            </aside> */}
           </div>
         </div>
       </section>
 
       <section class="section-name bg padding-y">
         <div class="container">
-          <h6>Payment and refund policy</h6>
+          <h5>Payment and refund policy</h5>
+          <br />
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            Thanks for purchasing our products at [website] operated by [name].
+            Due to the nature of our business and products we sell, items that
+            expire sooner than 1 month from the date of the purchase are not
+            eligible for a refund. For any other items to be eligible for a
+            refund, you have to return the item you have purchased to us within
+            7 calendar days of the purchase. The item must unopened and in its
+            original condition. Contact our customer services department to get
+            a free shipping label. If our products arrived damaged, rotten or
+            contaminated in any way, please contact us right away and we will be
+            happy to send a free replacement regardless of its expiration date.
+            If anything is unclear or you have more questions feel free to
+            contact our customer support team.
           </p>
         </div>
       </section>

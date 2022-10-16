@@ -11,7 +11,7 @@
 .signup_form_container {
   width: 1500px;
   height: 950px;
-  background-image: url("../../Layout/Images/agriculturebg.jpg");
+  /* background-image: url("../../Layout/Images/agriculturebg.jpg"); */
   background-repeat: no-repeat;
   background-size: auto;
   /* display: flex; */
@@ -110,8 +110,9 @@
 .search {
   width: 130px;
   box-sizing: border-box;
+  border-color: #414bb2;
   border: 2px solid #ccc;
-  border-radius: 4px;
+  border-radius: 5px;
   font-size: 16px;
   background-color: white;
   /* background-image: url("searchicon.png"); */
@@ -126,11 +127,11 @@
   width: 100%;
 }
 .emptyCart_container {
-  width: 300px;
-  height: 200px;
+  width: 400px;
+  height: 300px;
   /* display: flex; */
   margin-left: 30%;
-  padding: 20px 20px 20px 20px;
+  /* padding: 20px 20px 20px 20px; */
   border-radius: 10px;
   box-shadow: 0px 3px 3px -2px rgb(0 0 0 / 20%),
     0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);

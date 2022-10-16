@@ -66,12 +66,11 @@ export default function PO() {
               <React.Fragment>
                 {getStepContent(activeStep)}
                 <div className={styles.buttons}>
-                  {activeStep !== 0 ||
-                    (activeStep !== 2 && (
-                      <Button onClick={handleBack} className={styles.button}>
-                        Back
-                      </Button>
-                    ))}
+                  {activeStep !== 0 && (
+                    <Button onClick={handleBack} className={styles.button}>
+                      Back
+                    </Button>
+                  )}
                   {activeStep === 0 ? (
                     <Link to="/Cart">
                       <button
@@ -91,9 +90,12 @@ export default function PO() {
                     className={styles.button}
                   >
                     {activeStep === steps.length - 1 ? (
-                      <h4 style={{ color: "#ffffff" }}>
+                      <h4 style={{ color: "#ffffff", fontSize: "18px" }}>
                         Rate Us{" "}
-                        <i class="bi bi-star" style={{ color: "yellow" }}></i>
+                        <i
+                          class="bi bi-star-fill"
+                          style={{ color: "#ffd32a" }}
+                        ></i>
                       </h4>
                     ) : (
                       "Next"
