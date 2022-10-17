@@ -43,21 +43,21 @@ const PaymentForm = () => {
   }, []);
 
   const saveData = (e) => {
-    if (!isValidEmail(e.target.value.email)) {
-      setError("Email is invalid");
-    } else {
-      setError(null);
-    }
+    // if (!isValidEmail(e.target.value.email)) {
+    //   setError("Email is invalid");
+    // } else {
+    //   setError(null);
+    // }
 
-    setMessage(e.target.value);
+    // setMessage(e.target.value);
 
-    e.preventDefault();
-    if (cardInformation.length == 0 || nameOnCard.length == 0) {
-      setError(true);
-    }
-    if (cardInformation && nameOnCard) {
-      console.log("First Name: ", cardInformation, "\nLast Name: ", nameOnCard);
-    }
+    // e.preventDefault();
+    // if (cardInformation.length == 0 || nameOnCard.length == 0) {
+    //   setError(true);
+    // }
+    // if (cardInformation && nameOnCard) {
+    //   console.log("First Name: ", cardInformation, "\nLast Name: ", nameOnCard);
+    // }
     const paymentObj = {
       email,
       cardInformation,
@@ -180,7 +180,7 @@ const PaymentForm = () => {
                     style={{ margin: 5 }}
                     onChange={(e) => setEmail(e.target.value)}
                   />
-                  {error && <h2 style={{ color: "red" }}>{error}</h2>}
+                  {/* {error && <h2 style={{ color: "red" }}>{error}</h2>} */}
                 </Grid>
 
                 {/* <input
@@ -257,11 +257,11 @@ const PaymentForm = () => {
                     style={{ margin: 5 }}
                     onChange={(e) => setCardInformation(e.target.value)}
                   />
-                  {error && cardInformation.length <= 0 ? (
+                  {/* {error && cardInformation.length <= 0 ? (
                     <label>Last Name can't be Empty</label>
                   ) : (
                     ""
-                  )}
+                  )} */}
                 </Grid>
                 <p
                   class="text-center mb-3"
@@ -367,18 +367,30 @@ const PaymentForm = () => {
                     },
                   }}
                 >
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    label="zip"
-                    autoFocus
-                    type="number"
-                    placeholder="Enter Zip code"
-                    value={zip}
-                    style={{ margin: 5 }}
-                    onChange={(e) => setzip(e.target.value)}
-                  />
+                  {zip.length == 5 || zip.length == 0 ? (
+                    <TextField
+                      variant="outlined"
+                      required
+                      fullWidth
+                      label="zip"
+                      autoFocus
+                      type="number"
+                      placeholder="Enter Zip code"
+                      value={zip}
+                      style={{ margin: 5 }}
+                      onChange={(e) => setzip(e.target.value)}
+                    />
+                  ) : (
+                    <TextField
+                      error
+                      id="outlined-error-helper-text"
+                      label="ZIP"
+                      helperText="Must be a 5 digit number"
+                      value={zip}
+                      style={{ margin: 5 }}
+                      onChange={(e) => setzip(e.target.value)}
+                    />
+                  )}
                 </Grid>
               </Grid>
               {/* <input
@@ -657,22 +669,38 @@ const PaymentForm = () => {
                           </td>
                           <td>
                             <div style={{ margin: "50px 10px 0px 10px " }}>
-                              <Button
-                                style={{
-                                  margin: 5,
-                                  marginLeft: "20%",
-                                  marginTop: "10px",
-                                  display: "inline-block",
-                                }}
-                                variant="contained"
-                                className={styles.blue_btn}
-                                id={course._id}
-                                onClick={(e) => onEditClick(e)}
-                              >
-                                {isEditClick && course._id === editId
-                                  ? "Cancel"
-                                  : "Update"}
-                              </Button>
+                              {isEditClick && course._id === editId ? (
+                                <Button
+                                  style={{
+                                    margin: 5,
+                                    marginLeft: "30%",
+                                    marginTop: "10px",
+                                    display: "inline-block",
+                                  }}
+                                  variant="contained"
+                                  className={styles.blue_btn}
+                                  id={course._id}
+                                  onClick={(e) => onEditClick(e)}
+                                >
+                                  Cancel
+                                </Button>
+                              ) : (
+                                <Button
+                                  style={{
+                                    margin: 5,
+                                    marginLeft: "9px",
+                                    marginTop: "10px",
+                                    display: "inline-block",
+                                    backgroundColor: "purple",
+                                  }}
+                                  variant="contained"
+                                  className={styles.blue_btn}
+                                  id={course._id}
+                                  onClick={(e) => onEditClick(e)}
+                                >
+                                  Update<i class="bi bi-pencil-square"></i>
+                                </Button>
+                              )}
 
                               <div className={styles.blue_horizontal}>
                                 {isEditClick && course._id === editId && (

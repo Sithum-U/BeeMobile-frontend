@@ -9,12 +9,37 @@ import Snackbar from "@mui/material/Snackbar";
 import Slide from "@mui/material/Slide";
 import Button from "@mui/material/Button";
 import { Typography } from "@mui/material";
+import axios from "axios";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
+import Alert from "@mui/material/Alert";
 
 function TransitionLeft(props) {
   return <Slide {...props} direction="left" />;
 }
 
 function OrderConfirmationForm() {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    try {
+      const result = axios.delete(`http://localhost:8000/cartItem/`);
+
+      console.log(result);
+    } catch (err) {
+      console.log(err);
+    }
+
+    try {
+      const result = axios.delete(`http://localhost:8000/payment/`);
+
+      console.log(result);
+    } catch (err) {
+      console.log(err);
+    }
+    setOpen(!open);
+  };
+
   const [open, setOpen] = React.useState(false);
   const [transition, setTransition] = React.useState(undefined);
 
@@ -72,57 +97,6 @@ function OrderConfirmationForm() {
         // console.log(paymentDetails);
       });
   }, []);
-  // console.log(paymentDetails);
-
-  //genarate pdf
-
-  // const generatePDF = (tickets) => {
-  //   const doc = new jspdf();
-  //   const tableColumn = [
-  //     "order ID",
-  //     "Item Name",
-  //     "Item Price",
-  //     "Item Quantity",
-  //     "Item Price",
-  //   ];
-  //   const tableRows = [];
-  //   const date = Date().split(" ");
-  //   const dateStr = date[1] + "-" + date[2] + "-" + date[3];
-
-  //   tickets.map((ticket) => {
-  //     const ticketData = [
-  //       ticket._id,
-  //       ticket.itemName,
-  //       ticket.itemPrice,
-  //       ticket.itemQuantity,
-  //       ticket.itemPrice * ticket.itemQuantity,
-  //     ];
-  //     tableRows.push(ticketData);
-  //   });
-  //   tickets.map((payment) => {
-  //     const ticketData = [
-  //       payment.email,
-  //       payment.cardInformation,
-  //       payment.expDate,
-  //       payment.cvc,
-  //       payment.nameOnCard,
-  //       payment.region,
-  //       payment.zip,
-  //     ];
-  //     tableRows.push(ticketData);
-  //   });
-  //   doc.text("AgroPro Solution Provider", 70, 8).setFontSize(13);
-  //   doc.text("Order Confirmation Report", 14, 16).setFontSize(13);
-  //   doc.text(`Report Genarated Date - ${dateStr}`, 14, 23);
-  //   //right down width height
-  //   doc.addImage(Logo, "JPEG", 170, 8, 25, 25);
-  //   doc.autoTable(tableColumn, tableRows, {
-  //     styles: { fontSize: 8 },
-  //     startY: 35,
-  //   });
-  //   doc.addImage(Signature, "JPEG", 120, 80, 70, 40);
-  //   doc.save("Contract Details Report.pdf");
-  // };
 
   const clickNotify = () => {
     Notification.requestPermission().then((perm) => {
@@ -279,7 +253,7 @@ function OrderConfirmationForm() {
                   open={open}
                   onClose={handleClose}
                   TransitionComponent={transition}
-                  message="Report Generated Successfully .. Please wait...."
+                  message=" Please wait...."
                   key={transition ? transition.name : ""}
                 />
                 <a href="#" class="btn btn-light">
@@ -367,35 +341,38 @@ function OrderConfirmationForm() {
                 </table>
               ))}
             </div>
-            {/* </div> */}
-            {/* </aside> */}
-
-            {/* <aside class="col-md-3">
-              <div class="card mb-3">
-                <div class="card-body">
-                  <form>
-                    <div class="form-group">
-                      <label>Have coupon?</label>
-                      <div class="input-group">
-                        <input
-                          type="text"
-                          class="form-control"
-                          name=""
-                          placeholder="Coupon code"
-                        />
-                        <span class="input-group-append">
-                          <button class="btn btn-primary">Apply</button>
-                        </span>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </aside> */}
           </div>
         </div>
       </section>
-
+      <div>
+        <Alert severity="warning" style={{ marginLeft: "50%" }}>
+          Warning.. — Ckick on Place order to confrim you order before moving to
+          next!
+        </Alert>
+        <Button
+          variant="contained"
+          onClick={handleSubmit}
+          style={{ marginLeft: "80%", backgroundColor: "purple" }}
+        >
+          Place Order{" "}
+        </Button>
+        <Backdrop
+          sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={open}
+          onClick={handleClose}
+          style={{ transition: "all 0.3s linear" }}
+        >
+          <Button
+            variant="contained"
+            onClick={handleSubmit}
+            style={{ marginLeft: "50px" }}
+          >
+            Continue
+          </Button>
+          Your Order is processing .......
+          <CircularProgress color="inherit" />
+        </Backdrop>
+      </div>
       <section class="section-name bg padding-y">
         <div class="container">
           <h5>Payment and refund policy</h5>

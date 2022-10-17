@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import AppBar from "@material-ui/core/AppBar";
@@ -19,7 +19,6 @@ import Rating from "../Rating/rating";
 import axios from "axios";
 
 const steps = ["Payment Details", "Review Your Order", "Order Confirmation"];
-
 function getStepContent(step) {
   switch (step) {
     case 0:
@@ -35,9 +34,11 @@ function getStepContent(step) {
 
 export default function PO() {
   const [activeStep, setActiveStep] = React.useState(0);
+  const [open, setOpen] = useState(false);
 
   const handleClick = (e) => {
     e.preventDefault();
+
     try {
       const result = axios.delete(`http://localhost:8000/cartItem/`);
 
@@ -118,8 +119,11 @@ export default function PO() {
                         ></i>
                       </h4>
                     ) : activeStep === steps.length - 2 ? (
-                      <Button onClick={handleClick}>Place order</Button>
+                      "Next"
                     ) : (
+                      // <div>
+                      //   <Button onClick={handleClick}>Place order</Button>
+                      // </div>
                       "Next"
                     )}
                   </Button>
