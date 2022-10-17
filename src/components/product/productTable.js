@@ -122,10 +122,10 @@ const ProductTable = () => {
         <div class="registration-form" style={{ justifyContent: "center", display: "flex" }}>
             <SideBar />
             <div style={{ backgroundColor: '#dfe3e9', width: "82%" }}>
-                <div className="container"><br />
-                <button onClick={() => { generatePDF(product) }}>Download</button>
+                <div className="container"><br /><br />
+                <Button variant="secondary" onClick={() => { generatePDF(product) }}>Download</Button> | 
                     <Link to="/product/" >
-                        <Button size="sm" variant="success">Add Product</Button>
+                        <Button variant="primary">Add Product</Button>
                     </Link><br /><br />
                     <h3 className="bg-dark text-white p-3">Product Table</h3><br />
                     {/* <div>
