@@ -6,6 +6,7 @@ import { Card, Container, Form, Row, Col, Dropdown } from "react-bootstrap";
 import Select from "react-select";
 import { Link } from "react-router-dom";
 import FormData from "form-data";
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 
 const Advertisement = () => {
@@ -87,6 +88,14 @@ const Advertisement = () => {
                     marginTop: '40px'
                   }}>Create Article
                   </button>
+
+                  <Link to="/advertisement/view">
+     <button type="button" style={{ backgroundColor: "green", color: "white"
+  }}
+                    startIcon={<ArrowBackIosIcon/>}>
+          BACK
+     </button>
+ </Link>
          </div>
      </form>
   </Card>
