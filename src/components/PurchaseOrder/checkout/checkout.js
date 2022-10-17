@@ -45,6 +45,14 @@ export default function PO() {
     } catch (err) {
       console.log(err);
     }
+
+    try {
+      const result = axios.delete(`http://localhost:8000/payment/`);
+
+      console.log(result);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleNext = () => {
