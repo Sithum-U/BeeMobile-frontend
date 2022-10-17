@@ -10,7 +10,7 @@ import Stack from "@mui/material/Stack";
 import { Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 
-const Signup = () => {
+const PaymentForm = () => {
   const [email, setEmail] = useState("");
   const [cardInformation, setCardInformation] = useState("");
   const [expDate, setExpDate] = useState("");
@@ -29,6 +29,13 @@ const Signup = () => {
   const [editNameOnCard, seteditNameOnCard] = useState("");
   const [editZip, seteditZip] = useState("");
 
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState(null);
+
+  function isValidEmail(email) {
+    return /\S+@\S+\.\S+/.test(email);
+  }
+
   useEffect(() => {
     axios.get("http://localhost:8000/payment/").then((res) => {
       setPayments(res.data);
@@ -36,7 +43,21 @@ const Signup = () => {
   }, []);
 
   const saveData = (e) => {
+    if (!isValidEmail(e.target.value.email)) {
+      setError("Email is invalid");
+    } else {
+      setError(null);
+    }
+
+    setMessage(e.target.value);
+
     e.preventDefault();
+    if (cardInformation.length == 0 || nameOnCard.length == 0) {
+      setError(true);
+    }
+    if (cardInformation && nameOnCard) {
+      console.log("First Name: ", cardInformation, "\nLast Name: ", nameOnCard);
+    }
     const paymentObj = {
       email,
       cardInformation,
@@ -125,6 +146,7 @@ const Signup = () => {
           <h2 className={styles.paymentHeadingStyle}>Agro Pro </h2>
           <h1 className={styles.paymentStyles}>Secure Payments</h1>
         </div>
+
         <div className={styles.right}>
           {payments.length === 0 || payments.length > 2 ? (
             <div
@@ -145,18 +167,22 @@ const Signup = () => {
                   }}
                 >
                   <TextField
+                    id="email"
+                    iname="email"
                     variant="outlined"
                     required
                     fullWidth
                     label="Email"
                     autoFocus
-                    type="text"
+                    type="email"
                     placeholder=" Your Email"
                     value={email}
                     style={{ margin: 5 }}
                     onChange={(e) => setEmail(e.target.value)}
                   />
+                  {error && <h2 style={{ color: "red" }}>{error}</h2>}
                 </Grid>
+
                 {/* <input
                 type="text"
                 placeholder="Enter course name"
@@ -176,18 +202,29 @@ const Signup = () => {
                     },
                   }}
                 >
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    label="NameOnCard"
-                    autoFocus
-                    type="text"
-                    placeholder="Name On Card"
-                    value={nameOnCard}
-                    style={{ margin: 5 }}
-                    onChange={(e) => setNameOnCard(e.target.value)}
-                  />
+                  {nameOnCard.length <= 22 ? (
+                    <TextField
+                      variant="outlined"
+                      required
+                      fullWidth
+                      label="NameOnCard"
+                      autoFocus
+                      type="text"
+                      value={nameOnCard}
+                      style={{ margin: 5 }}
+                      onChange={(e) => setNameOnCard(e.target.value)}
+                    />
+                  ) : (
+                    <TextField
+                      error
+                      id="outlined-error-helper-text"
+                      label="NameOnCard"
+                      helperText="Must be less than 22"
+                      value={nameOnCard}
+                      style={{ margin: 5 }}
+                      onChange={(e) => setNameOnCard(e.target.value)}
+                    />
+                  )}
                 </Grid>
                 {/* <input
                 type="text"
@@ -220,6 +257,11 @@ const Signup = () => {
                     style={{ margin: 5 }}
                     onChange={(e) => setCardInformation(e.target.value)}
                   />
+                  {error && cardInformation.length <= 0 ? (
+                    <label>Last Name can't be Empty</label>
+                  ) : (
+                    ""
+                  )}
                 </Grid>
                 <p
                   class="text-center mb-3"
@@ -281,18 +323,30 @@ const Signup = () => {
                     },
                   }}
                 >
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    label="cvc"
-                    autoFocus
-                    type="number"
-                    placeholder="CVC"
-                    value={cvc}
-                    style={{ margin: 5 }}
-                    onChange={(e) => setcvc(e.target.value)}
-                  />
+                  {cvc.length == 3 || cvc.length == 0 ? (
+                    <TextField
+                      variant="outlined"
+                      required
+                      fullWidth
+                      label="CVC"
+                      autoFocus
+                      type="number"
+                      placeholder="CVC"
+                      value={cvc}
+                      style={{ margin: 5 }}
+                      onChange={(e) => setcvc(e.target.value)}
+                    />
+                  ) : (
+                    <TextField
+                      error
+                      id="outlined-error-helper-text"
+                      label="CVC"
+                      helperText="Must be a 3 digit number"
+                      value={cvc}
+                      style={{ margin: 5 }}
+                      onChange={(e) => setcvc(e.target.value)}
+                    />
+                  )}
                 </Grid>
                 {/* <input
                 type="number"
@@ -334,10 +388,15 @@ const Signup = () => {
                 style={{ margin: 5 }}
                 onChange={(e) => setzip(e.target.value)}
               /> */}
+
               <div class={styles.alert}>
                 <button
                   onClick={(e) => saveData(e)}
-                  style={{ margin: 5, marginLeft: "20%", marginTop: "50px" }}
+                  style={{
+                    margin: 5,
+                    marginLeft: "20%",
+                    marginTop: "50px",
+                  }}
                   className={styles.blue_btn}
                 >
                   Add Payment Details
@@ -351,6 +410,7 @@ const Signup = () => {
               <br />
             </div>
           ) : (
+            //............................................... edit process..............................................
             <table>
               {/* <tr>
                 <th>Course Name</th>
@@ -658,4 +718,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default PaymentForm;
