@@ -1,227 +1,188 @@
-import React, { useState } from "react";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
+import React, { useState, useEffect } from "react";
+import { Form, Button, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
 import Radio from "@mui/material/Radio";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import MainScreen from "../../MainScreen";
+import Loading from "../../Loading";
+import ErrorMessage from "../../ErrorMessage";
+import { useDispatch, useSelector } from "react-redux";
+import "./Signup.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { Form } from "react-bootstrap";
+import { register } from "../../../actions/userActions";
 
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="http://localhost:3001/landingPage">
-        AgroPro
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
+const Signup = () => {
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [pic, setPic] = useState(
+    "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg"
   );
-}
-
-const theme = createTheme();
-
-export default function SignUp(props) {
-  const [data, setData] = useState({
-    username: "",
-    email: "",
-    password: "",
-    isAdmin: false,
-    pic: "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
-  });
-  const [error, setError] = useState("");
+  const [isAdmin, setIsAdmin] = useState("");
+  const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmPassword] = useState("");
-  const navigate = useNavigate();
+  const [message, setMessage] = useState(null);
+  const [picMessage, setPicMessage] = useState(null);
+  //   const [error, setError] = useState(false);
+  //   const [loading, setLoading] = useState(false);
 
-  const handleChange = ({ currentTarget: input }) => {
-    setData({ ...data, [input.name]: input.value });
-  };
+  const dispatch = useDispatch();
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    // const data = new FormData(event.currentTarget);
-    console.log({
-      username: data.username,
-      email: data.email,
-      password: data.password,
-      isAdmin: data.isAdmin,
-      pic: data.pic,
-    });
+  const userRegister = useSelector((state) => state.userRegister);
+  const { loading, error, userInfo } = userRegister;
 
-    try {
-      const url = "http://localhost:8000/users/register";
-      const { data: res } = await axios.post(url, data);
-      navigate("/login");
-      console.log(res.message);
-    } catch (error) {
-      if (
-        error.response &&
-        error.response.status >= 400 &&
-        error.response.status <= 500
-      ) {
-        setError(error.response.data.message);
-      }
+  useEffect(() => {
+    if (userInfo) {
+      // history.pushState("/")
+      window.location.href = "/login";
     }
+  }, [userInfo]);
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+
+    if (password !== confirmpassword) {
+      setMessage("Passwords do not match");
+    } else {
+      dispatch(register(name, email, password, isAdmin, pic));
+    }
+
+    // if (password !== confirmpassword) {
+    //   setMessage("Passwords do not match");
+    // } else {
+    //   setMessage(null);
+    //   try {
+    //     const config = {
+    //       "Content-type": "application/json",
+    //     };
+
+    //     setLoading(true);
+    //     const { data } = await axios.post(
+    //       "http://localhost:8000/users/",
+    //       {
+    //         name,
+    //         pic,
+    //         email,
+    //         password,
+    //       },
+    //       config
+    //     );
+    //     console.log(data);
+    //     setLoading(false);
+    //     localStorage.setItem("userInfo", JSON.stringify(data));
+    //   } catch (error) {
+    //     setError(error.response.data.message);
+    //   }
   };
+  //   };
+
+  // const postDetails = (pics) => {
+  //   if (!pics) {
+  //     return setPicMessage("Please Select an Image");
+  //   }
+  //   setPicMessage(null);
+  //   if (pics.type === "image/jpeg" || pics.type === "image/png") {
+  //     const data = new FormData();
+  //     data.append("file", pics);
+  //     data.append("upload_preset", "agroProUser");
+  //     data.append("cloud_name", "den64erzb");
+  //     fetch(
+  //       "https://cloudinary://264518114977322:22ZQ6GYtQBqN5tFvLRyQ02H_Ubs@den64erzb",
+  //       {
+  //         method: "post",
+  //         body: data,
+  //       }
+  //     )
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         console.log(data);
+  //         setPic(data.url.toString());
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   } else {
+  //     return setPicMessage("Please Select an Image");
+  //   }
+  // };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h4">
-            Sign up
-          </Typography>
-          <Box
-            component="form"
-            noValidate
-            onSubmit={handleSubmit}
-            sx={{ mt: 3 }}
-          >
-            <Grid container spacing={2}>
-              {/* <Grid item xs={12} sm={6}>
-                                <TextField
-                                    autoComplete="given-name"
-                                    name="firstName"
-                                    required
-                                    fullWidth
-                                    id="firstName"
-                                    label="First Name"
-                                    autoFocus
-                                />
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    id="lastName"
-                                    label="Last Name"
-                                    name="lastName"
-                                    autoComplete="family-name"
-                                />
-                            </Grid> */}
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="username"
-                  label="Username"
-                  name="username"
-                  autoComplete="username"
-                  onChange={handleChange}
-                  value={data.username}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                  onChange={handleChange}
-                  value={data.email}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                  onChange={handleChange}
-                  value={data.password}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="confirmPassword"
-                  label="Confirm Password"
-                  type="password"
-                  id="confirmPassword"
-                  // autoComplete="new-password"
-                  onChange={handleChange}
-                  value={confirmpassword}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  onClick={() => (data.isAdmin = false)}
-                  control={
-                    <Radio name="isAdmin" value="user" color="primary" />
-                  }
-                  label="User"
-                />
+    <MainScreen title="REGISTER">
+      <div className="loginContainer">
+        {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+        {message && <ErrorMessage variant="danger">{message}</ErrorMessage>}
+        {loading && <Loading />}
+        <Form onSubmit={submitHandler}>
+          <Form.Group controlId="name">
+            <Form.Label>Name</Form.Label>
+            <Form.Control
+              type="name"
+              value={name}
+              placeholder="Enter name"
+              onChange={(e) => setName(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control
+              type="email"
+              value={email}
+              placeholder="Enter email"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              value={password}
+              placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </Form.Group>
 
-                <FormControlLabel
-                  onClick={() => (data.isAdmin = true)}
-                  control={
-                    <Radio name="isAdmin" value="admin" color="primary" />
-                  }
-                  label="Admin"
-                />
-              </Grid>
-              {/* <Form.Group controlId="pic">
-                <Form.Label>Profile Picture</Form.Label>
-                <Form.File
-                  id="custom-file"
-                  type="image/png"
-                  label="Upload Profile Picture"
-                  custom
-                />
-              </Form.Group> */}
-            </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sign Up
-            </Button>
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link href="/login" variant="body2">
-                  Already have an account? Sign in
-                </Link>
-              </Grid>
-            </Grid>
-          </Box>
-        </Box>
-        <Copyright sx={{ mt: 5 }} />
-      </Container>
-    </ThemeProvider>
+          <Form.Group controlId="confirmPassword">
+            <Form.Label>Confirm Password</Form.Label>
+            <Form.Control
+              type="password"
+              value={confirmpassword}
+              placeholder="Confirm Password"
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group controlId="isAdmin">
+            <Form.Label>User Type (user or admin)</Form.Label>
+            <Form.Control
+              type="isAdmin"
+              value={isAdmin}
+              placeholder="User type"
+              onChange={(e) => setIsAdmin(e.target.value)}
+            />
+          </Form.Group>
+          {/* {picMessage && (
+            <ErrorMessage variant="danger">{picMessage}</ErrorMessage>
+          )} */}
+          {/* <Form.Group controlId="pic">
+            <Form.Label>Profile Picture</Form.Label>
+            <Form.Control
+              //   onChange={(e) => postDetails(e.target.files[0])}
+              id="custom-file"
+              type="file"
+              label="Upload Profile Picture"
+              custom
+            />
+          </Form.Group> */}
+          <Button variant="success" type="submit">
+            Register
+          </Button>
+        </Form>
+        <Row className="py-3">
+          <Col>
+            Have an Account ? <Link to="/login">Login</Link>
+          </Col>
+        </Row>
+      </div>
+    </MainScreen>
   );
-}
+};
+
+export default Signup;

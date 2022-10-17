@@ -95,3 +95,17 @@ header.sticky ul li a {
   gap: 10px;
   font-weight: bold;
 }
+
+.navUserButton {
+  margin-left: 20px;
+  border: none;
+  padding: 5px 15px;
+  color: #06283D;
+  background-color: white;
+  border-radius: 100%;
+  cursor: pointer;
+  display: inline-block;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+}

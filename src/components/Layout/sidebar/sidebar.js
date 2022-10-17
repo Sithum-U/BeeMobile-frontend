@@ -1,11 +1,11 @@
-import "./sidebar.css"
+import "./sidebar.css";
 import {
   LineStyle,
   Timeline,
   TrendingUp,
   PermIdentity,
   Storefront,
-  AttachMoney, 
+  AttachMoney,
   BarChart,
   MailOutline,
   DynamicFeed,
@@ -22,22 +22,22 @@ function SideBar() {
           <h3 className="sidebarTitle">Dashboard</h3>
           <ul className="sidebarList">
             <Link to="/" className="link">
-            <li className="sidebarListItem active">
-              <LineStyle className="sidebarIcon" />
-              Home
-            </li>
+              <li className="sidebarListItem active">
+                <LineStyle className="sidebarIcon" />
+                Home
+              </li>
             </Link>
             <Link to="/" className="link">
-            <li className="sidebarListItem">
-              <Timeline className="sidebarIcon" />
-              About
-            </li>
+              <li className="sidebarListItem">
+                <Timeline className="sidebarIcon" />
+                About
+              </li>
             </Link>
             <Link to="/" className="link">
-            <li className="sidebarListItem">
-              <TrendingUp className="sidebarIcon" />
-              Contact
-            </li>
+              <li className="sidebarListItem">
+                <TrendingUp className="sidebarIcon" />
+                Contact
+              </li>
             </Link>
           </ul>
         </div>
@@ -45,10 +45,10 @@ function SideBar() {
           <h3 className="sidebarTitle">Quick Menu</h3>
           <ul className="sidebarList">
             <Link to="/" className="link">
-            <li className="sidebarListItem">
-              <AttachMoney className="sidebarIcon" />
-              Advertisements
-            </li>
+              <li className="sidebarListItem">
+                <AttachMoney className="sidebarIcon" />
+                Advertisements
+              </li>
             </Link>
             <Link to="/productTable" className="link">
               <li className="sidebarListItem">
@@ -67,46 +67,46 @@ function SideBar() {
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Reports</h3>
           <ul className="sidebarList">
-          <Link to="/" className="link">
-            <li className="sidebarListItem">
-              <MailOutline className="sidebarIcon" />
-              Users Report
-            </li>
+            <Link to="/userReport" className="link">
+              <li className="sidebarListItem">
+                <MailOutline className="sidebarIcon" />
+                Users Report
+              </li>
             </Link>
             <Link to="/" className="link">
-            <li className="sidebarListItem">
-              <DynamicFeed className="sidebarIcon" />
-              Product Report
-            </li>
+              <li className="sidebarListItem">
+                <DynamicFeed className="sidebarIcon" />
+                Product Report
+              </li>
             </Link>
             <Link to="/" className="link">
-            <li className="sidebarListItem">
-              <ChatBubbleOutline className="sidebarIcon" />
-              Advertisement Report
-            </li>
+              <li className="sidebarListItem">
+                <ChatBubbleOutline className="sidebarIcon" />
+                Advertisement Report
+              </li>
             </Link>
           </ul>
         </div>
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Staff</h3>
           <ul className="sidebarList">
-          <Link to="/" className="link">
-            <li className="sidebarListItem">
-              <WorkOutline className="sidebarIcon" />
-              Manage
-            </li>
+            <Link to="/" className="link">
+              <li className="sidebarListItem">
+                <WorkOutline className="sidebarIcon" />
+                Manage
+              </li>
             </Link>
             <Link to="/" className="link">
-            <li className="sidebarListItem">
-              <Timeline className="sidebarIcon" />
-              Analytics
-            </li>
+              <li className="sidebarListItem">
+                <Timeline className="sidebarIcon" />
+                Analytics
+              </li>
             </Link>
             <Link to="/" className="link">
-            <li className="sidebarListItem">
-              <Report className="sidebarIcon" />
-              Reports
-            </li>
+              <li className="sidebarListItem">
+                <Report className="sidebarIcon" />
+                Reports
+              </li>
             </Link>
           </ul>
         </div>
