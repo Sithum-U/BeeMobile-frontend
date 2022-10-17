@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { MDBCol } from "mdbreact";
+
 import {
   Card,
   Container,
@@ -12,12 +13,11 @@ import {
 } from "react-bootstrap";
 import UpdateIcon from "@material-ui/icons/Update";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import axios from "axios";
-// import jspdf from "jspdf";
-// import "jspdf-autotable";
-// import img from "../components/wsLogo.jpg";
-// import img1 from "../components/signature.jpg";
-// import { useHistory } from "react-router-dom";
+import jspdf from "jspdf";
+import "jspdf-autotable";
+
 import {
   Button,
   CardContent,
@@ -34,7 +34,7 @@ function ViewAdvertisement(props) {
   const [view, viewState] = useState(false);
   const [vdelete, viewDelete] = useState(false);
   const [vupdate, viewupdate] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
   
   
   // const history = useHistory();
@@ -72,43 +72,46 @@ function ViewAdvertisement(props) {
         console.log("error=>", err);
       });
   };
- 
-    // const generatePDF = (tickets) => {
-    //   const doc = new jspdf();
-    //   const tableColumn = [
-    //     "title",
-    //     "description",
-    //     "date",
-    //     "email",
-    //     "photo",
-    //   ];
-    //   const tableRows = [];
-    //   const date = Date().split(" ");
-    //   const dateStr = date[1] + "-" + date[2] + "-" + date[3];
 
-    //   tickets.map((ticket) => {
-    //     const ticketData = [
-    //       ticket._id,
-    //       ticket.title,
-    //       ticket.description,
-    //       ticket.date,
-    //       ticket.email,
-    //       ticket.photo,
-    //     ];
-    //     tableRows.push(ticketData);
-    //   });
-    //   doc.text("Hotel.lk", 70, 8).setFontSize(13);
-    //   doc.text("Hotel Details Report", 14, 16).setFontSize(13);
-    //   doc.text(`Report Genarated Date - ${dateStr}`, 14, 23);
+
+ //report
+     const generatePDF = (advertisement) => {
+       const doc = new jspdf();
+       const tableColumn = [
+         "title",
+         "description",
+         "date",
+         "email",
+        "photo",
+       ];
+
+       const tableRows = [];
+       const date = Date().split(" ");
+       const dateStr = date[1] + "-" + date[2] + "-" + date[3];
+
+       advertisement.data.map((advertisement) => {
+         const advertisementData = [
+          advertisement._id,
+          advertisement.title,
+          advertisement.description,
+          advertisement.date,
+          advertisement.email,
+          advertisement.photo,
+         ];
+         tableRows.push(advertisementData);
+       });
+    //   doc.text("advertisment report", 14, 16).setFontSize(13);
+    doc.text(`Date - ${dateStr}`, 14, 23);
+    //right down width height
 
     //   doc.addImage(img, "JPEG", 170, 8, 25, 25);
-    //   doc.autoTable(tableColumn, tableRows, {
-    //     styles: { fontSize: 8 },
-    //     startY: 35,
-    //   });
-    //   doc.addImage(img1, "JPEG", 120, 140, 70, 40);
-    //   doc.save("Branch Details Report.pdf");
-    // };
+       doc.autoTable(tableColumn, tableRows, {
+         styles: { fontSize: 10 },
+         startY: 35,
+      });
+       //doc.addImage(img1, "JPEG", 120, 140, 70, 40);
+       doc.save("advertisment.pdf");
+     };
 
 
   const UpdateAdvertisement = (id) => {
@@ -146,27 +149,19 @@ function ViewAdvertisement(props) {
                   >
                     Add
                   </Button>
+<hr></hr>
+                  <button style={{ backgroundColor: "#40735E", color: "white" }} startIcon={<ArrowDownwardIcon/>} onClick={() => {generatePDF(advertisement)}}>Download Advertisement Report</button>
                 </Col>
               </Row>
 
 
 
-              {/* <button
-          type="button"
-          class="btn btn-secondary btn-sm"
-          onClick={() => generatePDF(hotel)}
-        >
-          GenerateReport
-        </button> */}
-
-
               <MDBCol md="6">
           <input
             class="form-control"
-            id="myInput"
             name="title"
             type="text"
-            placeholder="Search..."
+            placeholder="Search.."
             
             onChange={(e) => {
               setSearchTerm(e.target.value);
@@ -181,7 +176,13 @@ function ViewAdvertisement(props) {
               <hr className="divide" />
             </div>
             <Grid container spacing={3}>
-              {advertisement.map((adver, index) => {
+              {advertisement.filter((adver) => {
+                if(searchTerm == ""){
+                  return adver
+                } else if (adver.title.toLowerCase().includes(searchTerm.toLowerCase())){
+                  return adver
+                }
+              }).map((adver, index) => {
                 return (
                   <Grid item xs={4}>
                     <Paper>

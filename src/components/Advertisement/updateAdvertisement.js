@@ -8,6 +8,7 @@ import Select from "react-select";
 import { Link } from "react-router-dom";
 import FormData from "form-data";
 import { useParams } from "react-router-dom";
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 const UpdateAdvertisement = () => {
 ;
@@ -172,6 +173,13 @@ console.log(update);
                 marginTop: '68px'}}>Update Advertisement</button>
 
 </form>
+<Link to="/advertisement/view">
+     <button type="button" style={{ backgroundColor: "green", color: "white"
+  }}
+                    startIcon={<ArrowBackIosIcon/>}>
+          DONE
+     </button>
+ </Link>
 </Card>
       </Container>
 </div>
