@@ -77,35 +77,35 @@ const Product = () => {
                 <input type="text" class="form-control item" id="productCode" onChange={handleChange('productCode')} name="productCode" placeholder="Product code" required/>
             </div>
             {error && product.productCode.length==0 ?
-                    <label className="valid" id="valid">Product Code is required. </label>:""
+                    <label className="valid">Product Code is required. </label>:""
                     }
             <div class="form-group">
                 <label>Product Name</label>
                 <input type="text" class="form-control item" onChange={handleChange('productName')} name="productName" placeholder="Product Name"/>
             </div>
             {error && product.productName.length==0 ?
-                    <label className="valid" id="valid">Product Name is required</label>:""
+                    <label className="valid">Product Name is required</label>:""
                     }
             <div class="form-group">
                 <label>Description</label>
                 <input type="textarea" class="form-control item" onChange={handleChange('description')} name="description" placeholder="Description"/>
             </div>
             {error && product.description.length==0 ?
-                    <label className="valid" id="valid">Description is required</label>:""
+                    <label className="valid">Description is required</label>:""
                     }
             <div class="form-group">
             <label>Category</label>
                 <input type="text" class="form-control item" onChange={handleChange('category')} name="category" placeholder="Category"/>
             </div>
             {error && product.category.length==0 ?
-                    <label className="valid" id="valid">Category is required</label>:""
+                    <label className="valid">Category is required</label>:""
                     }
             <div class="form-group">
                 <label>Price</label>
                 <input type="text" class="form-control item" onChange={handleChange('price')} name="price" placeholder="price"/>
             </div>
             {error && product.price.length==0 ?
-                    <label className="valid" id="valid">Price is required</label>:""
+                    <label className="valid">Price is required</label>:""
                     }
             <div class="form-group">
                 <label>Select Image</label>
