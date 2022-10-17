@@ -25,23 +25,17 @@ const Single = () => {
         // console.log(data);
       });
   }, []);
-  console.log(product.data);
+  console.log(product);
 
   const onAdd = (item) => {
     // console.log(item._id);
 
     console.log(product);
-    console.log(item);
-    console.log(item.id);
-    const exist = cartItems.find((x) => x.data._id === product.data._id);
-    console.log(exist);
-    console.log(product.data._id);
-    console.log(item.data.id);
-    console.log(item._id);
     axios
       .post("http://localhost:8000/cartItem/", product.data)
       .then((res) => {
         alert("Cart Details Successfully added!");
+        window.location = "/cart";
         // axios.get("http://localhost:8000/cartItem/").then((res) => {
         //   setPayments(res.data);
         // });
@@ -58,8 +52,8 @@ const Single = () => {
         alert(error.message);
       });
 
-    // const exist = cartItems.find((x) => x._id === item._id);
-    // console.log(exist);
+    const exist = cartItems.find((x) => x._id === item._id);
+    console.log(exist);
     if (exist) {
       setCartItems(
         cartItems.map((x) =>
@@ -78,6 +72,7 @@ const Single = () => {
           <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
               <div class="post-heading">
+                <br />
                 {product.data ? (
                   <h1>{product.data.productName}</h1>
                 ) : (
@@ -98,6 +93,11 @@ const Single = () => {
                   )}
                   on August 24, 2022
                   <br />
+                  {product.data ? (
+                    <h3> Rs.{product.data.price} </h3>
+                  ) : (
+                    <div></div>
+                  )}<br />
                   <Link to="/">
                     <Button variant="danger">Pay Now</Button>
                   </Link>
@@ -126,7 +126,7 @@ const Single = () => {
             src={`${product.data.image}`}
             alt="..."
             position="top"
-            height= "300 px" width= "700px"
+            style={{ height: "400 px", width: "600px" }}
           />
         </div>
       ) : (

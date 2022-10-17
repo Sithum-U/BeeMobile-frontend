@@ -1,235 +1,356 @@
-import {
-  MDBBtn,
-  MDBCard,
-  MDBCardBody,
-  MDBCardImage,
-  MDBCardText,
-  MDBCol,
-  MDBContainer,
-  MDBIcon,
-  MDBInput,
-  MDBRow,
-  MDBTypography,
-} from "mdb-react-ui-kit";
-import React from "react";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import "./cartstyle.css";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import "./cart.css";
+import axios from "axios";
+import SoloAlert from "soloalert";
+import styles from "./styles.module.css";
 import myGif from "../Images/Emptypreview.gif";
+import { Link } from "react-router-dom";
+import cart from "../../Layout/Images/cart.png";
+import Badge from "@mui/material/Badge";
 
-export default function Cart(props) {
-  const { cartItems, onAdd, onRemove, onDelete } = props;
-  const itemsPrice = cartItems.reduce((a, c) => a + c.qty * c.price, 0);
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
 
-  const taxPrice = itemsPrice * 0.14;
-  const shippingPrice = itemsPrice > 2000 ? 0 : 20;
-  const totalPrice = itemsPrice + taxPrice + shippingPrice;
+export default function Cart() {
+  const [open, setOpen] = useState(false);
+  const [transition, setTransition] = useState(undefined);
+
+  const [paymentDetails, setPaymentDetails] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filtered, setfiltered] = useState([]);
+  const [itemName, setitemName] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:8000/cartItem/")
+      .then((res) => res.json())
+      .then((res) => {
+        setCartItems(res.data);
+      });
+  }, []);
+  console.log(cartItems);
+
+  useEffect(() => {
+    fetch("http://localhost:8000/payment/")
+      .then((res) => res.json())
+      .then((data) => {
+        setPaymentDetails(data);
+        // console.log(paymentDetails);
+      });
+  }, []);
+  const initialValue = 0;
+  const subtotalPrice = cartItems.reduce(
+    (accumilator, current) => accumilator + current.price,
+    initialValue
+  );
+  const shippingPrice = 20;
+  const totalPrice = subtotalPrice + shippingPrice;
+  const handleQtyChange = (e) => {
+    e.preventDefault();
+    setCartItems(e.target.value);
+  };
+
+  const clickNotify = () => {
+    Notification.requestPermission().then((perm) => {
+      new Notification("Example", { body: "Thi is kkk" });
+    });
+  };
+
+  // ----------------------------Item Delete----------------------------------------
+  async function delet(id) {
+    SoloAlert.confirm({
+      title: "Confirm Delete",
+      body: "Are you sure",
+      theme: "dark",
+      useTransparency: true,
+      onOk: async function (e) {
+        e.preventDefault();
+        try {
+          const result = await (
+            await axios.delete(`http://localhost:8000/cartItem/${id}`)
+          ).status;
+          console.log(result);
+
+          if (result === 200) {
+            SoloAlert.alert({
+              title: "Welcome!",
+              body: "Deletion is successful",
+              icon: "success",
+              theme: "dark",
+              useTransparency: true,
+              onOk: function () {
+                window.location = "/cart";
+              },
+            });
+          }
+        } catch (err) {
+          SoloAlert.alert({
+            title: "Oops!",
+            body: "Something went wrong",
+            icon: "error",
+            theme: "dark",
+            useTransparency: true,
+            onOk: function () {},
+          });
+        }
+      },
+      onCancel: function () {
+        SoloAlert.alert({
+          title: "Oops!",
+          body: "You canceled delete request",
+          icon: "warning",
+          theme: "dark",
+          useTransparency: true,
+          onOk: function () {},
+        });
+      },
+    });
+  }
   return (
-    <section className="h-100 h-custom" style={{ backgroundColor: "#eee" }}>
-      <MDBContainer className="py-5 h-100">
-        <MDBRow className="justify-content-center align-items-center h-100">
-          <MDBCol size="12">
-            <MDBCard
-              className="card-registration card-registration-2"
-              style={{ borderRadius: "15px" }}
+    <div class="container mt-5 p-3 rounded cart">
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="static" style={{ backgroundColor: "blue" }}>
+          <Toolbar>
+            <section>
+              <div class="container">
+                <h3
+                  class="title-page"
+                  styles={{ margin: "50px", color: "white" }}
+                >
+                  Review Your Order
+                </h3>
+              </div>
+            </section>
+
+            <Badge
+              className="zoomBadge"
+              badgeContent={cartItems.length}
+              color="success"
             >
-              <MDBCardBody className="p-0">
-                <MDBRow className="g-0">
-                  <MDBCol lg="8">
-                    <div className="p-5">
-                      <div className="d-flex justify-content-between align-items-center mb-5">
-                        <MDBTypography
-                          tag="h1"
-                          className="fw-bold mb-0 text-black"
-                        >
-                          Shopping Cart
-                        </MDBTypography>
-                        <MDBTypography className="mb-0 text-muted">
-                          {cartItems.length === 0
-                            ? "No Items in the list"
-                            : cartItems.length + " Items"}
-                        </MDBTypography>
-                      </div>
-                      {/* ------------------------cart details display--------------------------------------------------------- */}
-                      <hr className="my-4" />
+              <li>
+                <a href="/Cart">
+                  <img
+                    className="zoomCart"
+                    src={cart}
+                    width="50px"
+                    height="50px"
+                    color="#fff"
+                  />
+                </a>
+              </li>
+            </Badge>
+          </Toolbar>
+        </AppBar>
+      </Box>
+      <div class="row no-gutters">
+        <div class="col-md-8">
+          <div class="product-details mr-2">
+            <input
+              type="text"
+              className={styles.search}
+              name="search"
+              placeholder="Search.."
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+              }}
+            />
 
-                      <MDBRow>
-                        {cartItems.length === 0 && (
-                          <div className="center">
-                            <img src={myGif} />
-                            <h3 className="emptyCartMain">
-                              Your Cart is Empty
-                            </h3>
-                            <h4 className="emptyCartSecond">
-                              Looks like you haven't added anything to your cart
-                              yet
-                            </h4>
-                          </div>
-                        )}
-                        {cartItems.map((item) => (
-                          <div
-                            key={item.id}
-                            className="mb-4 d-flex justify-content-between align-items-center"
-                          >
-                            <MDBCol md="2" lg="2" xl="2">
-                              <MDBCardImage
+            <div class="d-flex flex-row align-items-center">
+              <i class="fa fa-long-arrow-left"></i>
+              <Link to="/home">
+                {" "}
+                <span class="ml-2">Continue Shopping</span>
+              </Link>
+            </div>
+            <hr />
+
+            <h4 class="mb-0">Shopping cart</h4>
+            <div class="d-flex justify-content-between">
+              <br />
+              <br />
+              <span>You have {cartItems.length} items in your cart</span>
+              <div class="d-flex flex-row align-items-center">
+                <span class="text-black-50">Sort by:</span>
+                <div class="price ml-2">
+                  <span class="mr-1">price</span>
+                  <i class="fa fa-angle-down"></i>
+                </div>
+              </div>
+            </div>
+
+            {/* ......................................product items........................................................ */}
+
+            {cartItems.length === 0 && (
+              <div className={styles.emptyCart_container}>
+                <div className="center">
+                  <center>
+                    <img src={myGif} />
+
+                    <Typography variant="h5" gutterBottom>
+                      Your Cart is Empty
+                    </Typography>
+
+                    <Typography variant="h7" gutterBottom>
+                      Looks like you haven't added <br />
+                      anything to your cart yet
+                    </Typography>
+                  </center>
+                </div>
+              </div>
+            )}
+            {cartItems ? (
+              cartItems
+                .filter((value) => {
+                  if (searchTerm === "") {
+                    return value;
+                  } else if (
+                    value.productName
+                      .toLowerCase()
+                      .includes(searchTerm.toLowerCase())
+                  ) {
+                    return value;
+                  }
+                })
+                .map((item) => (
+                  <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
+                    <tr key={item.productId}>
+                      <div class="d-flex flex-row">
+                        <td>
+                          <figure class="itemside">
+                            <div class="aside">
+                              <img
                                 src={item.image}
-                                fluid
-                                className="cartImage"
-                                alt="Cotton T-shirt"
+                                // src="assets/images/items/1.jpg"
+                                class="img-sm"
                               />
-                            </MDBCol>
-                            <MDBCol md="3" lg="3" xl="3">
-                              <MDBTypography tag="h6" className="text-muted">
-                                {item.name}
-                              </MDBTypography>
-                              <MDBTypography
-                                tag="h6"
-                                className="text-black mb-0"
-                              >
-                                {item.name}
-                              </MDBTypography>
-                            </MDBCol>
-                            <MDBCol
-                              md="3"
-                              lg="3"
-                              xl="3"
-                              className="d-flex align-items-center"
-                            >
-                              <div
-                                onClick={() => onRemove(item)}
-                                color="link"
-                                className="px-2"
-                              >
-                                <i class="bi bi-dash-circle-fill"></i>
-                              </div>
-
-                              <MDBInput
-                                type="number"
-                                min="0"
-                                max="10"
-                                defaultValue={1}
-                                onChange={cartItems.length}
-                                size="sm"
-                              />
-
-                              <div
-                                onClick={() => onAdd(item)}
-                                color="link"
-                                className="px-2"
-                              >
-                                <i class="bi bi-plus-circle-fill"></i>
-                              </div>
-                            </MDBCol>
-                            <MDBCol md="3" lg="2" xl="2" className="text-end">
-                              <MDBTypography tag="h6" className="mb-0">
-                                Rs: {item.qty * item.price.toFixed(2)} /=
-                              </MDBTypography>
-                            </MDBCol>
-                            <MDBCol md="1" lg="1" xl="1" className="text-end">
-                              <MDBBtn
-                                onClick={() => onDelete(item)}
-                                color="link"
-                                className="px-2"
-                              >
-                                <i class="bi bi-trash"></i>
-                              </MDBBtn>
-                            </MDBCol>
+                            </div>
+                            <figcaption class="ml-2">
+                              <span class="font-weight-bold d-block">
+                                <a href="#" class="title text-dark">
+                                  {item.productName}
+                                </a>
+                              </span>
+                              <p class="text-muted small">
+                                Product Code: {item.productCode} <br />{" "}
+                                Category: {item.category}
+                              </p>
+                            </figcaption>
+                          </figure>
+                        </td>
+                      </div>
+                      <div class="d-flex flex-row align-items-center">
+                        <td>
+                          <div class="price-wrap">
+                            <var class="d-block ml-5 font-weight-bold">
+                              Rs : {item.price} /=
+                            </var>
+                            <small class="text-muted">
+                              {" "}
+                              {/* Rs: {item.price} each{" "} */}
+                            </small>
                           </div>
-                        ))}
-                      </MDBRow>
-
-                      <hr className="my-4" />
-                      {/* ----------------------------- Back To shop Button------------------------------------------------------- */}
-                      <div className="pt-5">
-                        <MDBTypography tag="h6" className="mb-0">
-                          <MDBCardText
-                            tag="a"
-                            href="/productDetails/innovation"
-                            className="text-body"
+                        </td>
+                        <td class="text-right">
+                          <a
+                            data-original-title="Save to Wishlist"
+                            title=""
+                            href=""
+                            class="btn btn-light mr-2"
+                            data-toggle="tooltip"
                           >
-                            <i className="bi bi-skip-backward-fill"></i> Back to
-                            shop
-                          </MDBCardText>
-                        </MDBTypography>
-                      </div>
-                    </div>
-                  </MDBCol>
-                  {/* ----------------------------- Side pane summary---------------------------------------------------------- */}
-                  <MDBCol lg="4" className="bg-grey">
-                    {cartItems.length === 0 && (
-                      <div className="center">Cart is empty</div>
-                    )}
-                    {cartItems.map((item) => (
-                      <div className="p-5">
-                        <MDBTypography
-                          tag="h3"
-                          className="fw-bold mb-5 mt-2 pt-1"
-                        >
-                          Summary
-                        </MDBTypography>
-
-                        <hr className="my-4" />
-
-                        <div className="d-flex justify-content-between mb-4">
-                          <MDBTypography tag="h5" className="text-uppercase">
-                            {item.length}
-                          </MDBTypography>
-                          <MDBTypography tag="h5">
-                            Rs: {itemsPrice.toFixed(2)} /=
-                          </MDBTypography>
-                        </div>
-
-                        <MDBTypography tag="h5" className="text-uppercase mb-3">
-                          Shipping
-                        </MDBTypography>
-
-                        <div className="mb-4 pb-2">
-                          <select
-                            className="select p-2 rounded bg-grey"
-                            style={{ width: "100%" }}
+                            {" "}
+                            1
+                          </a>
+                          <button
+                            class="btn btn-light"
+                            style={{
+                              color: "#ff7979",
+                              borderColor: "#ff7979",
+                            }}
+                            onClick={(e) => {
+                              delet(item._id);
+                            }}
                           >
-                            <option value="1">
-                              Standard-Delivery- Rs200.00
-                            </option>
-                            <option value="2">Quick-Delivery- Rs500.00</option>
-                            <option value="3">Smart-Delivery- Rs300.00</option>
-                            <option value="4">Four</option>
-                          </select>
-                        </div>
-
-                        <MDBTypography tag="h5" className="text-uppercase mb-3">
-                          Voucher Code
-                        </MDBTypography>
-
-                        <div className="mb-5">
-                          <MDBInput size="lg" label="Enter your code" />
-                        </div>
-
-                        <hr className="my-4" />
-
-                        <div className="d-flex justify-content-between mb-5">
-                          <MDBTypography tag="h5" className="text-uppercase">
-                            Total price
-                          </MDBTypography>
-                          <MDBTypography tag="h5">
-                            ${totalPrice.toFixed(2)}
-                          </MDBTypography>
-                        </div>
-                        <Link to="/checkout" style={{ textDecoration: "none" }}>
-                          <MDBBtn color="dark" block size="lg">
-                            Proceed To Checkout
-                          </MDBBtn>
-                        </Link>
+                            Remove
+                          </button>
+                        </td>
                       </div>
-                    ))}
-                  </MDBCol>
-                </MDBRow>
-              </MDBCardBody>
-            </MDBCard>
-          </MDBCol>
-        </MDBRow>
-      </MDBContainer>
-    </section>
+                    </tr>
+                  </div>
+                ))
+            ) : (
+              <div></div>
+            )}
+
+            {/* <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
+              <div class="d-flex flex-row">
+                <img
+                  class="rounded"
+                  src="https://i.imgur.com/Tja5H1c.jpg"
+                  width="40"
+                />
+                <div class="ml-2">
+                  <span class="font-weight-bold d-block">
+                    Samsung galaxy Note 10&nbsp;
+                  </span>
+                  <span class="spec">256GB, Navy Blue</span>
+                </div>
+              </div>
+              <div class="d-flex flex-row align-items-center">
+                <span class="d-block">1</span>
+                <span class="d-block ml-5 font-weight-bold">$999</span>
+                <i class="fa fa-trash-o ml-3 text-black-50"></i>
+              </div>
+            </div> */}
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="payment-info">
+            <div class="d-flex justify-content-between align-items-center">
+              <span>Card details</span>
+              <img
+                class="rounded"
+                src="https://i.imgur.com/WU501C8.jpg"
+                width="30"
+              />
+            </div>
+            <span class="type d-block mt-3 mb-1">Card type</span>
+
+            <p class="text-center mb-3" style={{ margin: "25px 0px 0px 50px" }}>
+              <img
+                src="assets/images/misc/payments.png"
+                styles={{ height: "25px", marginTop: "50px" }}
+              />
+            </p>
+
+            <hr class="line" />
+            <div class="d-flex justify-content-between information">
+              <span>Subtotal</span>
+              <span>Rs :{subtotalPrice} /=</span>
+            </div>
+            <div class="d-flex justify-content-between information">
+              <span>Shipping</span>
+              <span>Rs :{shippingPrice} /=</span>
+            </div>
+            <div class="d-flex justify-content-between information">
+              <span>Total(Incl. taxes)</span>
+              <span>Rs :{totalPrice} /=</span>
+            </div>
+            <button
+              class="btn btn-primary btn-block d-flex justify-content-between mt-3"
+              type="button"
+            >
+              <span>Rs :{totalPrice} /=</span>
+              <Link to="/checkout">
+                <span style={{ color: "white" }}>
+                  Checkout<i class="fa fa-long-arrow-right ml-1"></i>
+                </span>
+              </Link>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import "./landingPage.css";
 export default function LandingPage() {
   const [rateDetails, setRateDetails] = useState([]);
   useEffect(() => {
@@ -98,7 +98,7 @@ export default function LandingPage() {
         </div>
       </header> */}
 
-      <section id="home" class="hero-section">
+      <section id="about" class="hero-section">
         <div class="hero-shape">
           <img src="assets/img/hero/hero-shape.svg" alt="" class="shape" />
         </div>
@@ -106,21 +106,29 @@ export default function LandingPage() {
           <div class="row align-items-center">
             <div class="col-lg-6">
               <div class="hero-content">
+                <img src="assets/img/backgroundlogo.png" alt="" class="shape" />
                 <h1 class="wow fadeInUp" data-wow-delay=".2s">
-                  Home Delivery <span>From Stores Near You</span>{" "}
+                  Agro Pro{" "}
+                  <span>
+                    <h2>Your's Solution Provider</h2>
+                  </span>{" "}
                 </h1>
                 <p class="wow fadeInUp" data-wow-delay=".4s">
-                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                  diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                  aliquyam erat, sed diam voluptua.
+                  The purpose of this website was to pinpoint the challenges
+                  faced by Sri Lankan farmers as a result of the financial
+                  crisis, as the country's government failed to boost domestic
+                  production of organic pesticides and fertilizers or offer
+                  farmers subsidies to purchase them. Crop yields were destroyed
+                  by the unexpected policy change. Average yields of rice, a
+                  staple food in Sri Lanka that was previously produced
+                  successfully and even exported, were reduced by about 30%. The
+                  Department of Census and Statistics Agriculture and
+                  Environment Statistics Division gathers, analyzes, and
+                  disseminates data pertaining to this crisis. The Division
+                  compiles statistics on the extent and production of paddy as
+                  well as other temporary and seasonal crops, livestock, and
+                  production costs.
                 </p>
-                <a
-                  href="javascript:void(0)"
-                  class="main-btn btn-hover wow fadeInUp"
-                  data-wow-delay=".6s"
-                >
-                  Download App
-                </a>
               </div>
             </div>
             <div class="col-lg-6">
@@ -150,13 +158,58 @@ export default function LandingPage() {
             <div class="col-lg-4 col-md-6">
               <div class="single-service wow fadeInUp" data-wow-delay=".2s">
                 <div class="icon">
-                  <img src="assets/img/service/service-icon-1.svg" alt="" />
+                  <img src="assets/img/service/fertilizer.svg" alt="" />
                 </div>
                 <div class="content">
-                  <h3>Food</h3>
+                  <h3>Fertilizers</h3>
                   <p>
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod tempor invidunt.
+                    Natural or artificial substance containing the chemical
+                    elements that improve growth and productiveness of plants,
+                    which enhance the natural fertility of the soil or replace
+                    chemical elements taken from the soil by previous crops
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+              <div class="single-service wow fadeInUp" data-wow-delay=".4s">
+                <div class="icon">
+                  <img src="assets/img/service/legumes.svg" alt="" />
+                </div>
+                <div class="content">
+                  <h3>Legumes</h3>
+                  <p>
+                    Plant from the Fabaceae family that would include its
+                    leaves, stems, and pods.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+              <div class="single-service wow fadeInUp" data-wow-delay=".6s">
+                <div class="icon">
+                  <img src="assets/img/service/lifestock.svg" alt="" />
+                </div>
+                <div class="content">
+                  <h3>Live Stock</h3>
+                  <p>
+                    Domesticated animals raised in an agricultural setting to
+                    provide labor and produce commodities such as meat, eggs,
+                    milk, fur, leather.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+              <div class="single-service wow fadeInUp" data-wow-delay=".2s">
+                <div class="icon">
+                  <img src="assets/img/service/herbs.svg" alt="" />
+                </div>
+                <div class="content">
+                  <h3>Herbs</h3>
+                  <p>
+                    widely distributed and widespread group of plants, excluding
+                    vegetables and other plants consumed for macronutrients
                   </p>
                 </div>
               </div>
@@ -167,10 +220,11 @@ export default function LandingPage() {
                   <img src="assets/img/service/service-icon-2.svg" alt="" />
                 </div>
                 <div class="content">
-                  <h3>Grocery</h3>
+                  <h3>Vegitables</h3>
                   <p>
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod tempor invidunt.
+                    parts of plants that are consumed by humans or other animals
+                    as food. The original meaning is still commonly used and is
+                    applied to plants
                   </p>
                 </div>
               </div>
@@ -178,55 +232,13 @@ export default function LandingPage() {
             <div class="col-lg-4 col-md-6">
               <div class="single-service wow fadeInUp" data-wow-delay=".6s">
                 <div class="icon">
-                  <img src="assets/img/service/service-icon-3.svg" alt="" />
+                  <img src="assets/img/service/fruits.svg" alt="" />
                 </div>
                 <div class="content">
-                  <h3>Furniture</h3>
+                  <h3>Fruits</h3>
                   <p>
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod tempor invidunt.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-              <div class="single-service wow fadeInUp" data-wow-delay=".2s">
-                <div class="icon">
-                  <img src="assets/img/service/service-icon-4.svg" alt="" />
-                </div>
-                <div class="content">
-                  <h3>Medicine</h3>
-                  <p>
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod tempor invidunt.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-              <div class="single-service wow fadeInUp" data-wow-delay=".4s">
-                <div class="icon">
-                  <img src="assets/img/service/service-icon-5.svg" alt="" />
-                </div>
-                <div class="content">
-                  <h3>Electronics</h3>
-                  <p>
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod tempor invidunt.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-              <div class="single-service wow fadeInUp" data-wow-delay=".6s">
-                <div class="icon">
-                  <img src="assets/img/service/service-icon-6.svg" alt="" />
-                </div>
-                <div class="content">
-                  <h3>Clothes</h3>
-                  <p>
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod tempor invidunt.
+                    The sweet and fleshy product of a tree or other plant that
+                    contains seed and can be eaten as food..
                   </p>
                 </div>
               </div>
@@ -250,12 +262,14 @@ export default function LandingPage() {
                     About Us
                   </span>
                   <h1 class="wow fadeInUp" data-wow-delay=".4s">
-                    On-time Delivery and Customer Satisfaction
+                    On-time Delivery and User Satisfaction
                   </h1>
                   <p class="wow fadeInUp" data-wow-delay=".6s">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                    aliquyam erat, sed diam voluptua.
+                    OTD is calculated by taking the number of customer orders
+                    and comparing this to the number of orders shipped on or
+                    before the specified delivery date. OTD is generally offered
+                    as a percentage, and it can be continually measured to keep
+                    track of an organization's performance.
                   </p>
                 </div>
                 <div
@@ -276,7 +290,7 @@ export default function LandingPage() {
                     <h3 id="secondo1" class="countup">
                       1M
                     </h3>
-                    <h5>Download</h5>
+                    <h5>Views</h5>
                   </div>
                   <div class="single-counter position-relative">
                     <h3 id="secondo2" class="countup">
@@ -310,9 +324,9 @@ export default function LandingPage() {
                     Order Now, Recieve Within 30mins
                   </h1>
                   <p class="mb-35 wow fadeInUp" data-wow-delay=".6s">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod tempor invidunt ut labore hdht dolore
-                    magna aliquyam erat, sed diam voluptua.
+                    Order medicine online - delivered free of charge and in just
+                    a few minutes ... Medications delivered in 30 minutes, free
+                    of charge ... Receive your order
                   </p>
                   <a
                     href="javscript:void(0)"
@@ -333,38 +347,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section id="received" class="about-section received-section pt-150">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-lg-6">
-              <div
-                class="about-img received-img wow fadeInUp"
-                data-wow-delay=".5s"
-              >
-                <img src="assets/img/received/received-img.svg" alt="" />
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="about-content received-content">
-                <div class="section-title">
-                  <span class="wow fadeInUp" data-wow-delay=".2s">
-                    Contactless Delivery
-                  </span>
-                  <h1 class="mb-25 wow fadeInUp" data-wow-delay=".4s">
-                    On-time Delivery to Your Doorstep
-                  </h1>
-                  <p class="wow fadeInUp" data-wow-delay=".6s">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                    aliquyam erat, sed diam voluptua.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section id="testimonial" class="testimonial-section img-bg pt-150 pb-40">
         <div class="container">
           <div class="row justify-content-center">
@@ -379,38 +361,153 @@ export default function LandingPage() {
               </div>
             </div>
           </div>
-          {rateDetails.map((rate) => (
-            <div class="row testimonial-wrapper">
-              <div class="col-lg-4 col-md-6 -mt-30">
-                <div
-                  class="single-testimonial wow fadeInUp"
-                  data-wow-delay=".2s"
-                >
-                  <div class="rating">
-                    <i class="lni lni-star-filled"></i>
-                    <i class="lni lni-star-filled"></i>
-                    <i class="lni lni-star-filled"></i>
-                    <i class="lni lni-star-filled"></i>
-                    <i class="lni lni-star-filled"></i>
+          <div
+            // class="container"
+            style={{
+              display: "flex",
+              flexDirection: "revert-layer",
+              width: "400px",
+              height: "400px",
+            }}
+          >
+            {rateDetails.map((rate) => (
+              <li
+                style={{
+                  flexBasis: "300px",
+                  margin: "15px",
+                  flexGrow: 0,
+                  flexShrink: 0,
+                }}
+              >
+                <a href="" class="card">
+                  {/* <img
+                  src="https://i.imgur.com/2DhmtJ4.jpg"
+                  class="card__image"
+                  alt=""
+                /> */}
+                  <div
+                    class="rating"
+                    style={{
+                      color: "Orange",
+                      fontSize: "30px",
+                    }}
+                  >
+                    <i
+                      class="lni lni-star-filled"
+                      style={{
+                        color: "Orange",
+                        fontSize: "30px",
+                      }}
+                    ></i>
+                    <i
+                      class="lni lni-star-filled"
+                      style={{
+                        color: "Orange",
+                        fontSize: "30px",
+                      }}
+                    ></i>
+                    <i
+                      class="lni lni-star-filled"
+                      style={{
+                        color: "Orange",
+                        fontSize: "30px",
+                      }}
+                    ></i>
+                    <i
+                      class="lni lni-star-filled"
+                      style={{
+                        color: "Orange",
+                        fontSize: "30px",
+                      }}
+                    ></i>
+                    <i
+                      class="lni lni-star-filled"
+                      style={{
+                        color: "Orange",
+                        fontSize: "30px",
+                      }}
+                    ></i>
                   </div>
-                  <div class="content">
-                    <p>{rate.description}</p>
-                  </div>
-                  <div class="info">
-                    <div class="image">
+
+                  <div class="card__overlay">
+                    <div class="card__header">
+                      <svg class="card__arc" xmlns="http://www.w3.org/2000/svg">
+                        <path />
+                      </svg>
                       <img
+                        class="card__thumb"
                         src="assets/img/testimonial/testimonial-1.png"
                         alt=""
                       />
+                      <div class="card__header-text">
+                        <h3 class="card__title">{rate.name}</h3>
+                        <span class="card__status">{rate.profession}</span>
+                      </div>
                     </div>
-                    <div class="text">
-                      <h5>{rate.name}</h5>
-                      <p>{rate.profession}</p>
+                    <p class="card__description">{rate.profession}</p>
+                  </div>
+                </a>
+              </li>
+            ))}
+          </div>
+          {/* <div
+            style={{
+              display: "flex",
+              flexDirection: "row-reverse",
+              width: "1000px",
+              height: "400px",
+            }}
+          >
+            {rateDetails.map((rate) => (
+              <div class="row testimonial-wrapper" style={{ display: "flex" }}>
+                <div
+                  class="col-lg-4 col-md-6 -mt-30"
+                  style={{
+                    flexGrow: 20,
+                    flexShrink: 0,
+                    flexBasis: "50px",
+                  }}
+                >
+                  <div
+                    class="single-testimonial wow fadeInUp"
+                    data-wow-delay=".2s"
+                    style={{
+                      backgroundColor: "white",
+                      flexBasis: "100px",
+                      flexGrow: 0,
+                      flexShrink: 0,
+                    }}
+                  >
+                    <div
+                      class="rating"
+                      style={{
+                        alignItems: "center",
+                      }}
+                    >
+                      <i class="lni lni-star-filled"></i>
+                      <i class="lni lni-star-filled"></i>
+                      <i class="lni lni-star-filled"></i>
+                      <i class="lni lni-star-filled"></i>
+                      <i class="lni lni-star-filled"></i>
+                    </div>
+                    <div class="content">
+                      <p>{rate.description}</p>
+                    </div>
+                    <div class="info">
+                      <div class="image">
+                        <img
+                          src="assets/img/testimonial/testimonial-1.png"
+                          alt=""
+                        />
+                      </div>
+                      <div class="text">
+                        <h5>{rate.name}</h5>
+                        <p>{rate.profession}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-              {/* <div class="col-lg-4 col-md-6 -mt-60">
+                </div> */}
+          {/* <div class="col-lg-4 col-md-6 -mt-60">
                 <div
                   class="single-testimonial wow fadeInUp"
                   data-wow-delay=".4s"
@@ -444,7 +541,7 @@ export default function LandingPage() {
                   </div>
                 </div>
               </div> */}
-              {/* <div class="col-lg-4 col-md-6">
+          {/* <div class="col-lg-4 col-md-6">
                 <div
                   class="single-testimonial wow fadeInUp"
                   data-wow-delay=".6s"
@@ -478,7 +575,7 @@ export default function LandingPage() {
                   </div>
                 </div>
               </div> */}
-              {/* <div class="col-lg-4 col-md-6 -mt-30">
+          {/* <div class="col-lg-4 col-md-6 -mt-30">
                 <div
                   class="single-testimonial wow fadeInUp"
                   data-wow-delay=".2s"
@@ -512,7 +609,7 @@ export default function LandingPage() {
                   </div>
                 </div>
               </div> */}
-              {/* <div class="col-lg-4 col-md-6 -mt-60">
+          {/* <div class="col-lg-4 col-md-6 -mt-60">
                 <div
                   class="single-testimonial wow fadeInUp"
                   data-wow-delay=".4s"
@@ -546,7 +643,7 @@ export default function LandingPage() {
                   </div>
                 </div>
               </div> */}
-              {/* <div class="col-lg-4 col-md-6">
+          {/* <div class="col-lg-4 col-md-6">
                 <div
                   class="single-testimonial wow fadeInUp"
                   data-wow-delay=".6s"
@@ -580,8 +677,9 @@ export default function LandingPage() {
                   </div>
                 </div>
               </div> */}
-            </div>
-          ))}
+          {/* </div>
+            ))}
+          </div> */}
         </div>
       </section>
 

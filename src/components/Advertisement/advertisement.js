@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import FormData from "form-data";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
+
 const Advertisement = () => {
 ;
      const [title, setTitle] = useState("");
@@ -55,7 +56,7 @@ const Advertisement = () => {
                  <h1 style={{color: "green"}}>Create Advertisement</h1>
                  <div class="input-group">
                 <span class="input-group-addon"></span>
-                <input type="text" onChange={(e) => setTitle(e.target.value)} id="Title" class="form-control" name="Title" placeholder="Title" />
+                <input type="text" onChange={(e) => setTitle(e.target.value)} id="Title" class="form-control" name="Title" placeholder="Title"/>
               </div>
 
               <div class="input-group" style={{marginTop:'10px'}}>
@@ -65,12 +66,12 @@ const Advertisement = () => {
 
             <div class="input-group" style={{marginTop:'10px'}}>
               <span class="input-group-addon"></span>
-              <input onChange={(e) => setDate(e.target.value)} id="date" type="date" class="form-control" name="Date" placeholder="Date"/>
+              <input onChange={(e) => setDate(e.target.value)} id="date" type="text" class="form-control" name="Date" placeholder="Date"/>
             </div>
 
             <div class="input-group" style={{marginTop:'10px'}}>
               <span class="input-group-addon"></span>
-              <input onChange={(e) => setEmail(e.target.value)} id="email" type="email" class="form-control" name="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"/>
+              <input onChange={(e) => setEmail(e.target.value)} id="email" type="email" class="form-control" name="email" placeholder="Email"/>
             </div>
 
             <div class="form-group" style={{marginTop:'10px'}}>
