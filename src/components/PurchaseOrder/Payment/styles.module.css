@@ -142,3 +142,8 @@
   font-size: 80px;
   color: #3e8e41;
 }
+
+.blue_horizontal {
+  display: flex;
+  flex-direction: row;
+}
