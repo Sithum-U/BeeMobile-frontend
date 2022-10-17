@@ -18,6 +18,7 @@ import Single from "./components/product/single";
 import ProductUpdate from "./components/product/update";
 import Login from "./components/Auth/Login/login";
 import Signup from "./components/Auth/signup/Signup";
+import Admin from "./components/Admin";
 /**
  * advertisement
  */
@@ -30,6 +31,7 @@ function App() {
       <Routes>
         {/* <Route exact path="/checkout" component={checkout} /> */}
         {/* <Route path="/PaymentForm" exact element={<PaymentForm />} /> */}
+        <Route path="/admin" exact element={<Admin />} />
         <Route path="/home" exact element={<Home />} />
         <Route path="/Cart" exact element={<Cart />} />
         <Route path="/checkout" exact element={<Checkout />} />

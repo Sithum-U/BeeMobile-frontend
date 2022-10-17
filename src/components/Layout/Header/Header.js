@@ -39,7 +39,7 @@ export default function Header({ countCartItems }) {
             >
               <ul id="nav" class="navbar-nav ml-auto">
                 <li class="nav-item">
-                  <a href="/">Home</a>
+                  <a href="/home">Home</a>
                 </li>
                 <li class="nav-item">
                   <a class="page-scroll" href="#about">
