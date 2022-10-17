@@ -362,10 +362,10 @@ export default function LandingPage() {
             </div>
           </div>
           <div
-            class="container"
+            // class="container"
             style={{
               display: "flex",
-              flexDirection: "row-reverse",
+              flexDirection: "revert-layer",
               width: "400px",
               height: "400px",
             }}

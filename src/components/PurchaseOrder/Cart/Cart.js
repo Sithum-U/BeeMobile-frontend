@@ -158,7 +158,10 @@ export default function Cart() {
 
             <div class="d-flex flex-row align-items-center">
               <i class="fa fa-long-arrow-left"></i>
-              <span class="ml-2">Continue Shopping</span>
+              <Link to="/home">
+                {" "}
+                <span class="ml-2">Continue Shopping</span>
+              </Link>
             </div>
             <hr />
             <h4 class="mb-0">Shopping cart</h4>
