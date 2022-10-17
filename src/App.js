@@ -19,7 +19,10 @@ import Single from "./components/product/single";
 import ProductUpdate from "./components/product/update";
 import Login from "./components/Auth/Login/login";
 import Signup from "./components/Auth/signup/Signup";
+import Profile from "./components/User/Profile";
+import UserReport from "./components/User/userReport/UserReport";
 
+// import Profile from "./components/User/Profile/profile";
 
 function App() {
   return (
@@ -43,14 +46,25 @@ function App() {
           element={<ProductDetails />}
         />
 
-        <Route path="/productDetails/fertilizer" exact element={<ProductDetails />} />
+        <Route
+          path="/productDetails/fertilizer"
+          exact
+          element={<ProductDetails />}
+        />
 
         <Route path="/productDetails/agri" exact element={<ProductAgri />} />
-        <Route path="/productDetails/innovation" exact element={<ProductInnovation />} />
+        <Route
+          path="/productDetails/innovation"
+          exact
+          element={<ProductInnovation />}
+        />
         <Route path="/product/single/:id" exact element={<Single />} />
         <Route path="/product/update/:id" exact element={<ProductUpdate />} />
         <Route path="/login" exact element={<Login />} />
-        <Route path="/signup" exact element={<Signup />} />
+        <Route path="/register" exact element={<Signup />} />
+        <Route path="/profile" exact element={<Profile />} />
+        <Route path="/userReport" exact element={<UserReport />} />
+        {/* <Route path="/profile" exact element={<Profile />} /> */}
       </Routes>
     </BrowserRouter>
   );
