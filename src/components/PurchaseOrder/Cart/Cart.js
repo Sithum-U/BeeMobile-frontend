@@ -164,8 +164,11 @@ export default function Cart() {
               </Link>
             </div>
             <hr />
+
             <h4 class="mb-0">Shopping cart</h4>
             <div class="d-flex justify-content-between">
+              <br />
+              <br />
               <span>You have {cartItems.length} items in your cart</span>
               <div class="d-flex flex-row align-items-center">
                 <span class="text-black-50">Sort by:</span>
@@ -181,11 +184,18 @@ export default function Cart() {
             {cartItems.length === 0 && (
               <div className={styles.emptyCart_container}>
                 <div className="center">
-                  <img src={myGif} />
-                  <h3 className="emptyCartMain">Your Cart is Empty</h3>
-                  <h4 className="emptyCartSecond">
-                    Looks like you haven't added anything to your cart yet
-                  </h4>
+                  <center>
+                    <img src={myGif} />
+
+                    <Typography variant="h5" gutterBottom>
+                      Your Cart is Empty
+                    </Typography>
+
+                    <Typography variant="h7" gutterBottom>
+                      Looks like you haven't added <br />
+                      anything to your cart yet
+                    </Typography>
+                  </center>
                 </div>
               </div>
             )}
