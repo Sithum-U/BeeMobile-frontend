@@ -1,9 +1,5 @@
-#valid{
+.valid{
     color: red;
-    text-align: center;
-    padding: 8px;
-    height: 30px;
-    width: 30%;
 }
 body{
 
