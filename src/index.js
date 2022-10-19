@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
-import "./bootstrap.min.css";
 import Footer from "./components/Layout/Footer/Footer";
 import Header from "./components/Layout/Header/Header";
 import { Provider } from "react-redux";
@@ -14,7 +13,7 @@ root.render(
     <div>
       <Header />
       <App />
-      {/* <Footer /> */}
+      <Footer />
     </div>
   </Provider>
 );

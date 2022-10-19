@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import AppBar from "@material-ui/core/AppBar";
@@ -11,13 +11,14 @@ import Button from "@material-ui/core/Button";
 // import Link from "@material-ui/core/Link";
 import Typography from "@material-ui/core/Typography";
 import PaymentForm from "../Payment/PaymentForm";
-import OrderConfirmationForm from "../ReviewOrderForm/ReviewOrderForm";
-import ReviewOrderForm from "../OrderConfirmationForm/OrderConfirmationForm";
+import OrderConfirmationForm from "../OrderConfirmationForm/OrderConfirmationForm";
+import ReviewOrderForm from "../ReviewOrderForm/ReviewOrderForm";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
+import Rating from "../Rating/rating";
+import axios from "axios";
 
 const steps = ["Payment Details", "Review Your Order", "Order Confirmation"];
-
 function getStepContent(step) {
   switch (step) {
     case 0:
@@ -33,6 +34,27 @@ function getStepContent(step) {
 
 export default function PO() {
   const [activeStep, setActiveStep] = React.useState(0);
+  const [open, setOpen] = useState(false);
+
+  const handleClick = (e) => {
+    e.preventDefault();
+
+    try {
+      const result = axios.delete(`http://localhost:8000/cartItem/`);
+
+      console.log(result);
+    } catch (err) {
+      console.log(err);
+    }
+
+    try {
+      const result = axios.delete(`http://localhost:8000/payment/`);
+
+      console.log(result);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
@@ -59,14 +81,7 @@ export default function PO() {
           <React.Fragment>
             {activeStep === steps.length ? (
               <React.Fragment>
-                <Typography variant="h5" gutterBottom>
-                  Thank you for your order.
-                </Typography>
-                <Typography variant="subtitle1">
-                  Your order number is #2001539. Order created succefully.We
-                  will notify your order , and will send you an update when your
-                  order is ready to be delivered.
-                </Typography>
+                <Rating />
               </React.Fragment>
             ) : (
               <React.Fragment>
@@ -95,7 +110,22 @@ export default function PO() {
                     onClick={handleNext}
                     className={styles.button}
                   >
-                    {activeStep === steps.length - 1 ? "Place order" : "Next"}
+                    {activeStep === steps.length - 1 ? (
+                      <h4 style={{ color: "#ffffff", fontSize: "18px" }}>
+                        Rate Us{" "}
+                        <i
+                          class="bi bi-star-fill"
+                          style={{ color: "#ffd32a" }}
+                        ></i>
+                      </h4>
+                    ) : activeStep === steps.length - 2 ? (
+                      "Next"
+                    ) : (
+                      // <div>
+                      //   <Button onClick={handleClick}>Place order</Button>
+                      // </div>
+                      "Next"
+                    )}
                   </Button>
                 </div>
               </React.Fragment>

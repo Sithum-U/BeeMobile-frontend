@@ -1,0 +1,186 @@
+.signup_container {
+  width: 100%;
+  height: 1;
+  background-color: #f5f5f5;
+  /* background-image: url("../../Layout/Images/agriculturebg.jpg"); */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signup_form_container {
+  width: 1500px;
+  height: 950px;
+  /* background-image: url("../../Layout/Images/agriculturebg.jpg"); */
+  background-repeat: no-repeat;
+  background-size: auto;
+  /* display: flex; */
+  margin-left: 5%;
+  border-radius: 10px;
+  box-shadow: 0px 3px 3px -2px rgb(0 0 0 / 20%),
+    0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
+}
+
+.white_btn,
+.blue_btn {
+  border: none;
+  outline: none;
+  padding: 12px 0;
+  background-color: white;
+  border-radius: 20px;
+  width: 370px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.blue_btn {
+  background-color: #414bb2;
+  color: white;
+  margin: 10px;
+}
+
+.blue_btn:hover {
+  background-color: #00b894;
+  visibility: visible;
+}
+.info_alert {
+  visibility: hidden;
+}
+.alert:hover .info_alert {
+  visibility: visible;
+  /* opacity: 1;
+  transform: translateX(-50%) translateY(0px); */
+}
+
+.blue_btn:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.white_btn:hover {
+  background-color: #3bb19b;
+}
+
+.white_btn:active {
+  background-color: #3bb19b;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.paymentStyles {
+  font-family: "Times New Roman", cursive;
+  padding-top: 200px;
+  font-size: 50px;
+  color: #303681ef;
+}
+
+.paymentHeadingStyle {
+  font-family: "Lucida Handwriting", cursive;
+  padding-top: 150px;
+  font-size: 80px;
+  color: #3e8e41;
+}
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+/* 
+.tooltip .tooltiptext {
+  position: absolute;
+  bottom: 55px;
+  width: 400px;
+  background-color: rgb(214, 182, 20);
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  visibility: hidden;
+  opacity: 0;
+  color: #fff;
+  text-align: center;
+  transition: 0.5s;
+  transform: translateX(-50%) translateY(-50px);
+  Position the tooltip
+  position: absolute;
+  z-index: 1;
+} */
+
+.search {
+  width: 130px;
+  box-sizing: border-box;
+  border-color: #414bb2;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: white;
+  /* background-image: url("searchicon.png"); */
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+
+.search:focus {
+  width: 100%;
+}
+.emptyCart_container {
+  width: 400px;
+  height: 300px;
+  /* display: flex; */
+  margin-left: 30%;
+  padding-left: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 3px 3px -2px rgb(0 0 0 / 20%),
+    0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
+}
+
+/* CSS */
+.button62 {
+  background: linear-gradient(to bottom right, #ef4765, #ff9a5a);
+  border: 0;
+  border-radius: 12px;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 2.5;
+  outline: transparent;
+  padding: 0 1rem;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow 0.2s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  margin-top: 10px;
+}
+
+.button62:not([disabled]):focus {
+  box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.5),
+    -0.125rem -0.125rem 1rem rgba(239, 71, 101, 0.5),
+    0.125rem 0.125rem 1rem rgba(255, 154, 90, 0.5);
+}
+
+.button62:not([disabled]):hover {
+  box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.5),
+    -0.125rem -0.125rem 1rem rgba(239, 71, 101, 0.5),
+    0.125rem 0.125rem 1rem rgba(255, 154, 90, 0.5);
+}
+
+.productCart_container {
+  width: 900px;
+  height: 150px;
+  /* display: flex; */
+  margin-left: 5%;
+  padding: 20px 20px 20px 20px;
+  border-radius: 10px;
+  box-shadow: 0px 3px 3px -2px rgb(0 0 0 / 20%),
+    0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
+}

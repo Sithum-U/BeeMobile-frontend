@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Badge from "@mui/material/Badge";
 import logo from "../Images/backgroundlogo.png";
-import cart from "../Images/cart.png";
+import cart from "../Images/sprite.png";
 import "./Header.css";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -27,6 +27,15 @@ export default function Header({ countCartItems }) {
     dispatch(logout());
     window.location.href = "/login";
   };
+  const [cartItems, setCartItems] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:8000/cartItem/")
+      .then((res) => res.json())
+      .then((res) => {
+        setCartItems(res.data);
+      });
+  }, []);
+  console.log(cartItems);
 
   return (
     // <div class="container">
@@ -44,18 +53,19 @@ export default function Header({ countCartItems }) {
             >
               <ul id="nav" class="navbar-nav ml-auto">
                 <li class="nav-item">
-                  <a href="#home">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="page-scroll" href="#services">
-                    Services
-                  </a>
+                  <a href="/">Home</a>
                 </li>
                 <li class="nav-item">
                   <a class="page-scroll" href="#about">
                     About
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a class="page-scroll" href="#services">
+                    Services
+                  </a>
+                </li>
+
                 <li class="nav-item">
                   <a class="page-scroll" href="#how">
                     How It Works
@@ -66,6 +76,11 @@ export default function Header({ countCartItems }) {
                     Testimonials
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a class="page-scroll" href="/home">
+                    Products
+                  </a>
+                </li>
               </ul>
             </div>
           </nav>
@@ -74,42 +89,17 @@ export default function Header({ countCartItems }) {
       {/* <nav>
         <ul id="MenuItems">
           <li>
-            <a href="">Home</a>
-          </li>
-          <li>
-            <a href="">Products</a>
-          </li>
-          <li>
-            <a href="">About</a>
-          </li>
-          <li>
-            <a href="">Contact</a>
-          </li>
-          <li>
-            <a href="">Account</a>
+            <a href="/home">Products</a>
           </li>
         </ul>
       </nav> */}
 
-      {countCartItems ? (
-        <Badge
-          className="zoomBadge"
-          badgeContent={countCartItems}
-          color="success"
-        >
-          <li>
-            <a href="/Cart">
-              <img
-                className="zoomCart"
-                src={cart}
-                width="50px"
-                height="50px"
-                color="#fff"
-              />
-            </a>
-          </li>
-        </Badge>
-      ) : (
+      {/* {CartItems ? ( */}
+      <Badge
+        className="zoomBadge"
+        badgeContent={cartItems.length}
+        color="success"
+      >
         <li>
           <a href="/Cart">
             <img
@@ -121,17 +111,32 @@ export default function Header({ countCartItems }) {
             />
           </a>
         </li>
-      )}
+      </Badge>
+      {/* ) : (
+        <li>
+          <a href="/Cart">
+            <img
+              className="zoomCart"
+              src={cart}
+              width="50px"
+              height="50px"
+              color="#fff"
+            />
+          </a>
+        </li>
+      )} */}
       <div className="navItems">
         <div>
-          <a href="/register">
-            <button className="navButton">Register</button>
-          </a>
-          <a href="/login">
-            <button className="navButton">
-              <FontAwesomeIcon icon={faRightToBracket} /> Login
-            </button>
-          </a>
+          <div style={{ display: "flex" }}>
+            <a href="/register">
+              <button className="navButton">Register</button>
+            </a>
+            <a href="/login">
+              <button className="navButton">
+                Login <FontAwesomeIcon icon={faRightToBracket} />
+              </button>
+            </a>
+          </div>
           {userInfo ? (
             <NavDropdown title={userInfo?.name} id="basic-nav-dropdown">
               <NavDropdown.Item href="/profile">My Profile</NavDropdown.Item>

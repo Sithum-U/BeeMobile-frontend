@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@200&display=swap");
 
 body {
+<<<<<<< HEAD
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Work Sans", "Segoe UI",
         "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
@@ -13,3 +14,18 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
         monospace;
 }
+=======
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Work Sans", "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* background-color: maroon; */
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+>>>>>>> 8bd3f1d50f63dee72d25519f4b69e6db993d0b81

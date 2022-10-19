@@ -44,22 +44,22 @@ function SideBar() {
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Quick Menu</h3>
           <ul className="sidebarList">
-            <Link to="/users" className="link">
-              <li className="sidebarListItem">
-                <PermIdentity className="sidebarIcon" />
-                Users
-              </li>
-            </Link>
-            <Link to="/product" className="link">
-              <li className="sidebarListItem">
-                <Storefront className="sidebarIcon" />
-                Products
-              </li>
-            </Link>
             <Link to="/" className="link">
               <li className="sidebarListItem">
                 <AttachMoney className="sidebarIcon" />
                 Advertisements
+              </li>
+            </Link>
+            <Link to="/productTable" className="link">
+              <li className="sidebarListItem">
+                <Storefront className="sidebarIcon" />
+                Products Table
+              </li>
+            </Link>
+            <Link to="/users" className="link">
+              <li className="sidebarListItem">
+                <PermIdentity className="sidebarIcon" />
+                Manage Users
               </li>
             </Link>
           </ul>
