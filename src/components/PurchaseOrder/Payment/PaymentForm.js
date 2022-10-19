@@ -68,7 +68,7 @@ const PaymentForm = () => {
     };
 
     axios
-      .post("http://localhost:8000/payment/add", paymentObj)
+      .post("http://localhost:8000/payment/", paymentObj)
       .then((res) => {
         alert("Payment Details Successfully added!");
         axios.get("http://localhost:8000/payment/").then((res) => {
@@ -97,7 +97,7 @@ const PaymentForm = () => {
       zip: editZip,
     };
     axios
-      .put(`http://localhost:8000/payment/updatePayment/${editId}`, paymentObj)
+      .put(`http://localhost:8000/payment/${editId}`, paymentObj)
       .then((res) => {
         alert("Payment Updated");
         axios.get("http://localhost:8000/payment/").then((res) => {
@@ -143,11 +143,14 @@ const PaymentForm = () => {
       <div className={styles.signup_form_container}>
         {/* <h1>Course Page</h1> */}
         <div className={styles.left}>
-          <h2 className={styles.paymentHeadingStyle}>Agro Pro </h2>
+          {/* <h2 className={styles.paymentHeadingStyle}>Agro Pro </h2> */}
           <h1 className={styles.paymentStyles}>Secure Payments</h1>
         </div>
 
         <div className={styles.right}>
+          <br />
+          <br />
+          <br />
           {payments.length === 0 || payments.length > 2 ? (
             <div
               sx={{

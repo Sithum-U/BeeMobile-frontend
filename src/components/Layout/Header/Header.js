@@ -53,7 +53,7 @@ export default function Header({ countCartItems }) {
             >
               <ul id="nav" class="navbar-nav ml-auto">
                 <li class="nav-item">
-                  <a href="/home">Home</a>
+                  <a href="/">Home</a>
                 </li>
                 <li class="nav-item">
                   <a class="page-scroll" href="#about">
@@ -127,14 +127,16 @@ export default function Header({ countCartItems }) {
       )} */}
       <div className="navItems">
         <div>
-          <a href="/register">
-            <button className="navButton">Register</button>
-          </a>
-          <a href="/login">
-            <button className="navButton">
-              <FontAwesomeIcon icon={faRightToBracket} /> Login
-            </button>
-          </a>
+          <div style={{ display: "flex" }}>
+            <a href="/register">
+              <button className="navButton">Register</button>
+            </a>
+            <a href="/login">
+              <button className="navButton">
+                Login <FontAwesomeIcon icon={faRightToBracket} />
+              </button>
+            </a>
+          </div>
           {userInfo ? (
             <NavDropdown title={userInfo?.name} id="basic-nav-dropdown">
               <NavDropdown.Item href="/profile">My Profile</NavDropdown.Item>

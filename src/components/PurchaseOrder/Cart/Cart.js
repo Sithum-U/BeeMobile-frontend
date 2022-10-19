@@ -12,6 +12,7 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 
 export default function Cart() {
   const [open, setOpen] = useState(false);
@@ -110,52 +111,60 @@ export default function Cart() {
   return (
     <div class="container mt-5 p-3 rounded cart">
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" style={{ backgroundColor: "blue" }}>
-          <Toolbar>
-            <section>
-              <div class="container">
-                <h3
-                  class="title-page"
-                  styles={{ margin: "50px", color: "white" }}
-                >
-                  Review Your Order
-                </h3>
-              </div>
-            </section>
+        {/* <AppBar position="static" style={{ backgroundColor: "blue" }}> */}
+        {/* <Toolbar> */}
+        <div style={{ display: "flex" }}>
+          <div class="container">
+            <center>
+              {" "}
+              <h2>CHECK YOUR PRODUCTS HERE 🤠</h2>
+            </center>
+          </div>
 
-            <Badge
-              className="zoomBadge"
-              badgeContent={cartItems.length}
-              color="success"
-            >
-              <li>
-                <a href="/Cart">
-                  <img
-                    className="zoomCart"
-                    src={cart}
-                    width="50px"
-                    height="50px"
-                    color="#fff"
+          <div class="container">
+            <div class="row height d-flex justify-content-center align-items-center">
+              <div class="col-md-12">
+                <div class="form">
+                  <i class="fa fa-search"></i>
+                  <input
+                    type="text"
+                    class="form-control form-input"
+                    placeholder="Search Product..."
+                    onChange={(e) => {
+                      setSearchTerm(e.target.value);
+                    }}
                   />
-                </a>
-              </li>
-            </Badge>
-          </Toolbar>
-        </AppBar>
+                  <span class="left-pan">
+                    <i class="fa fa-microphone"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <Badge
+            className="zoomBadge"
+            badgeContent={cartItems.length}
+            color="success"
+          >
+            <li>
+              <a href="/Cart">
+                <img
+                  className="zoomCart"
+                  src={cart}
+                  width="50px"
+                  height="50px"
+                  color="#fff"
+                />
+              </a>
+            </li>
+          </Badge>
+        </div>
+        {/* </Toolbar> */}
+        {/* </AppBar> */}
       </Box>
       <div class="row no-gutters">
         <div class="col-md-8">
           <div class="product-details mr-2">
-            <input
-              type="text"
-              className={styles.search}
-              name="search"
-              placeholder="Search.."
-              onChange={(e) => {
-                setSearchTerm(e.target.value);
-              }}
-            />
-
             <div class="d-flex flex-row align-items-center">
               <i class="fa fa-long-arrow-left"></i>
               <Link to="/home">
@@ -163,12 +172,8 @@ export default function Cart() {
                 <span class="ml-2">Continue Shopping</span>
               </Link>
             </div>
-            <hr />
 
-            <h4 class="mb-0">Shopping cart</h4>
             <div class="d-flex justify-content-between">
-              <br />
-              <br />
               <span>You have {cartItems.length} items in your cart</span>
               <div class="d-flex flex-row align-items-center">
                 <span class="text-black-50">Sort by:</span>
@@ -178,7 +183,7 @@ export default function Cart() {
                 </div>
               </div>
             </div>
-
+            <hr />
             {/* ......................................product items........................................................ */}
 
             {cartItems.length === 0 && (
@@ -213,27 +218,27 @@ export default function Cart() {
                   }
                 })
                 .map((item) => (
-                  <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
-                    <tr key={item.productId}>
+                  <tr key={item.productId}>
+                    <div class="d-flex justify-content-between align-items-center mt-1 p-5 items rounded">
                       <div class="d-flex flex-row">
                         <td>
                           <figure class="itemside">
                             <div class="aside">
                               <img
                                 src={item.image}
-                                // src="assets/images/items/1.jpg"
-                                class="img-sm"
+                                width="150px"
+                                className="cartImg"
                               />
                             </div>
                             <figcaption class="ml-2">
                               <span class="font-weight-bold d-block">
-                                <a href="#" class="title text-dark">
+                                <a href="#" class="title text-dark ml-4">
                                   {item.productName}
                                 </a>
                               </span>
-                              <p class="text-muted small">
+                              <p class="text-muted small ml-4">
                                 Product Code: {item.productCode} <br />{" "}
-                                Category: {item.category}
+                                {/* Category: {item.category} */}
                               </p>
                             </figcaption>
                           </figure>
@@ -241,9 +246,16 @@ export default function Cart() {
                       </div>
                       <div class="d-flex flex-row align-items-center">
                         <td>
+                          <figcaption class="ml-2">
+                            <p class="text-muted small ml-4">
+                              Category: {item.category}
+                            </p>
+                          </figcaption>
+                        </td>
+                        <td>
                           <div class="price-wrap">
                             <var class="d-block ml-5 font-weight-bold">
-                              Rs : {item.price} /=
+                              Rs: {item.price}.00
                             </var>
                             <small class="text-muted">
                               {" "}
@@ -251,17 +263,16 @@ export default function Cart() {
                             </small>
                           </div>
                         </td>
+                        <td>
+                          <div class="price-wrap">
+                            <var class="d-block ml-5 font-weight-bold"></var>
+                            <small class="text-muted">
+                              {" "}
+                              {/* Rs: {item.price} each{" "} */}
+                            </small>
+                          </div>
+                        </td>
                         <td class="text-right">
-                          <a
-                            data-original-title="Save to Wishlist"
-                            title=""
-                            href=""
-                            class="btn btn-light mr-2"
-                            data-toggle="tooltip"
-                          >
-                            {" "}
-                            1
-                          </a>
                           <button
                             class="btn btn-light"
                             style={{
@@ -276,33 +287,12 @@ export default function Cart() {
                           </button>
                         </td>
                       </div>
-                    </tr>
-                  </div>
+                    </div>
+                  </tr>
                 ))
             ) : (
               <div></div>
             )}
-
-            {/* <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
-              <div class="d-flex flex-row">
-                <img
-                  class="rounded"
-                  src="https://i.imgur.com/Tja5H1c.jpg"
-                  width="40"
-                />
-                <div class="ml-2">
-                  <span class="font-weight-bold d-block">
-                    Samsung galaxy Note 10&nbsp;
-                  </span>
-                  <span class="spec">256GB, Navy Blue</span>
-                </div>
-              </div>
-              <div class="d-flex flex-row align-items-center">
-                <span class="d-block">1</span>
-                <span class="d-block ml-5 font-weight-bold">$999</span>
-                <i class="fa fa-trash-o ml-3 text-black-50"></i>
-              </div>
-            </div> */}
           </div>
         </div>
         <div class="col-md-4">
@@ -327,21 +317,22 @@ export default function Cart() {
             <hr class="line" />
             <div class="d-flex justify-content-between information">
               <span>Subtotal</span>
-              <span>Rs :{subtotalPrice} /=</span>
+              <span>Rs :{subtotalPrice}.00 /=</span>
             </div>
             <div class="d-flex justify-content-between information">
               <span>Shipping</span>
-              <span>Rs :{shippingPrice} /=</span>
+              <span>Rs :{shippingPrice}.00 /=</span>
             </div>
             <div class="d-flex justify-content-between information">
               <span>Total(Incl. taxes)</span>
-              <span>Rs :{totalPrice} /=</span>
+              <span>Rs :{totalPrice}.00 /=</span>
             </div>
             <button
-              class="btn btn-primary btn-block d-flex justify-content-between mt-3"
+              class="btn  btn-block d-flex justify-content-between mt-3"
               type="button"
+              style={{ backgroundColor: "#2d3436" }}
             >
-              <span>Rs :{totalPrice} /=</span>
+              <span style={{ color: "white" }}>Rs :{totalPrice}.00 /=</span>
               <Link to="/checkout">
                 <span style={{ color: "white" }}>
                   Checkout<i class="fa fa-long-arrow-right ml-1"></i>

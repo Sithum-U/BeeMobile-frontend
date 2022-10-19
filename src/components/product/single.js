@@ -97,7 +97,8 @@ const Single = () => {
                     <h3> Rs.{product.data.price} </h3>
                   ) : (
                     <div></div>
-                  )}<br />
+                  )}
+                  <br />
                   <Link to="/">
                     <Button variant="danger">Pay Now</Button>
                   </Link>

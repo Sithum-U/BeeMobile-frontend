@@ -38,7 +38,7 @@ function App() {
       <Routes>
         {/* <Route exact path="/checkout" component={checkout} /> */}
         {/* <Route path="/PaymentForm" exact element={<PaymentForm />} /> */}
-        <Route path="/" exact element={<Home />} />
+        <Route path="/" exact element={<LandingPage />} />
         <Route path="/admin" exact element={<Admin />} />
         <Route path="/home" exact element={<Home />} />
         <Route path="/Cart" exact element={<Cart />} />
@@ -49,7 +49,7 @@ function App() {
         <Route path="/productTable" exact element={<ProductTable />} />
 
         <Route path="/rating" exact element={<Rating />} />
-        <Route path="/landingPage" exact element={<LandingPage />} />
+
         <Route
           path="/productDetails/fertilizer"
           exact

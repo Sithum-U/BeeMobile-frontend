@@ -13,7 +13,7 @@ import {
 } from "react-bootstrap";
 import UpdateIcon from "@material-ui/icons/Update";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import axios from "axios";
 import jspdf from "jspdf";
 import "jspdf-autotable";
@@ -28,30 +28,27 @@ import {
 } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 
-
 function ViewAdvertisement(props) {
   const [advertisement, setAdvertisement] = useState([]);
   const [view, viewState] = useState(false);
   const [vdelete, viewDelete] = useState(false);
   const [vupdate, viewupdate] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
-  
-  
+  const [searchTerm, setSearchTerm] = useState("");
+
   // const history = useHistory();
   useEffect(() => {
     axios
       .get("http://localhost:8000/advertise/view")
       .then((res) => {
         setAdvertisement(res.data);
-        console.log("THIS IS THE DATA :"+res.data);
+        console.log("THIS IS THE DATA :" + res.data);
       })
       .catch((err) => {
         console.log("error=>", err);
-        console.log("ERROR")
+        console.log("ERROR");
       });
   }, [view]);
 
- 
   const addNewProduct = () => {
     window.location = "/advertisement/advertise";
   };
@@ -73,46 +70,38 @@ function ViewAdvertisement(props) {
       });
   };
 
+  //report
+  const generatePDF = (advertisement) => {
+    const doc = new jspdf();
+    const tableColumn = ["title", "description", "date", "email", "photo"];
 
- //report
-     const generatePDF = (advertisement) => {
-       const doc = new jspdf();
-       const tableColumn = [
-         "title",
-         "description",
-         "date",
-         "email",
-        "photo",
-       ];
+    const tableRows = [];
+    const date = Date().split(" ");
+    const dateStr = date[1] + "-" + date[2] + "-" + date[3];
 
-       const tableRows = [];
-       const date = Date().split(" ");
-       const dateStr = date[1] + "-" + date[2] + "-" + date[3];
-
-       advertisement.data.map((advertisement) => {
-         const advertisementData = [
-          advertisement._id,
-          advertisement.title,
-          advertisement.description,
-          advertisement.date,
-          advertisement.email,
-          advertisement.photo,
-         ];
-         tableRows.push(advertisementData);
-       });
+    advertisement.data.map((advertisement) => {
+      const advertisementData = [
+        advertisement._id,
+        advertisement.title,
+        advertisement.description,
+        advertisement.date,
+        advertisement.email,
+        advertisement.photo,
+      ];
+      tableRows.push(advertisementData);
+    });
     //   doc.text("advertisment report", 14, 16).setFontSize(13);
     doc.text(`Date - ${dateStr}`, 14, 23);
     //right down width height
 
     //   doc.addImage(img, "JPEG", 170, 8, 25, 25);
-       doc.autoTable(tableColumn, tableRows, {
-         styles: { fontSize: 10 },
-         startY: 35,
-      });
-       //doc.addImage(img1, "JPEG", 120, 140, 70, 40);
-       doc.save("advertisment.pdf");
-     };
-
+    doc.autoTable(tableColumn, tableRows, {
+      styles: { fontSize: 10 },
+      startY: 35,
+    });
+    //doc.addImage(img1, "JPEG", 120, 140, 70, 40);
+    doc.save("advertisment.pdf");
+  };
 
   const UpdateAdvertisement = (id) => {
     axios
@@ -131,58 +120,62 @@ function ViewAdvertisement(props) {
       });
   };
 
-    return (
-      <div>
-        <Container className="pt-3">
-          <Card className={"p-5 mb-3"}>
-            <div className="text-center mb-2">
-              <h1 className="form-titles m-0">ADVERTISEMENT MANAGEMENT</h1>
-              <Row className="mb-3 align-items-center">
-                <Col lg={10}>
-                
-                </Col>
-                <Col lg={2}>
-                  <Button
-                    style={{ backgroundColor: "#c92e31", color: "white" }}
-                    startIcon={<AddIcon />}
-                    onClick={addNewProduct}
-                  >
-                    Add
-                  </Button>
-<hr></hr>
-                  <button style={{ backgroundColor: "#40735E", color: "white" }} startIcon={<ArrowDownwardIcon/>} onClick={() => {generatePDF(advertisement)}}>Download Advertisement Report</button>
-                </Col>
-              </Row>
+  return (
+    <div>
+      <Container className="pt-3">
+        <Card className={"p-5 mb-3"}>
+          <div className="text-center mb-2">
+            <h1 className="form-titles m-0">ADVERTISEMENT MANAGEMENT</h1>
+            <Row className="mb-3 align-items-center">
+              <Col lg={10}></Col>
+              <Col lg={2}>
+                <Button
+                  style={{ backgroundColor: "#c92e31", color: "white" }}
+                  startIcon={<AddIcon />}
+                  onClick={addNewProduct}
+                >
+                  Add
+                </Button>
+                <hr></hr>
+                <button
+                  style={{ backgroundColor: "#40735E", color: "white" }}
+                  startIcon={<ArrowDownwardIcon />}
+                  onClick={() => {
+                    generatePDF(advertisement);
+                  }}
+                >
+                  Download Advertisement Report
+                </button>
+              </Col>
+            </Row>
 
+            <MDBCol md="6">
+              <input
+                class="form-control"
+                name="title"
+                type="text"
+                placeholder="Search.."
+                onChange={(e) => {
+                  setSearchTerm(e.target.value);
+                }}
+              />
+            </MDBCol>
+            <br></br>
 
-
-              <MDBCol md="6">
-          <input
-            class="form-control"
-            name="title"
-            type="text"
-            placeholder="Search.."
-            
-            onChange={(e) => {
-              setSearchTerm(e.target.value);
-             
-            }}
-            
-          />
-        </MDBCol>
-    <br></br>
-
-        
-              <hr className="divide" />
-            </div>
-            <Grid container spacing={3}>
-              {advertisement.filter((adver) => {
-                if(searchTerm == ""){
-                  return adver
-                } else if (adver.title.toLowerCase().includes(searchTerm.toLowerCase())){
-                  return adver
+            <hr className="divide" />
+          </div>
+          <Grid container spacing={3}>
+            {advertisement
+              .filter((adver) => {
+                if (searchTerm == "") {
+                  return adver;
+                } else if (
+                  adver.title.toLowerCase().includes(searchTerm.toLowerCase())
+                ) {
+                  return adver;
                 }
-              }).map((adver, index) => {
+              })
+              .map((adver, index) => {
                 return (
                   <Grid item xs={4}>
                     <Paper>
@@ -199,7 +192,6 @@ function ViewAdvertisement(props) {
                           <CardContent>
                             <Typography gutterBottom component="h2">
                               {adver.title}
-                              
                             </Typography>
                             <Typography
                               style={{ fontSize: "12px" }}
@@ -230,7 +222,10 @@ function ViewAdvertisement(props) {
                               color="primary"
                               className={"m-2"}
                               startIcon={<DeleteForeverIcon />}
-                              onClick={removeAdvertisement.bind(this, adver._id)}
+                              onClick={removeAdvertisement.bind(
+                                this,
+                                adver._id
+                              )}
                             >
                               Delete
                             </Button>
@@ -248,20 +243,26 @@ function ViewAdvertisement(props) {
                               Update
                             </Button> */}
                             <Link to={"/advertise/update/" + adver._id}>
-
-                                                                    <Button Button
-                              style={{
-                                backgroundColor: "green",
-                                color: "white",
-                                padding:"5px"
-                              }}
-                              size="medium"
-                              color="primary"
-                              className={"m-2"}startIcon={<UpdateIcon/>}
-                              onClick={UpdateAdvertisement.bind(this, adver._id)}
-                            >Update</Button>|
-
-                                                                </Link>
+                              <Button
+                                Button
+                                style={{
+                                  backgroundColor: "green",
+                                  color: "white",
+                                  padding: "5px",
+                                }}
+                                size="medium"
+                                color="primary"
+                                className={"m-2"}
+                                startIcon={<UpdateIcon />}
+                                onClick={UpdateAdvertisement.bind(
+                                  this,
+                                  adver._id
+                                )}
+                              >
+                                Update
+                              </Button>
+                              |
+                            </Link>
                           </div>
                         </Card>
                       </div>
@@ -269,12 +270,11 @@ function ViewAdvertisement(props) {
                   </Grid>
                 );
               })}{" "}
-            </Grid>
-          </Card>
-        </Container>
-      </div>
-    );
-  } 
-
+          </Grid>
+        </Card>
+      </Container>
+    </div>
+  );
+}
 
 export default ViewAdvertisement;

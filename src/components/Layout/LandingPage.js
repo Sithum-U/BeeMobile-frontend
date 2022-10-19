@@ -140,7 +140,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section id="services" class="service-section pt-150">
+      {/* <section id="services" class="service-section pt-150">
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-xl-6 col-lg-8">
@@ -245,7 +245,7 @@ export default function LandingPage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <section id="about" class="about-section pt-150">
         <div class="container">
@@ -328,13 +328,13 @@ export default function LandingPage() {
                     a few minutes ... Medications delivered in 30 minutes, free
                     of charge ... Receive your order
                   </p>
-                  <a
+                  {/* <a
                     href="javscript:void(0)"
                     class="main-btn btn-hover wow fadeInUp"
                     data-wow-delay=".8s"
                   >
                     Download App
-                  </a>
+                  </a> */}
                 </div>
               </div>
             </div>
@@ -347,7 +347,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section id="testimonial" class="testimonial-section img-bg pt-150 pb-40">
+      <section id="testimonial" class="testimonial-section img-bg pt-100 pb-40">
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-lg-6">
@@ -367,7 +367,7 @@ export default function LandingPage() {
               display: "flex",
               flexDirection: "revert-layer",
               width: "400px",
-              height: "400px",
+              height: "350px",
             }}
           >
             {rateDetails.map((rate) => (
@@ -389,42 +389,42 @@ export default function LandingPage() {
                     class="rating"
                     style={{
                       color: "Orange",
-                      fontSize: "30px",
+                      fontSize: "15px",
                     }}
                   >
                     <i
                       class="lni lni-star-filled"
                       style={{
                         color: "Orange",
-                        fontSize: "30px",
+                        fontSize: "15px",
                       }}
                     ></i>
                     <i
                       class="lni lni-star-filled"
                       style={{
                         color: "Orange",
-                        fontSize: "30px",
+                        fontSize: "15px",
                       }}
                     ></i>
                     <i
                       class="lni lni-star-filled"
                       style={{
                         color: "Orange",
-                        fontSize: "30px",
+                        fontSize: "15px",
                       }}
                     ></i>
                     <i
                       class="lni lni-star-filled"
                       style={{
                         color: "Orange",
-                        fontSize: "30px",
+                        fontSize: "15px",
                       }}
                     ></i>
                     <i
                       class="lni lni-star-filled"
                       style={{
                         color: "Orange",
-                        fontSize: "30px",
+                        fontSize: "15px",
                       }}
                     ></i>
                   </div>

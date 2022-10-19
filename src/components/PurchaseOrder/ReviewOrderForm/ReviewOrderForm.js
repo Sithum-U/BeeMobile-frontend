@@ -13,11 +13,32 @@ import axios from "axios";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import Alert from "@mui/material/Alert";
+import Switch from "@mui/material/Switch";
 
+import Fade from "@mui/material/Fade";
+import FormControlLabel from "@mui/material/FormControlLabel";
 function TransitionLeft(props) {
   return <Slide {...props} direction="left" />;
 }
-
+const icon = (
+  <div class="container">
+    <h5>Payment and refund policy</h5>
+    <br />
+    <p>
+      Thanks for purchasing our products at [website] operated by [name]. Due to
+      the nature of our business and products we sell, items that expire sooner
+      than 1 month from the date of the purchase are not eligible for a refund.
+      For any other items to be eligible for a refund, you have to return the
+      item you have purchased to us within 7 calendar days of the purchase. The
+      item must unopened and in its original condition. Contact our customer
+      services department to get a free shipping label. If our products arrived
+      damaged, rotten or contaminated in any way, please contact us right away
+      and we will be happy to send a free replacement regardless of its
+      expiration date. If anything is unclear or you have more questions feel
+      free to contact our customer support team.
+    </p>
+  </div>
+);
 function OrderConfirmationForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -37,10 +58,11 @@ function OrderConfirmationForm() {
     } catch (err) {
       console.log(err);
     }
-    setOpen(!open);
+    setOpenOrder(!open);
   };
 
   const [open, setOpen] = React.useState(false);
+  const [openOrder, setOpenOrder] = React.useState(false);
   const [transition, setTransition] = React.useState(undefined);
 
   const handleClick = (Transition) => () => {
@@ -50,6 +72,7 @@ function OrderConfirmationForm() {
 
   const handleClose = () => {
     setOpen(false);
+    setOpenOrder(false);
   };
   // --------------------screenshot as a pdf-----------------------------
   const exportPDF = () => {
@@ -103,6 +126,11 @@ function OrderConfirmationForm() {
       new Notification("Example", { body: "Thi is kkk" });
     });
   };
+  const [checked, setChecked] = React.useState(false);
+
+  const toggleChange = () => {
+    setChecked((prev) => !prev);
+  };
 
   // Item Delete
   const onDelete = (product) => {
@@ -123,7 +151,7 @@ function OrderConfirmationForm() {
         <div class="container">
           <center>
             {" "}
-            <h3
+            <h2
               class="title-page"
               style={{
                 color: "black",
@@ -132,7 +160,7 @@ function OrderConfirmationForm() {
               }}
             >
               Order Details Summary
-            </h3>
+            </h2>
           </center>
         </div>
       </section>
@@ -208,17 +236,6 @@ function OrderConfirmationForm() {
                             {" "}
                             <i class="fa fa-heart"></i>
                           </a>
-                          {/* <button
-                            class="btn btn-light"
-                            style={{
-                              color: "#ff7979",
-                              borderColor: "#ff7979",
-                            }}
-                            onClick={() => onDelete(item)}
-                          >
-                            {" "}
-                            Remove
-                          </button> */}
                         </td>
                       </tr>
                     ))
@@ -227,47 +244,6 @@ function OrderConfirmationForm() {
                   )}
                 </tbody>
               </table>
-
-              {/* ---------------------------------Generate report---------------------------------  */}
-              <div class="card-body border-top">
-                {/* <a href="#" class="btn btn-primary float-md-right">
-                    {" "}
-                    Make Purchase <i class="fa fa-chevron-right"></i>{" "}
-                  </a> */}
-
-                <div onClick={handleClick(TransitionLeft)}>
-                  <button
-                    type="button"
-                    class="btn btn-primary float-md-right"
-                    style={{
-                      backgroundColor: "#4834d4",
-                      borderColor: "#4834d4",
-                    }}
-                    // onClick={() => generatePDF(paymentDetails)}
-                    onClick={() => exportPDF()}
-                  >
-                    GenerateReport <i class="bi bi-download"></i>
-                  </button>{" "}
-                </div>
-                <Snackbar
-                  open={open}
-                  onClose={handleClose}
-                  TransitionComponent={transition}
-                  message=" Please wait...."
-                  key={transition ? transition.name : ""}
-                />
-                <a href="#" class="btn btn-light">
-                  {" "}
-                  <i class="fa fa-chevron-left"></i> Continue shopping{" "}
-                </a>
-              </div>
-
-              <div class="alert alert-success mt-3">
-                <p class="icontext">
-                  <i class="icon text-success fa fa-truck"></i> Free Delivery
-                  within 1-2 weeks
-                </p>
-              </div>
             </main>
             <aside class="col-md-3">
               {/* <div class="card"> */}
@@ -300,8 +276,82 @@ function OrderConfirmationForm() {
                   <img src="assets/images/misc/payments.png" height="26" />
                 </p>
               </div>
-              {/* </div> */}
+
+              {/* ---------------------------------Generate report---------------------------------  */}
+              <div class="card-body border-top">
+                {/* <a href="#" class="btn btn-primary float-md-right">
+                    {" "}
+                    Make Purchase <i class="fa fa-chevron-right"></i>{" "}
+                  </a> */}
+
+                <div onClick={handleClick(TransitionLeft)}>
+                  <button
+                    type="button"
+                    class="btn btn-primary float-md-right"
+                    style={{
+                      backgroundColor: "#4834d4",
+                      borderColor: "#4834d4",
+                    }}
+                    // onClick={() => generatePDF(paymentDetails)}
+                    onClick={() => exportPDF()}
+                  >
+                    GenerateReport <i class="bi bi-download"></i>
+                  </button>{" "}
+                </div>
+                <Snackbar
+                  open={open}
+                  onClose={handleClose}
+                  TransitionComponent={transition}
+                  message=" Please wait...."
+                  key={transition ? transition.name : ""}
+                />
+                {/* <Link to="/home">
+                  <a href="#" class="btn btn-light">
+                    {" "}
+                    <i class="fa fa-chevron-left"></i> Continue shopping{" "}
+                  </a>
+                </Link> */}
+              </div>
+              <div>
+                {/* <Alert severity="info" style={{ marginLeft: "50%" }}>
+                  This is an info alert — check it out!
+                </Alert> */}
+                {/* <Alert severity="warning" style={{ marginLeft: "50%" }}>
+                  Ckick ,Place order to confrim before next!
+                </Alert> */}
+                <Button
+                  variant="contained"
+                  onClick={handleSubmit}
+                  style={{
+                    marginLeft: "50%",
+                    marginTop: "20px",
+                    backgroundColor: "purple",
+                  }}
+                >
+                  Place Order{" "}
+                </Button>
+                <Backdrop
+                  sx={{
+                    color: "#fff",
+                    zIndex: (theme) => theme.zIndex.drawer + 1,
+                  }}
+                  open={openOrder}
+                  onClick={handleClose}
+                  style={{ transition: "all 0.3s linear" }}
+                >
+                  <Button
+                    variant="contained"
+                    onClick={handleSubmit}
+                    style={{ marginLeft: "50px" }}
+                  >
+                    Done
+                  </Button>
+                  Your Order is processing .......
+                  <CircularProgress color="inherit" />
+                </Backdrop>
+              </div>
             </aside>
+
             {/* ...............................Payment Details......................... */}
             {/* <aside class="col-md-3"> */}
             {/* <div class="card mb-3"> */}
@@ -343,37 +393,23 @@ function OrderConfirmationForm() {
             </div>
           </div>
         </div>
-      </section>
-      <div>
-        <Alert severity="warning" style={{ marginLeft: "50%" }}>
-          Warning.. — Ckick on Place order to confrim you order before moving to
-          next!
+        <Alert severity="info" style={{ marginLeft: "50%" }}>
+          This is an info alert — check it out!
         </Alert>
-        <Button
-          variant="contained"
-          onClick={handleSubmit}
-          style={{ marginLeft: "80%", backgroundColor: "purple" }}
-        >
-          Place Order{" "}
-        </Button>
-        <Backdrop
-          sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-          open={open}
-          onClick={handleClose}
-          style={{ transition: "all 0.3s linear" }}
-        >
-          <Button
-            variant="contained"
-            onClick={handleSubmit}
-            style={{ marginLeft: "50px" }}
-          >
-            Continue
-          </Button>
-          Your Order is processing .......
-          <CircularProgress color="inherit" />
-        </Backdrop>
-      </div>
-      <section class="section-name bg padding-y">
+        <Alert severity="warning" style={{ marginLeft: "50%" }}>
+          Ckick ,Place order to confrim before next!
+        </Alert>
+        <div style={{ marginLeft: "50px" }}>
+          <FormControlLabel
+            control={<Switch checked={checked} onChange={toggleChange} />}
+            label="Payment and Refund Policy"
+          />
+
+          <Fade in={checked}>{icon}</Fade>
+        </div>
+      </section>
+
+      {/* <section class="section-name bg padding-y">
         <div class="container">
           <h5>Payment and refund policy</h5>
           <br />
@@ -392,7 +428,7 @@ function OrderConfirmationForm() {
             contact our customer support team.
           </p>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }
