@@ -232,7 +232,7 @@ export default function App() {
                 </p>
               </MDBCol>
 
-              <MDBCol md="5" start="12">
+              <MDBCol md="5" start="12" style={{ zIndex: 0 }}>
                 <MDBInput
                   contrast
                   type="email"

@@ -79,7 +79,7 @@ function ViewAdvertisement(props) {
     const date = Date().split(" ");
     const dateStr = date[1] + "-" + date[2] + "-" + date[3];
 
-    advertisement.data.map((advertisement) => {
+    advertisement.map((advertisement) => {
       const advertisementData = [
         advertisement._id,
         advertisement.title,
@@ -137,7 +137,7 @@ function ViewAdvertisement(props) {
                   Add
                 </Button>
                 <hr></hr>
-                <button
+                <Button
                   style={{ backgroundColor: "#40735E", color: "white" }}
                   startIcon={<ArrowDownwardIcon />}
                   onClick={() => {
@@ -145,7 +145,7 @@ function ViewAdvertisement(props) {
                   }}
                 >
                   Download Advertisement Report
-                </button>
+                </Button>
               </Col>
             </Row>
 
