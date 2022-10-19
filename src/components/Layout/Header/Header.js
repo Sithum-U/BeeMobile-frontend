@@ -4,15 +4,30 @@ import logo from "../Images/backgroundlogo.png";
 import cart from "../Images/cart.png";
 import "./Header.css";
 import { Link, useNavigate } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faRightToBracket } from '@fortawesome/free-solid-svg-icons'
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { NavDropdown } from "react-bootstrap";
+import { Navigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../../actions/userActions";
 
 export default function Header({ countCartItems }) {
   window.addEventListener("scroll", function () {
     var header = document.querySelector("header");
     header.classList.toggle("sticky", window.scrollY > 0);
   });
+
+  const dispatch = useDispatch();
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const logoutHandler = () => {
+    dispatch(logout());
+    window.location.href = "/login";
+  };
+
   return (
     // <div class="container">
     <header>
@@ -109,12 +124,22 @@ export default function Header({ countCartItems }) {
       )}
       <div className="navItems">
         <div>
-          <a href="/signup">
+          <a href="/register">
             <button className="navButton">Register</button>
           </a>
           <a href="/login">
-            <button className="navButton"><FontAwesomeIcon icon={faRightToBracket} />  Login</button>
+            <button className="navButton">
+              <FontAwesomeIcon icon={faRightToBracket} /> Login
+            </button>
           </a>
+          {userInfo ? (
+            <NavDropdown title={userInfo?.name} id="basic-nav-dropdown">
+              <NavDropdown.Item href="/profile">My Profile</NavDropdown.Item>
+              <NavDropdown.Item onClick={logoutHandler}>
+                Logout
+              </NavDropdown.Item>
+            </NavDropdown>
+          ) : null}
         </div>
       </div>
     </header>
