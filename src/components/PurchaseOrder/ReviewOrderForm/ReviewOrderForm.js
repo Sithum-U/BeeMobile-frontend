@@ -145,7 +145,7 @@ function OrderConfirmationForm() {
     }
   };
   return (
-    <div className="App" id="OrderConfirmationForm">
+    <div className="App" id="OrderConfirmationForm" style={{ zIndex: 4 }}>
       {/* <section class="section-pagetop bg"> */}
       <section>
         <div class="container">
@@ -393,12 +393,12 @@ function OrderConfirmationForm() {
             </div>
           </div>
         </div>
-        <Alert severity="info" style={{ marginLeft: "50%" }}>
+        {/* <Alert severity="info" style={{ marginLeft: "50%" }}>
           This is an info alert — check it out!
         </Alert>
         <Alert severity="warning" style={{ marginLeft: "50%" }}>
           Ckick ,Place order to confrim before next!
-        </Alert>
+        </Alert> */}
         <div style={{ marginLeft: "50px" }}>
           <FormControlLabel
             control={<Switch checked={checked} onChange={toggleChange} />}
