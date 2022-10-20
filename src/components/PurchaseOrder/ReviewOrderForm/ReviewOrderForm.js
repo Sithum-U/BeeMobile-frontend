@@ -8,7 +8,7 @@ import jsPDF from "jspdf";
 import Snackbar from "@mui/material/Snackbar";
 import Slide from "@mui/material/Slide";
 import Button from "@mui/material/Button";
-import { Typography } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 import axios from "axios";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -145,7 +145,7 @@ function OrderConfirmationForm() {
     }
   };
   return (
-    <div className="App" id="OrderConfirmationForm" style={{ zIndex: 4 }}>
+    <div className="App" id="OrderConfirmationForm">
       {/* <section class="section-pagetop bg"> */}
       <section>
         <div class="container">

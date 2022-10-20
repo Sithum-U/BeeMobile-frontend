@@ -232,12 +232,22 @@ export default function App() {
                 </p>
               </MDBCol>
 
-              <MDBCol md="5" start="12" style={{ zIndex: 0 }}>
+              <MDBCol
+                md="5"
+                start="12"
+                style={{
+                  zIndex: 0,
+                }}
+              >
                 <MDBInput
-                  contrast
+                  // contrast
                   type="email"
-                  placeholder="    Email  Address"
+                  // placeholder="    Email  Address"
                   // label="Email address"
+                  style={{
+                    zIndex: 0,
+                    borderColor: "white",
+                  }}
                   className="mb-4"
                 />
               </MDBCol>

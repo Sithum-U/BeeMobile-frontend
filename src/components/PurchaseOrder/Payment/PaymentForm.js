@@ -9,6 +9,7 @@ import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 import { Typography } from "@mui/material";
 import Button from "@mui/material/Button";
+import SoloAlert from "soloalert";
 
 const PaymentForm = () => {
   const [email, setEmail] = useState("");
@@ -114,6 +115,7 @@ const PaymentForm = () => {
     e.preventDefault();
     axios
       .delete(`http://localhost:8000/payment/deletePayment/${e.target.id}`)
+      .then(() => alert("Payment Deleted successfully"))
       .then(() => {
         axios.get("http://localhost:8000/payment/").then((res) => {
           setPayments(res.data);
