@@ -1,6 +1,6 @@
-Group ID - 2021S2_REG_WE_09 
+Group ID - 
 -------------------------------------------------
-Project Name - PCHub
+Project Name - 
 -------------------------------------------------
 Group Details
 --------------------------------------------------
@@ -8,20 +8,20 @@ Member Details:-
 
 | Name  | Student ID | Username|
 | ------------- | ------------- | -------------|
-| R.Y Senevirathne  | IT19216874 | rasitha11 |
-| M.A.A.H Rathnayake | IT19217796   | drex7001 |
-| S.L Abeygunawardana | IT19362854   | Sandun01 |
-| N.D Meegoda | IT19105826 | nilanmeegoda99 |
+| I.W.A.S Udara  | IT20153090 | Sithum-U |
+| B.P.S.Somabandu | IT20158804   | Piyumi0 |
+| S.L Abeygunawardana | IT20205874   | Buddhini-123 |
+|  N.D.K.Amerasinghe | IT20383152 | NavinduAmerasinghe |
 
 Project Description
 ------------------------------------------------------
-This is a computer parts selling shop. In the home page user can view items and create quotations according to the items. Also users can order items and all items will be delivered to their doorsteps.
+The purpose of this website was to pinpoint the challenges faced by Sri Lankan farmers as a result of the financial crisis, as the country's government failed to boost domestic production of organic pesticides and fertilizers or offer farmers subsidies to purchase them. Crop yields were destroyed by the unexpected policy change. Average yields of rice, a staple food in Sri Lanka that was previously produced successfully and even exported, were reduced by about 30%. The Department of Census and Statistics Agriculture and Environment Statistics Division gathers, analyzes, and disseminates data pertaining to this crisis. The Division compiles statistics on the extent and production of paddy as well as other temporary and seasonal crops, livestock, and production costs.
 
 --------------------------------------------------------------------------------------------------------------
 
 <h1>AgroPro Solution Provider</h1>
 
-
+<img src="./pchub_frontend/public/images/logo.png" >
 
 
 
