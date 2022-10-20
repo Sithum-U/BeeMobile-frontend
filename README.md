@@ -1,3 +1,8 @@
+
+<h1>AgroPro Solution Provider</h1>
+
+<img src="https://github.com/Sithum-U/BeeMobile-frontend/blob/main/backgroundlogo.png" >
+
 Group ID - 
 -------------------------------------------------
 Project Name - 
@@ -19,9 +24,6 @@ The purpose of this website was to pinpoint the challenges faced by Sri Lankan f
 
 --------------------------------------------------------------------------------------------------------------
 
-<h1>AgroPro Solution Provider</h1>
-
-<img src="https://github.com/Sithum-U/BeeMobile-frontend/blob/main/backgroundlogo.png" >
 
 
 
