@@ -10,7 +10,7 @@ Member Details:-
 | ------------- | ------------- | -------------|
 | I.W.A.S Udara  | IT20153090 | Sithum-U |
 | B.P.S.Somabandu | IT20158804   | Piyumi0 |
-| S.L Abeygunawardana | IT20205874   | Buddhini-123 |
+| J.A.B.U | IT20205874   | Buddhini-123 |
 |  N.D.K.Amerasinghe | IT20383152 | NavinduAmerasinghe |
 
 Project Description
