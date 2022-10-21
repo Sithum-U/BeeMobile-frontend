@@ -98,19 +98,6 @@ const Signup = () => {
               onChange={(e) => setIsAdmin(e.target.value)}
             />
           </Form.Group>
-          {/* {picMessage && (
-            <ErrorMessage variant="danger">{picMessage}</ErrorMessage>
-          )} */}
-          {/* <Form.Group controlId="pic">
-            <Form.Label>Profile Picture</Form.Label>
-            <Form.Control
-              //   onChange={(e) => postDetails(e.target.files[0])}
-              id="custom-file"
-              type="file"
-              label="Upload Profile Picture"
-              custom
-            />
-          </Form.Group> */}
           <Button variant="success" type="submit">
             Register
           </Button>
