@@ -17,40 +17,10 @@ const Login = () => {
 
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
-
-  //   useEffect(() => {
-  //     if (userInfo) {
-  //       window.location.href = "/";
-  //     }
-  //   }, [userInfo]);
-
   const submitHandler = async (e) => {
     e.preventDefault();
 
     dispatch(login(email, password));
-
-    // try {
-    //   const config = {
-    //     "Content-type": "application/json",
-    //   };
-
-    //   setLoading(true);
-    //   const { data } = await axios.post(
-    //     "http://localhost:8000/users/login",
-    //     {
-    //       email,
-    //       password,
-    //     },
-    //     config
-    //   );
-    //   console.log(data);
-    //   localStorage.setItem("userInfo", JSON.stringify(data));
-    //   setLoading(false);
-    //   console.log(email, password);
-    // } catch (error) {
-    //   setError(error.response.data.message);
-    //   setLoading(false);
-    // }
   };
 
   return (
