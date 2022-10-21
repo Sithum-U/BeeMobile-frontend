@@ -44,37 +44,6 @@ const Signup = () => {
       dispatch(register(name, email, password, isAdmin, pic));
     }
   };
-  //   };
-
-  // const postDetails = (pics) => {
-  //   if (!pics) {
-  //     return setPicMessage("Please Select an Image");
-  //   }
-  //   setPicMessage(null);
-  //   if (pics.type === "image/jpeg" || pics.type === "image/png") {
-  //     const data = new FormData();
-  //     data.append("file", pics);
-  //     data.append("upload_preset", "agroProUser");
-  //     data.append("cloud_name", "den64erzb");
-  //     fetch(
-  //       "https://cloudinary://264518114977322:22ZQ6GYtQBqN5tFvLRyQ02H_Ubs@den64erzb",
-  //       {
-  //         method: "post",
-  //         body: data,
-  //       }
-  //     )
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         console.log(data);
-  //         setPic(data.url.toString());
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   } else {
-  //     return setPicMessage("Please Select an Image");
-  //   }
-  // };
 
   return (
     <MainScreen title="REGISTER">
