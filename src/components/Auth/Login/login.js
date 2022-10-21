@@ -12,17 +12,11 @@ import { login } from "../../../actions/userActions";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  //   const [error, setError] = useState(false);
-  //   const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
 
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
-
-  // if (userInfo) {
-  //   window.location.href = "/";
-  // }
 
   //   useEffect(() => {
   //     if (userInfo) {
