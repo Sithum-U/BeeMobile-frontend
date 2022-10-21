@@ -22,8 +22,6 @@ const Signup = () => {
   const [confirmpassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState(null);
   const [picMessage, setPicMessage] = useState(null);
-  //   const [error, setError] = useState(false);
-  //   const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -45,33 +43,6 @@ const Signup = () => {
     } else {
       dispatch(register(name, email, password, isAdmin, pic));
     }
-
-    // if (password !== confirmpassword) {
-    //   setMessage("Passwords do not match");
-    // } else {
-    //   setMessage(null);
-    //   try {
-    //     const config = {
-    //       "Content-type": "application/json",
-    //     };
-
-    //     setLoading(true);
-    //     const { data } = await axios.post(
-    //       "http://localhost:8000/users/",
-    //       {
-    //         name,
-    //         pic,
-    //         email,
-    //         password,
-    //       },
-    //       config
-    //     );
-    //     console.log(data);
-    //     setLoading(false);
-    //     localStorage.setItem("userInfo", JSON.stringify(data));
-    //   } catch (error) {
-    //     setError(error.response.data.message);
-    //   }
   };
   //   };
 
