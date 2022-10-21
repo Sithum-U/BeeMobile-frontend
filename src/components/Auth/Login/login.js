@@ -3,7 +3,6 @@ import { Form, Button, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import MainScreen from "../../MainScreen";
 import "./login.css";
-// import axios from "axios";
 import Loading from "../../Loading";
 import ErrorMessage from "../../ErrorMessage";
 import { useDispatch, useSelector } from "react-redux";
